@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+data/*.db
+data/runs/
+.pytest_cache/
+.DS_Store
+.env
+Chaturvedi_and_sons (1).pdf
