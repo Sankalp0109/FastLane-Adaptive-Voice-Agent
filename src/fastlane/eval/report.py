@@ -60,8 +60,24 @@ def plot(summaries: list[dict], path: Path) -> Path | None:
     return path
 
 
+def rescore(rows: list[dict]) -> list[dict]:
+    """Re-apply the current scorer to stored calls (changed bookings, agent text and hand-off are kept)."""
+    from fastlane.eval.scenarios import load_test_calls
+    from fastlane.eval.score import score_call
+
+    gold = {c.call_id: c.gold for c in load_test_calls()}
+    for r in rows:
+        if r["call_id"] not in gold:
+            continue
+        text = " ".join(t["agent"] for t in r["turns"])
+        r.update(score_call(gold[r["call_id"]], r["changed"], text, r["handoff"]))
+        if r.get("error"):
+            r["success"] = False
+    return rows
+
+
 def write_report(run_name: str) -> Path:
-    rows = load_runs(run_name)
+    rows = rescore(load_runs(run_name))
     if not rows:
         raise SystemExit(f"no results in {RUNS_DIR / run_name}")
     summaries = summarize(rows)
@@ -77,6 +93,7 @@ def write_report(run_name: str) -> Path:
                f"- Success by domain: {s['success_by_domain']}",
                f"- Tokens per call (prompt, completion) by role: {s['tokens_per_call']}",
                f"- Large-model calls per call: {s['large_calls_per_call']}; rate-limit wait per call: {s['throttle_s_per_call']} s",
+               f"- Large-model calls answered by: {s['large_model_mix']}",
                f"- Unconfirmed writes: {s['unconfirmed_writes']}; rule-violating writes: {s['rule_violating_writes']}",
                f"- Invalid tool-call rate: {s['invalid_tool_call_rate']}; success on calls with injected errors: {s['injected_error_success']}",
                f"- Policy answer accuracy: {s['policy_answer_accuracy']}; early lookup: {s['early_lookup']}",

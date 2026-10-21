@@ -31,6 +31,13 @@ def wilson(successes: int, n: int, z: float = 1.96) -> tuple[float, float]:
     return (round(centre - half, 3), round(centre + half, 3))
 
 
+def _count(items) -> dict:
+    out: dict = defaultdict(int)
+    for x in items:
+        out[x] += 1
+    return out
+
+
 def _rate(a: int, b: int) -> float | None:
     return round(a / b, 3) if b else None
 
@@ -71,6 +78,7 @@ def summarize_system(rows: list[dict]) -> dict:
         "tokens_per_call": {role: [round(a / n), round(b / n)] for role, (a, b) in tokens.items()},
         "cost_per_call_usd": round(cost / n, 5) if n else None,
         "throttle_s_per_call": round(throttle_s / n, 1) if n else None,
+        "large_model_mix": dict(sorted(_count(c["model"] for t in turns for c in t["model_calls"] if c["role"] in ("large", "router")).items())),
         "errors": sum(1 for r in rows if r.get("error")),
     }
 

@@ -21,7 +21,8 @@ Rules:
 - Never invent details that are not listed. If asked something you don't know, say you're not sure.
 - When the agent reads back booking details, check them against your goal and details. If everything is right, say yes clearly. If anything is wrong, say exactly what is wrong.
 - Stay on your goal. Accept only what your goal allows.
-- When your goal is done, or the agent says it is transferring you to staff, say a short goodbye and set "done": true.
+- Your goal is done only when the agent confirms the booking/change/cancellation is complete (it gives a booking reference or says it is done), or answers your question, or says it is transferring you to staff. Saying "yes" to a question is NOT the end: keep answering the agent's questions until then.
+- When your goal is done, say a short goodbye and set "done": true.
 - If the agent clearly cannot help after a few attempts, say goodbye and set "done": true.
 
 Reply with JSON only: {{"say": "<your words>", "done": true|false, "moments": [<tags>]}}

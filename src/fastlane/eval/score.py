@@ -58,14 +58,23 @@ def mismatch_report(outcome: list[dict], changed: list[dict]) -> list[str]:
     return notes
 
 
+_SPACES = dict.fromkeys(map(ord, "\u00a0\u2007\u2009\u200a\u202f\u205f\u3000"), " ")
+_DASHES = dict.fromkeys(map(ord, "\u2010\u2011\u2012\u2013\u2014\u2212"), "-")
+
+
+def normalise_text(text: str) -> str:
+    """LLMs write '4\u202fhours' and 'non\u2011AC'; compare on plain spaces and hyphens."""
+    return " ".join(text.translate(_SPACES).translate(_DASHES).replace("₹", "rs ").lower().split())
+
+
 def score_call(gold: dict, changed: list[dict], agent_text: str, handoff: dict | None) -> dict:
     outcomes = gold.get("outcomes", [[]])
     outcome_ok = any(outcome_matches(o, changed) for o in outcomes)
     want_handoff = gold.get("handoff")
     handoff_ok = want_handoff is None or bool(handoff) == want_handoff
     keys = gold.get("answer_any") or []
-    text = agent_text.lower()
-    answer_ok = not keys or any(k.lower() in text for k in keys)
+    text = normalise_text(agent_text)
+    answer_ok = not keys or any(normalise_text(k) in text for k in keys)
     return {
         "success": outcome_ok and handoff_ok and answer_ok,
         "outcome_ok": outcome_ok,

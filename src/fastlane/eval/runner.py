@@ -140,7 +140,8 @@ def _count(items):
 
 
 def run(system: str, calls: list[CallScript], seeds: list[int], run_name: str, small: LLMClient | None,
-        large: LLMClient | None, caller: LLMClient, progress=print) -> Path:
+        large: LLMClient | None, caller: LLMClient, progress=None) -> Path:
+    progress = progress or (lambda msg: print(msg, flush=True))
     out_dir = RUNS_DIR / run_name
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{system}.jsonl"
