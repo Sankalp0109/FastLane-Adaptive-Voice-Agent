@@ -1,0 +1,67 @@
+{"q": "how much refund if I cancel my bus ticket 10 hours before", "doc": "bus_refund_policy", "answer": "25%", "kind": "current"}
+{"q": "refund if I cancel the Bangalore bus three days before travel", "doc": "bus_refund_policy", "answer": "90%", "kind": "current"}
+{"q": "I booked my bus ticket in August, what is the refund if I cancel 30 hours before", "doc": "bus_refund_policy_2025", "answer": "60%", "kind": "old"}
+{"q": "what was the old bus refund policy before September", "doc": "bus_refund_policy_2025", "answer": "85%", "kind": "old"}
+{"q": "can I cancel the bus 2 hours before departure", "doc": "bus_refund_policy", "answer": "4 hours", "kind": "current"}
+{"q": "can I change my bus travel date", "doc": "bus_refund_policy", "answer": "12 hours", "kind": "current"}
+{"q": "is there a fee to change the date of my bus ticket", "doc": "bus_refund_policy", "answer": "same route", "kind": "current"}
+{"q": "how many seats can I book on one bus booking", "doc": "bus_refund_policy", "answer": "6 seats", "kind": "normal"}
+{"q": "does my 3 year old need a bus ticket", "doc": "bus_refund_policy", "answer": "below 5", "kind": "normal"}
+{"q": "how much luggage can I carry on the bus", "doc": "bus_routes_and_fares", "answer": "15 kg", "kind": "normal"}
+{"q": "can I take my dog on the bus", "doc": "bus_routes_and_fares", "answer": "Pets are not allowed", "kind": "normal"}
+{"q": "where does the Vijayawada bus start from in Hyderabad", "doc": "bus_routes_and_fares", "answer": "LB Nagar", "kind": "normal"}
+{"q": "what time does the Chennai sleeper bus leave", "doc": "bus_routes_and_fares", "answer": "7:30 PM", "kind": "normal"}
+{"q": "does the Bengaluru bus stop at Kurnool", "doc": "bus_stops", "answer": "Kurnool", "kind": "normal"}
+{"q": "what happens if I miss my bus", "doc": "bus_faq", "answer": "not refunded", "kind": "normal"}
+{"q": "do you have buses to Tirupati", "doc": "bus_faq", "answer": "No", "kind": "normal"}
+{"q": "seat for a woman travelling alone on the sleeper bus", "doc": "bus_faq", "answer": "L1-L4", "kind": "normal"}
+{"q": "what is the cancellation fee for movie tickets", "doc": "movie_ticket_policy", "answer": "Rs 30", "kind": "normal"}
+{"q": "can I cancel movie tickets two hours before the show", "doc": "movie_ticket_policy", "answer": "4 hours", "kind": "normal"}
+{"q": "how many movie tickets can I book at once", "doc": "movie_ticket_policy", "answer": "10 tickets", "kind": "normal"}
+{"q": "does my two year old need a movie ticket", "doc": "movie_ticket_policy", "answer": "below 3", "kind": "normal"}
+{"q": "can I take my kid to an A certificate film", "doc": "movie_faq", "answer": "18", "kind": "normal"}
+{"q": "can I bring outside food into the cinema", "doc": "movie_ticket_policy", "answer": "not allowed", "kind": "normal"}
+{"q": "is there wheelchair access at the cinema", "doc": "movie_ticket_policy", "answer": "wheelchair", "kind": "normal"}
+{"q": "how much is a recliner ticket on Saturday", "doc": "movie_fares", "answer": "Rs 500", "kind": "normal"}
+{"q": "price of a classic ticket for the 10 am show on a weekday", "doc": "movie_fares", "answer": "Rs 150", "kind": "normal"}
+{"q": "is there parking at Galaxy Kukatpally", "doc": "cinemas_guide", "answer": "Rs 60", "kind": "normal"}
+{"q": "which metro station is near Regal Talkies", "doc": "cinemas_guide", "answer": "Ameerpet", "kind": "normal"}
+{"q": "what is Rocket Raja about", "doc": "films_now_showing", "answer": "rocket", "kind": "normal"}
+{"q": "is Chennai Nights suitable for children", "doc": "films_now_showing", "answer": "certificate A", "kind": "normal"}
+{"q": "do you show movies in 3D", "doc": "movie_faq", "answer": "2D", "kind": "normal"}
+{"q": "is the popcorn vegan", "doc": "cinema_snacks", "answer": "coconut oil", "kind": "normal"}
+{"q": "how many seats are in screen 3", "doc": "seat_maps", "answer": "60", "kind": "normal"}
+{"q": "do I need to pay a deposit for a table of 8 at Jubilee Hills", "doc": "restaurant_reservation_policy", "answer": "Rs 300", "kind": "normal"}
+{"q": "deposit for 6 people at Hitech City", "doc": "restaurant_reservation_policy", "answer": "Rs 250", "kind": "normal"}
+{"q": "will I get my deposit back if I cancel the day before", "doc": "restaurant_reservation_policy", "answer": "24 hours", "kind": "normal"}
+{"q": "can you waive the deposit", "doc": "restaurant_reservation_policy", "answer": "cannot be waived", "kind": "normal"}
+{"q": "is Banjara Hills open on Monday", "doc": "restaurant_reservation_policy", "answer": "closed on Mondays", "kind": "normal"}
+{"q": "how long is the table held if we are late", "doc": "restaurant_reservation_policy", "answer": "15 minutes", "kind": "normal"}
+{"q": "can I bring my own cake to the restaurant", "doc": "restaurant_reservation_policy", "answer": "Rs 300", "kind": "normal"}
+{"q": "does the dal makhani have nuts", "doc": "menu_jubilee", "answer": "no nuts", "kind": "normal"}
+{"q": "which breads are egg free", "doc": "allergen_guide", "answer": "tandoori roti", "kind": "normal"}
+{"q": "do you have Jain food at Hitech City", "doc": "menu_hitech", "answer": "Jain Thali", "kind": "normal"}
+{"q": "do you serve prawns at Banjara Hills", "doc": "menu_banjara", "answer": "does not serve fish", "kind": "normal"}
+{"q": "is the biryani nut free", "doc": "allergen_guide", "answer": "cashew", "kind": "normal"}
+{"q": "is the meat halal", "doc": "restaurant_faq", "answer": "halal", "kind": "normal"}
+{"q": "do you serve beer at Tandoor Tales", "doc": "restaurant_faq", "answer": "does not serve alcohol", "kind": "normal"}
+{"q": "is there outdoor seating at Banjara Hills", "doc": "restaurant_faq", "answer": "indoor only", "kind": "normal"}
+{"q": "what date is Diwali this year", "doc": "festival_calendar", "answer": "8 November", "kind": "normal"}
+{"q": "when is Dussehra", "doc": "festival_calendar", "answer": "20 October", "kind": "normal"}
+{"q": "are restaurants open on Diwali", "doc": "festival_calendar", "answer": "fully booked", "kind": "normal"}
+{"q": "am I talking to a real person", "doc": "booking_faq", "answer": "automated", "kind": "normal"}
+{"q": "what does next Friday mean", "doc": "booking_faq", "answer": "Friday of next week", "kind": "normal"}
+{"q": "how long does a refund take to reach my account", "doc": "payments_and_refunds", "answer": "5-7 working days", "kind": "normal"}
+{"q": "can I pay by card on this call", "doc": "payments_and_refunds", "answer": "cannot take card", "kind": "normal"}
+{"q": "how long do you keep call recordings", "doc": "terms_and_privacy", "answer": "30 days", "kind": "normal"}
+{"q": "I want to book a private screening for my office", "doc": "events_and_groups", "answer": "Private screenings", "kind": "normal"}
+{"q": "can I book train tickets to Delhi", "doc": "booking_faq", "answer": "trains", "kind": "out_of_scope"}
+{"q": "what is the wifi password at the cinema", "doc": null, "answer": null, "kind": "not_covered"}
+{"q": "do you have valet parking at the cinema in Gachibowli for electric cars with charging", "doc": null, "answer": null, "kind": "not_covered"}
+{"q": "will it rain in Hyderabad tomorrow", "doc": null, "answer": null, "kind": "not_covered"}
+{"q": "what is the salary of a bus driver", "doc": null, "answer": null, "kind": "not_covered"}
+{"q": "can I get a hotel room in Bengaluru", "doc": "booking_faq", "answer": "hotels", "kind": "out_of_scope"}
+{"q": "who is the director of Kaala Samudram", "doc": null, "answer": null, "kind": "not_covered"}
+{"q": "how many calories are in the butter chicken", "doc": null, "answer": null, "kind": "not_covered"}
+{"q": "is there a swimming pool at the restaurant", "doc": null, "answer": null, "kind": "not_covered"}
+{"q": "can I smoke on the bus", "doc": "bus_routes_and_fares", "answer": "Smoking", "kind": "normal"}

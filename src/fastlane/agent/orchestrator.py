@@ -66,6 +66,7 @@ class Agent:
         small_context_lines: int = 6,
         large_context_lines: int = 8,
         raise_errors: bool = False,
+        compact_small_prompt: bool = False,
     ):
         self.cfg = config
         self.small = small
@@ -89,7 +90,8 @@ class Agent:
         self.ended = False
         self.raise_errors = raise_errors
         self._specs = self.gw.specs()
-        self._small_system = prompts.small_system(config, self._specs)
+        # The fine-tuned small model uses the short prompt it was trained with; prompted models get the full one.
+        self._small_system = prompts.small_system(config, self._specs, compact=compact_small_prompt)
         self._large_system = prompts.large_system(config)
         self._large_tools = openai_tools(self._specs)
 

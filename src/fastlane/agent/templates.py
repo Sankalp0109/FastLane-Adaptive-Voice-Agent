@@ -18,8 +18,12 @@ _MORE = re.compile(r"\b(also|and|another|one more|book|cancel|change|what|how|ca
 
 
 def is_goodbye(text: str) -> bool:
-    """A closing turn with no new request ("ok thank you, bye")."""
-    return bool(_BYE.search(text)) and not _MORE.search(_BYE.sub("", text))
+    """A closing turn with no new request ("ok thank you, bye"). Long turns that merely contain
+    "that's all" or "thanks" ("Ravi, 44, male, that's all") are not goodbyes."""
+    if not _BYE.search(text):
+        return False
+    rest = _BYE.sub("", text)
+    return not _MORE.search(rest) and not re.search(r"\d", rest) and len(re.findall(r"[A-Za-z]+", rest)) <= 4
 
 
 def spell_ref(booking_id: str) -> str:

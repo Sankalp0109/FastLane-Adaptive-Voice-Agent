@@ -66,13 +66,14 @@ def sample_calls(calls: list[CallScript], n: int | None, categories: list[str] |
 
 
 def run_call(script: CallScript, system: str, seed: int, small: LLMClient | None, large: LLMClient | None,
-             caller: LLMClient, max_turns: int = 16, world_path: Path = WORLD_DB) -> dict:
+             caller: LLMClient, max_turns: int = 16, world_path: Path = WORLD_DB, compact_small_prompt: bool = False) -> dict:
     cfg = get_system(system)
     world = World.fresh(world_path)
     setup_world(world, script)
     before = booking_views(world)
     inject = {script.inject_failure: 1} if script.inject_failure else None
-    agent = Agent(world, script.phone, cfg, small=small, large=large, policy_index=policy_index(), inject_failures=inject)
+    agent = Agent(world, script.phone, cfg, small=small, large=large, policy_index=policy_index(), inject_failures=inject,
+                  compact_small_prompt=compact_small_prompt)
     sim = CallerSim(caller, script, seed=seed)
     t0 = time.perf_counter()
     ended_by = "max_turns"
@@ -140,7 +141,7 @@ def _count(items):
 
 
 def run(system: str, calls: list[CallScript], seeds: list[int], run_name: str, small: LLMClient | None,
-        large: LLMClient | None, caller: LLMClient, progress=None) -> Path:
+        large: LLMClient | None, caller: LLMClient, progress=None, compact_small_prompt: bool = False) -> Path:
     progress = progress or (lambda msg: print(msg, flush=True))
     out_dir = RUNS_DIR / run_name
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -155,7 +156,7 @@ def run(system: str, calls: list[CallScript], seeds: list[int], run_name: str, s
     progress(f"[{system}] {len(done)} done, {len(todo)} to run -> {path}")
     with path.open("a") as f:
         for i, (call, seed) in enumerate(todo, 1):
-            rec = run_call(call, system, seed, small, large, caller)
+            rec = run_call(call, system, seed, small, large, caller, compact_small_prompt=compact_small_prompt)
             f.write(json.dumps(rec, ensure_ascii=False, default=str) + "\n")
             f.flush()
             p95 = max((t["model_ms"] for t in rec["turns"]), default=0)
