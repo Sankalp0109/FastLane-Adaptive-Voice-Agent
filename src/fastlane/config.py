@@ -54,6 +54,19 @@ DATA_DIR = PROJECT_DIR / "data"
 WORLD_DB = DATA_DIR / "world.db"
 DOCS_DIR = PACKAGE_DIR / "retrieval" / "docs"
 
+# Which model plays each role, as "provider:model". Override with env vars FASTLANE_<ROLE>.
+MODEL_ROLES: dict[str, str] = {
+    "large": "groq:openai/gpt-oss-120b",
+    "large_backup": "gemini:gemini-3.5-flash",
+    # Small models are served by `fastlane serve` (MLX, 4-bit) so tuned and untuned run on the same stack.
+    "small": "mlx:runs/mlx-qwen2.5-3b-base",  # untuned base: prompted small model (A1, B2)
+    "small_lora": "mlx:runs/mlx-fastlane-qwen2.5-3b",  # all-domains adapter (FastLane and most variants)
+    "small_lora_mb": "mlx:runs/mlx-fastlane-qwen2.5-3b-mb",  # movies+buses adapter (A8)
+    "small_ollama": "ollama:qwen2.5:3b",  # fallback when no MLX server is running
+    "caller": "ollama:qwen2.5:7b",
+}
+ESCALATION_THRESHOLD = 0.5  # small-model escalation score above which the turn goes to the large model
+
 Domain = Literal["movies", "buses", "restaurants"]
 DOMAINS: tuple[Domain, ...] = ("movies", "buses", "restaurants")
 

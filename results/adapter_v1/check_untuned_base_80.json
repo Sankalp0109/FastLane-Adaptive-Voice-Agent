@@ -1,0 +1,236 @@
+{
+  "model": "ollama:qwen2.5:3b",
+  "prompt": "full",
+  "examples": 80,
+  "json_ok": 1.0,
+  "route_accuracy": 0.625,
+  "escalation_precision": 0.152,
+  "escalation_recall": 0.833,
+  "tool_choice_accuracy": 0.514,
+  "tool_args_exact": 0.25,
+  "latency_ms_p50": 2731,
+  "latency_ms_p95": 9271,
+  "route_confusion": {
+    "llm->llm": 4,
+    "llm->self": 1,
+    "self->llm": 28,
+    "self->self": 46,
+    "staff->llm": 1
+  },
+  "arg_misses": [
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "movies",
+          "option_id": "SH00764:classic",
+          "name": "Venkatesh Iyer",
+          "quantity": 4
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "option_id": "SH00764:classic",
+          "name": "Venkatesh Iyer",
+          "quantity": 4,
+          "seat_category": "classic",
+          "special_request": ""
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-16",
+          "origin": "Chennai",
+          "destination": "Hyderabad",
+          "time": "19:30",
+          "quantity": 1
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-16",
+          "time": "19:30",
+          "origin": "Chennai",
+          "destination": "Hyderabad",
+          "bus_type": "AC",
+          "passengers": "Fatima Kapoor (57, F)"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-27",
+          "origin": "Hyderabad",
+          "destination": "Vijayawada",
+          "time": "06:00",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-27",
+          "time": "06:00",
+          "origin": "Hyderabad",
+          "destination": "Vijayawada",
+          "bus_type": "AC"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "movies",
+          "option_id": "SH00966:recliner",
+          "name": "Anjali Mehta",
+          "quantity": 4
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "option_id": "SH00966:recliner",
+          "name": "Anjali Mehta",
+          "phone": "8792741670",
+          "quantity": 4,
+          "seat_category": "recliner",
+          "movie": "Chennai Nights",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "13:30",
+          "origin": "",
+          "destination": "",
+          "bus_type": "",
+          "restaurant": "",
+          "party_size": "",
+          "special_request": "",
+          "waive_deposit": false
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurants",
+          "date": "2026-10-20",
+          "time": "12:30",
+          "restaurant": "Tandoor Tales Hitech City",
+          "party_size": 5
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurant",
+          "date": "2026-10-20",
+          "time": "12:30",
+          "quantity": "5",
+          "restaurant": "Tandoor Tales Hitech City",
+          "party_size": "5"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00046",
+          "name": "Fatima Kapoor",
+          "passengers": [
+            {
+              "name": "Fatima Kapoor",
+              "age": 57,
+              "gender": "F"
+            }
+          ]
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00046",
+          "name": "Fatima Kapoor",
+          "phone": "7708017897",
+          "quantity": 1,
+          "seat_category": null,
+          "passengers": "Fatima Kapoor (57, F)",
+          "seat_preference": null,
+          "party_size": null,
+          "special_request": null
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-11-03",
+          "origin": "Hyderabad",
+          "destination": "Vijayawada",
+          "time": "14:00",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-11-03",
+          "time": "14:00",
+          "quantity": 1,
+          "origin": "Hyderabad",
+          "destination": "Vijayawada",
+          "bus_type": "non-AC",
+          "berth_preference": "seater"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "movies",
+          "option_id": "SH00145:prime",
+          "name": "Shalini Varma",
+          "quantity": 4
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "movies",
+          "option_id": "SH00149:prime",
+          "name": "Shalini Varma",
+          "quantity": 4,
+          "seat_category": "prime",
+          "movie": "Rocket Raja",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "date": "2026-10-18",
+          "time": "10:00",
+          "origin": "",
+          "destination": "",
+          "bus_type": "",
+          "restaurant": "",
+          "party_size": "",
+          "special_request": "",
+          "waive_deposit": ""
+        }
+      }
+    }
+  ]
+}

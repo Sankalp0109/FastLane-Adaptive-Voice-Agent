@@ -144,12 +144,96 @@ fastlane/
 
 | Phase | Status |
 |---|---|
-| 0 Scaffolding | in progress |
-| 1 Practice world | todo |
-| 2 Gateway + record | todo |
-| 3 Retrieval | todo |
-| 4 Models + orchestrator | todo |
-| 5 Evaluation | todo |
-| 6 Training | todo |
+| 0 Scaffolding | done |
+| 1 Practice world | done — `fastlane world build`, 12 tests |
+| 2 Gateway + record | done — 11 tools, rules, read-back gate, identity, error injection; 78 tests total |
+| 3 Retrieval | done — 25 docs (~21 pages at 450 words; target ~60, add `.md` files to `retrieval/docs/`), BM25 + version handling + "not covered", early lookup; 87 tests total |
+| 4 Models + orchestrator | done — Groq `gpt-oss-120b` (large), Ollama `qwen2.5:3b` (small, base until LoRA), all 12 systems run; `fastlane chat`; 119 tests total |
+| 5 Evaluation | done — 360-call test set (`data/test_calls.jsonl`, every gold outcome verified achievable), LLM caller (Qwen2.5-7B), resumable runner, Table 7 metrics, report + plot; 135 tests total. Free-tier pilot done (below) |
+| 6 Training | adapter v1 trained on Kaggle (3B, 2 epochs, val loss 0.0128) and served locally with MLX; date-handling gaps found and fixed in data + gateway; **v2 (both adapters) ready to train** |
 | 7 Speech | todo |
 | 8 Experiments | todo |
+
+### Phase 4 findings (first real calls)
+
+- Small model (base Qwen2.5-3B, Ollama, M4): 0.8–1.5 s per step with a ~1k-token prompt; 5 s cold start.
+  Log-probabilities are available, so the escalation score is real. The untuned model over-escalates
+  easy turns and invents option ids, which is the gap LoRA (Phase 6) has to close (A1 vs FastLane).
+- Large model (Groq free tier): ~1–2.5 s per call, but the free tier allows 8k tokens/min and 1k requests/day,
+  and each large call carries ~3k tokens of tool schemas + prompt. Waiting is logged as `throttle_ms` and is
+  not counted as model time. Free tier is enough for development and pilots, not for 13k simulated calls.
+- Staff hand-off on "two failed tool calls in a row" counts booking-system failures only; model mistakes
+  (bad arguments, unknown tools) escalate to the large model instead.
+
+### Phase 3 retrieval baseline (67-question QA set, `fastlane.retrieval.evaluate`)
+
+| Recall@3 | Top-1 | Answer in context | Covered when answerable | Current-policy choice | "Not covered" detection |
+|---|---|---|---|---|---|
+| 0.967 | 0.817 | 0.883 | 0.933 | 1.00 | 0.714 (only 7 items; noisy) |
+
+Thresholds (`min_score=5.0`, `min_coverage=0.6`) were tuned on this same set, so these numbers are optimistic.
+A held-out QA set and an optional dense reranker are follow-ups.
+
+### Phase 5 notes
+
+- Success = the set of bookings created or changed anywhere in the database matches one acceptable gold outcome
+  exactly (domain-specific fields; bus passengers by first name), plus hand-off and policy-answer expectations.
+- Hard-turn labels for router metrics: caller-text patterns + the simulated caller's own tags + any no-availability
+  result in the turn (`fastlane.eval.labels`). The same labeller will produce routing targets for training data.
+- Bugs found by the first real calls and fixed: Groq rejects tool calls server-side when an enum doesn't match
+  (now lenient + normalised, and rejections are fed back to the model); the large model lost details across turns
+  (write-tool arguments now fill the booking record); "Friday 23rd October" resolved to the coming Friday
+  (explicit dates now win); the base small model sent refund-rule questions to staff (prompt clarified).
+
+### Pilot (24 stratified calls, FastLane with the *untuned* Qwen2.5-3B, Groq gpt-oss-120b, Qwen2.5-7B caller)
+
+| Success (95% CI) | p50 / p95 model ms per turn | Large-model turns | Router precision / hard recall | Unsafe-write calls | Missed hand-offs |
+|---|---|---|---|---|---|
+| 79.2% (60–91%) | 2,882 / 6,892 | 60.7% | 25.3% / 90.5% | 0% | 0/3 |
+
+- Every category succeeded except policy (0/3: the untuned small model hands refund-rule questions to staff)
+  and one sold-out and one change-of-mind call. Injected tool errors: 3/3 recovered.
+- ~6 large-model calls and ~13k large-model tokens per call; ~110 s rate-limit wait per call on Groq's free tier.
+- Large-model fallback: Groq `gpt-oss-120b` first; when Groq would make a call wait more than 10 s, that call goes to
+  Gemini `gemini-3.5-flash` (4–7 s per call vs 1–2 s on Groq). `large_model_mix` in the report shows which model
+  answered, so any result can be split by model. Set `FASTLANE_LARGE_BACKUP=none` to disable.
+
+### Phase 6 notes
+
+- **Practice-call data** (`fastlane train data`): both sides are code (rule-based caller + oracle agent) and the
+  calls run through the real orchestrator and gateway, so every example is the exact small-model input plus the
+  ideal JSON. Only calls that end in the planned final state are kept (645/650).
+- **Routing targets:** relative dates and policy questions are handled by the small model *when it has the tool*
+  (A2 prompts without `resolve_date` -> `llm`); changed choices, "my usual", refused details -> `llm`; red flags,
+  deposit waivers, over-limit groups -> `staff`; no availability / tool errors escalate in code.
+- **Mix:** prompts of FastLane 60%, A2 15%, A4 10%, A6 5%, A7 10% so one adapter works with every tool list/context.
+  Escalation steps are repeated 3x in train (they are ~5% of steps); validation keeps the natural mix.
+- **Speech noise:** 30% of training examples get a copy with mis-transcribed caller lines (rule-based; replace with
+  a TTS->STT round trip in Phase 7).
+- **Compact prompt:** the tuned model gets a 643-token system prompt instead of 1,062 (less prefill latency);
+  used only when the tuned model is really loaded.
+- **Not done yet:** Schema-Guided Dialogue / Taskmaster-1 conversion (public data rows of Table 5);
+  the 300-turn double annotation (`fastlane train label-sheet`, then `fastlane train kappa`) needs two people.
+- **Bugs found while building the data, fixed in the agent:** `parse_time("10:00")` returned 22:00 (24-hour tool
+  times are now literal); "…44, male, that's all" was taken as a goodbye (goodbyes now need a short turn without
+  numbers).
+
+### Adapter v1 results (offline step accuracy, `fastlane train check`)
+
+| Same 80 held-out steps | Untuned Qwen2.5-3B (full prompt) | Tuned v1 (compact prompt) |
+|---|---|---|
+| Route accuracy | 62.5% | 97.5% |
+| Escalation precision | 15% | 100% |
+| Right tool | 51% | 100% |
+| Exact tool arguments | 25% | 87% |
+| p50 / p95 latency | 2.7 s / 9.3 s (Ollama) | 2.1 s / 3.8 s (MLX) |
+
+On all 273 validation steps: route 98.5%, tool 99%, arguments 88%. Every remaining error involved dates:
+a date said several turns earlier had scrolled out of the 6-line context and was never stored in the booking
+record; A2 date turns were not escalated; and `resolve_date` read "Friday the 23rd" as the coming Friday.
+Fixed for v2: spoken dates go in the `date` slot and are resolved into the record by code, searches accept the
+caller's words, A2 escalates any spoken date, and day-of-month beats the weekday word.
+
+**Serving:** this Ollama build cannot import fine-tuned Qwen2 weights or LoRA adapters, so the small models
+(tuned and untuned) are 4-bit MLX models served by `fastlane serve`; `fastlane train finish` merges a downloaded
+adapter and converts it.

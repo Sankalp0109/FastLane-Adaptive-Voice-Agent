@@ -48,13 +48,20 @@ def ollama_has(model: str) -> bool:
 
 
 def small_model_spec(kind: str) -> str:
-    """kind: 'lora' | 'lora_mb' | 'prompted'. Falls back to the base model if the adapter is not built yet."""
+    """kind: 'lora' | 'lora_mb' | 'prompted'. Falls back to the untuned base when a model is not available
+    (adapter not built yet, or no MLX server running)."""
+    from fastlane.config import PROJECT_DIR
+
     role = {"lora": "small_lora", "lora_mb": "small_lora_mb", "prompted": "small"}[kind]
     spec = role_spec(role)
+    if spec.startswith("mlx:"):
+        path = PROJECT_DIR / spec.split(":", 1)[1]
+        if not path.exists() or not _server_up("http://localhost:8080/v1/models"):
+            if kind != "prompted":
+                return small_model_spec("prompted")
+            return role_spec("small_ollama")
     if kind != "prompted" and spec.startswith("ollama:") and not ollama_has(spec.split(":", 1)[1]):
-        return role_spec("small")
-    if kind != "prompted" and spec.startswith("mlx:") and not _server_up("http://localhost:8080/v1/models"):
-        return role_spec("small")
+        return small_model_spec("prompted")
     return spec
 
 
@@ -75,4 +82,5 @@ def small_client(cfg) -> tuple[LLMClient | None, bool]:
         return None, False
     kind = "prompted" if cfg.small_model == "prompted" else ("lora_mb" if cfg.adapter == "movies_buses" else "lora")
     spec = small_model_spec(kind)
-    return client_for(spec), kind != "prompted" and spec != role_spec("small")
+    tuned = kind != "prompted" and spec not in (role_spec("small"), role_spec("small_ollama"))
+    return client_for(spec), tuned

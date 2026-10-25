@@ -1,0 +1,151 @@
+{
+  "model": "mlx:runs/mlx-fastlane-qwen2.5-3b",
+  "prompt": "compact",
+  "examples": 80,
+  "json_ok": 1.0,
+  "route_accuracy": 0.975,
+  "escalation_precision": 1.0,
+  "escalation_recall": 0.667,
+  "tool_choice_accuracy": 1.0,
+  "tool_args_exact": 0.872,
+  "latency_ms_p50": 2088,
+  "latency_ms_p95": 3801,
+  "route_confusion": {
+    "llm->llm": 3,
+    "llm->self": 2,
+    "self->self": 74,
+    "staff->staff": 1
+  },
+  "arg_misses": [
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-11-10",
+          "movie": "Rocket Raja",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Rocket Raja",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-21",
+          "movie": "Rocket Raja",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "20:30",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Rocket Raja",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "20:30",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-24",
+          "movie": "Chennai Nights",
+          "cinema": "Starlight Multiplex Gachibowli",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Chennai Nights",
+          "cinema": "Starlight Multiplex Gachibowli",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-11-06",
+          "movie": "Godavari Express",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "10:00",
+          "seat_category": "classic",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Godavari Express",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "10:00",
+          "seat_category": "classic",
+          "quantity": 2
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-18",
+          "movie": "Rocket Raja",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "10:00",
+          "seat_category": "prime",
+          "quantity": 4
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Rocket Raja",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "10:00",
+          "seat_category": "prime",
+          "quantity": 4
+        }
+      }
+    }
+  ]
+}

@@ -232,8 +232,18 @@ def test_injected_failure_then_retry(world):
 def test_invalid_args_reported(gw):
     r = gw.call("search_inventory", {"domain": "trains", "date": "2026-10-22"})
     assert r["error"] == "invalid_args"
+    # With the date tools, searches take the caller's words and resolve them in code ...
     r = gw.call("search_inventory", {"domain": "movies", "date": "next friday"})
-    assert r["error"] == "invalid_args" and "resolve_date" in r["message"]
+    assert r["ok"] and r["resolved_date"]["date"] == "2026-10-23" and gw.record.date == "2026-10-23"
+    r = gw.call("search_inventory", {"domain": "movies", "date": "next week"})
+    assert r["error"] == "ambiguous_date" and len(r["alternatives"]) == 7
+
+
+def test_words_for_dates_need_the_date_tools(world):
+    gw = Gateway(world, CALLER, config=SYSTEMS["A2"])
+    gw.begin_turn("hi")
+    r = gw.call("search_inventory", {"domain": "movies", "date": "next friday"})
+    assert r["error"] == "invalid_args" and "YYYY-MM-DD" in r["message"]
 
 
 def test_caller_history_for_returning_caller(world):
@@ -271,3 +281,14 @@ def test_record_tracks_caller_changes_only():
 
 def test_fastlane_enforces_rules():
     assert FASTLANE.enforce_rules and not replace(FASTLANE, enforce_rules=False).enforce_rules
+
+
+def test_passenger_gender_words_are_normalised(gw):
+    r = gw.call("search_inventory", {"domain": "buses", "date": "2026-10-22", "destination": "Chennai", "quantity": 1})
+    option = next(t["option_id"] for t in r["results"] if t["available"])
+    r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Sindhu",
+                                   "passengers": [{"name": "Sindhu Goud", "age": 40, "gender": "female"}]})
+    assert r["error"] == "needs_readback"
+    r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Sindhu",
+                                   "passengers": [{"name": "Sindhu Goud", "age": 40, "gender": "alien"}]})
+    assert r["error"] == "invalid_args"

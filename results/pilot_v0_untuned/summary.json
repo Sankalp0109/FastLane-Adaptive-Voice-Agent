@@ -1,0 +1,72 @@
+[
+  {
+    "system": "fastlane",
+    "description": "Fine-tuned small model answers easy turns and passes hard ones to the large model or staff.",
+    "calls": 24,
+    "success": 0.792,
+    "success_ci95": [
+      0.595,
+      0.908
+    ],
+    "turns": 112,
+    "model_ms_p50": 2882.4,
+    "model_ms_p95": 6891.6,
+    "lookup_turn_ms_p95": 5532.5,
+    "large_turn_rate": 0.607,
+    "large_calls_per_call": 6.12,
+    "tokens_per_call": {
+      "small": [
+        4694,
+        204
+      ],
+      "large": [
+        12013,
+        1051
+      ]
+    },
+    "cost_per_call_usd": 0.0,
+    "throttle_s_per_call": 110.3,
+    "large_model_mix": {
+      "groq:openai/gpt-oss-120b": 147
+    },
+    "errors": 0,
+    "router_precision": 0.253,
+    "router_hard_recall": 0.905,
+    "hard_turns": 21,
+    "escalation_reasons": {
+      "small model": 57,
+      "tool error": 9,
+      "staff": 7,
+      "no availability": 2
+    },
+    "unsafe_write_calls": 0.0,
+    "unconfirmed_writes": 0,
+    "rule_violating_writes": 0,
+    "missed_handoffs": "0/3",
+    "invalid_tool_call_rate": 0.076,
+    "injected_error_success": 1.0,
+    "early_lookup": {
+      "started": 7,
+      "reused": 3,
+      "wasted": 1,
+      "cache_hits": 0,
+      "saved_ms_total": 2.3
+    },
+    "policy_answer_accuracy": 0.667,
+    "success_by_category": {
+      "change_mind": "2/3",
+      "dates": "3/3",
+      "policy": "0/3",
+      "red_flag": "3/3",
+      "returning": "3/3",
+      "rule_break": "3/3",
+      "simple": "3/3",
+      "sold_out": "2/3"
+    },
+    "success_by_domain": {
+      "buses": "6/8",
+      "movies": "7/8",
+      "restaurants": "6/8"
+    }
+  }
+]

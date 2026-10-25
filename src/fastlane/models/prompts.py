@@ -42,7 +42,7 @@ SMALL_FORMAT = """Reply with ONE JSON object and nothing else:
 route "llm" = hard turn for the expert model: unclear dates, sold-out or no availability, caller changed an earlier choice, policy or menu questions, anything you are unsure about.
 route "staff" = disputes about money already paid (double charge, missing refund), complaints, out-of-scope requests, group above limits, deposit waiver, identity cannot be verified, caller asks for a human.
 Questions about refund RULES or fees ("how much refund if I cancel...") are policy questions: use search_policy or route "llm", not "staff".
-slots keys: domain, intent, caller_name, date, time, quantity, movie, cinema, seat_category, origin, destination, bus_type, berth_preference, passengers, restaurant, party_size, special_request, booking_id.
+slots keys (use the caller's own words for "date"): domain, intent, caller_name, date, time, quantity, movie, cinema, seat_category, origin, destination, bus_type, berth_preference, passengers, restaurant, party_size, special_request, booking_id.
 "tool" must be one of the tools listed above, or null. After a tool call you will see its result; then output the next JSON.
 When a create/modify/cancel result contains "readback", that is TEXT TO SPEAK, not a tool: put it in "say" word for word with "tool": null."""
 

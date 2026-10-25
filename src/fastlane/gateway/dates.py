@@ -196,6 +196,19 @@ def resolve_date(expression: str, today: date) -> ResolvedDate:
         return done(None, f"next week runs {mon.isoformat()} to {(mon + timedelta(days=6)).isoformat()}; ask which day",
                     ambiguous=True, alternatives=[mon + timedelta(days=i) for i in range(7)])
 
+    # "Friday the 23rd": a day of the month beats the weekday word.
+    if m := re.search(r"\b(?:mon|tues|wednes|thurs|fri|satur|sun)day\s+(?:the\s+)?(\d{1,2})\b", text):
+        day = int(m.group(1))
+        if 1 <= day <= 31:
+            month, year = today.month, today.year
+            if day < today.day:
+                month, year = (1, year + 1) if month == 12 else (month + 1, year)
+            d = _day_month(day, month, today, year)
+            if d:
+                wd = re.match(r"\w+", m.group(0)).group(0)
+                note = "" if d.strftime("%A").lower() == wd else f" ({d.isoformat()} is a {d.strftime('%A')}, not a {wd.title()}: confirm)"
+                return done(d, "day of month with weekday" + note, ambiguous=bool(note))
+
     # Weekdays with modifiers.
     m = next(
         (x for x in re.finditer(r"\b(next|this|coming|upcoming|following)?\s*([a-z]+day|mon|tue|tues|wed|thu|thur|thurs|fri|sat|sun)\b", text)
@@ -251,8 +264,13 @@ def parse_time(text: str) -> tuple[int, int] | None:
 
     Exact times give a zero-width window ("8:30 pm" -> (1230, 1230)). Parts of day give a range.
     Hours 1-11 with no am/pm are read as pm unless the text says morning ("8" -> 20:00), which
-    matches how callers talk about evening shows, night buses and dinner. 24-hour "08:00" stays am.
+    matches how callers talk about evening shows, night buses and dinner. Two-digit 24-hour times
+    ("08:00", "10:00", "22:30") are taken literally.
     """
+    if re.fullmatch(r"\s*([01]\d|2[0-3]):([0-5]\d)(:\d{2})?\s*", text):
+        # Two-digit HH:MM is 24-hour ("10:00" is 10 AM): this is the format tools are given.
+        h, m = int(text.strip()[:2]), int(text.strip()[3:5])
+        return h * 60 + m, h * 60 + m
     t = text.lower().strip().replace(".", ":")
     t = re.sub(r"\s+", " ", t)
     if not t:

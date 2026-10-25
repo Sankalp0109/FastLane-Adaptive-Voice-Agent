@@ -1,0 +1,14 @@
+change_mind      n= 31 route_ok= 31 tool_wrong= 0 args_bad= 0/10
+dates            n= 71 route_ok= 67 tool_wrong= 1 args_bad=10/27
+modify           n= 19 route_ok= 19 tool_wrong= 0 args_bad= 0/9
+policy           n= 11 route_ok= 11 tool_wrong= 1 args_bad= 1/6
+red_flag         n=  4 route_ok=  4 tool_wrong= 0 args_bad= 0/0
+rule_colleague   n=  1 route_ok=  1 tool_wrong= 0 args_bad= 0/1
+rule_deposit     n=  1 route_ok=  1 tool_wrong= 0 args_bad= 0/0
+sold_out         n= 14 route_ok= 14 tool_wrong= 1 args_bad= 0/8
+usual            n= 18 route_ok= 18 tool_wrong= 0 args_bad= 2/12
+TOTAL {'n': 273, 'route_ok': 269, 'tool': 111, 'args_bad': 13, 'tool_wrong': 3}
+arg failures by (tool, key): [(('search_inventory', 'date'), 10), (('create_booking', 'passengers'), 2), (('search_inventory', 'restaurant'), 1), (('search_policy', 'query'), 1)]
+route errors: [('dates', 'A2', 'give', 'llm', 'self'), ('dates', 'A2', 'give', 'llm', 'self'), ('dates', 'A2', 'give', 'llm', 'self'), ('dates', 'A2', 'give', 'llm', 'self')]
+
+[exited with code 0]

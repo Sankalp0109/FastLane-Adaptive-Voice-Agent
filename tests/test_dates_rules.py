@@ -22,7 +22,11 @@ TODAY = date(2026, 10, 15)  # Thursday
     ("in 3 days", "2026-10-18", False),
     ("a week from today", "2026-10-22", False),
     ("23rd October", "2026-10-23", False),
+    ("Friday 23rd October 2026", "2026-10-23", False),  # explicit date wins over the weekday word
+    ("next Friday, 23rd October", "2026-10-23", False),
     ("october 23", "2026-10-23", False),
+    ("Friday the 23rd", "2026-10-23", False),  # day of month beats the weekday word
+    ("Tuesday the 10th", "2026-11-10", False),
     ("twenty third", "2026-10-23", False),
     ("23/10", "2026-10-23", False),
     ("the 5th", "2026-11-05", False),
@@ -74,3 +78,8 @@ def test_movie_change_cutoff():
     now = datetime(2026, 10, 15, 11, 0)
     assert rules.check_movie_change(datetime(2026, 10, 15, 13, 30), now)
     assert not rules.check_movie_change(datetime(2026, 10, 15, 17, 0), now)
+
+
+@pytest.mark.parametrize("text,minute", [("10:00", 600), ("11:30", 690), ("22:30", 1350), ("08:00", 480), ("13:30", 810), ("7:30", 1170), ("10", 1320)])
+def test_24h_tool_times_are_literal(text, minute):
+    assert parse_time(text) == (minute, minute)

@@ -24,7 +24,7 @@ from typing import Any
 from fastlane.agent import templates
 from fastlane.agent.trace import ModelCall, ToolRecord, TurnTrace
 from fastlane.config import ESCALATION_THRESHOLD, FASTLANE, SystemConfig
-from fastlane.gateway.dates import parse_time
+from fastlane.gateway.dates import parse_time, resolve_date
 from fastlane.gateway.gateway import Gateway
 from fastlane.gateway.record import Passenger
 from fastlane.gateway.tools import WRITE_TOOLS
@@ -271,7 +271,11 @@ class Agent:
             try:
                 return date.fromisoformat(str(value)).isoformat()
             except ValueError:
-                return None  # spoken dates are resolved by tools, not by the small model
+                pass
+            if not self.cfg.date_tools:
+                return None  # without date tools a spoken date is the large model's job (variant A2)
+            r = resolve_date(str(value), self.gw.now.date())  # the caller's words, resolved in code
+            return r.date.isoformat() if r.date and r.in_window else None
         if key == "time":
             window = parse_time(str(value))
             return f"{window[0] // 60:02d}:{window[0] % 60:02d}" if window and window[0] == window[1] else None

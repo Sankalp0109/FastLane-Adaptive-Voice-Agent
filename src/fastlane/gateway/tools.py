@@ -24,7 +24,7 @@ class ResolveDateArgs(_Args):
 
 class SearchInventoryArgs(_Args):
     domain: DomainT
-    date: str = Field(description="ISO date YYYY-MM-DD. Convert spoken dates with resolve_date first.")
+    date: str = Field(description="ISO date YYYY-MM-DD, or the caller's own words for the date ('next Friday', '10th November'), which are resolved for you.")
     time: str | None = Field(None, description="Preferred time 'HH:MM' (24h) or a part of day like 'evening'.")
     quantity: int | None = Field(None, description="Tickets (movies) or seats (buses).")
     movie: str | None = None
@@ -114,7 +114,7 @@ class HandoffArgs(_Args):
 
 
 TOOLS: dict[str, tuple[type[_Args], str]] = {
-    "resolve_date": (ResolveDateArgs, "Turn a spoken date ('next Friday', 'Diwali', 'the 23rd') into an ISO date. Use before any search that involves a date in words."),
+    "resolve_date": (ResolveDateArgs, "Turn a spoken date ('next Friday', 'Diwali', 'the 23rd') into an ISO date, e.g. to tell the caller which day it is. Searches accept the caller's words directly."),
     "search_inventory": (SearchInventoryArgs, "Find shows, bus trips or restaurant tables with live availability and option_ids."),
     "find_alternatives": (FindAlternativesArgs, "When the wanted show/bus/table is full, find the closest available alternatives (other times, venues, categories, days)."),
     "create_booking": (CreateBookingArgs, "Create a booking. The first call returns a read-back that must be read to the caller; call again with the same arguments after the caller says yes."),

@@ -211,6 +211,8 @@ class Gateway:
         r = resolve_date(a.expression, self.now.date())
         if r.date is None and not r.ambiguous:
             raise GatewayError("not_understood", r.explanation)
+        if r.date and r.in_window:
+            self.record.set(track=False, date=r.date.isoformat())
         out = r.to_dict()
         if r.ambiguous and r.date:
             out["note"] = (f"Use {out['date']} unless the caller already said a different date; the full date is "
@@ -219,7 +221,34 @@ class Gateway:
             out["note"] = "Outside the 30-day booking window; bookings open 30 days ahead."
         return out
 
+    def _iso_date(self, a) -> dict | None:
+        """Search dates may be ISO or, when the date tools are on, the caller's own words; words are resolved
+        here in code (no extra model step). Returns the resolution to report back, or None for ISO input."""
+        try:
+            date.fromisoformat(str(a.date).strip())
+            return None
+        except ValueError:
+            pass
+        if not self.cfg.date_tools:
+            raise GatewayError("invalid_args", f"date must be YYYY-MM-DD, got {a.date!r} (no date tool in this system)")
+        r = resolve_date(a.date, self.now.date())
+        if r.date is None:
+            raise GatewayError("ambiguous_date", r.explanation + " Ask the caller which day.",
+                               alternatives=[d.isoformat() for d in r.alternatives])
+        if not r.in_window:
+            raise GatewayError("outside_window", f"{r.date.isoformat()} is outside the 30-day booking window.")
+        a.date = r.date.isoformat()
+        self.record.set(track=False, date=a.date)
+        return {"date": a.date, "spoken": spoken_date(r.date), "from": r.expression, "note": r.explanation if r.ambiguous else None}
+
     def _search(self, a) -> dict:
+        resolved_date = self._iso_date(a)
+        out = self._search_iso(a)
+        if resolved_date:
+            out["resolved_date"] = resolved_date
+        return out
+
+    def _search_iso(self, a) -> dict:
         if a.domain == "movies":
             out = self.inv.search_movies(a.date, a.time, a.quantity, a.movie, a.cinema, a.seat_category)
             self._fill(domain="movies", date=a.date, quantity=a.quantity, **out["resolved"])
@@ -242,6 +271,7 @@ class Gateway:
             raise GatewayError("rule_violation", " ".join(v.message for v in violations), violations=[v.to_dict() for v in violations])
 
     def _alternatives(self, a) -> dict:
+        self._iso_date(a)
         return self.inv.alternatives(a)
 
     def _policy(self, a) -> dict:
