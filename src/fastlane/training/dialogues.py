@@ -321,6 +321,7 @@ class Sim:
         self.examples: list[dict] = []
         self.turn_no = 0
         self.date_turn: int | None = None  # caller turn in which the date was last said in words
+        self.date_said_back = False  # A2: the large model has just said the resolved date back to the caller
 
     # ---------------------------------------------------------------- tool feedback
     def on_tool(self, name: str, args: dict, res: dict) -> None:
@@ -490,11 +491,13 @@ class Sim:
         if slot:
             action = self.ask(slot)
             if actor == "large" and not self.cfg.date_tools and "date" in ev.slots:
-                # Without date tools the large model works the date out and says it back, so the small
-                # model can carry the ISO date forward from the transcript.
+                # Without date tools the large model works the date out and says it back; on the next turn
+                # the small model copies it into slots.date as YYYY-MM-DD, so the record keeps it after the
+                # line has scrolled out of the transcript (data v2 lacked this and the date was unlearnable).
                 from fastlane.gateway.dates import spoken_date as _sd
 
                 action = ("say", f"Sure, {_sd(date.fromisoformat(k['date']))}. " + action[1])
+                self.date_said_back = True
             return action
         return ("tool", "search_inventory", self.search_args())
 
@@ -814,6 +817,9 @@ class OracleSmall:
         if first_step:
             route, reason = sim.route()
             slots = dict(sim.event.slots)
+            if sim.date_said_back:
+                sim.date_said_back = False
+                slots.setdefault("date", sim.known["date"])
         else:
             route, reason, slots = "self", "", {}
         if route != "self":

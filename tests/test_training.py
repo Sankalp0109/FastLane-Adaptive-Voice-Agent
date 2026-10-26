@@ -73,8 +73,20 @@ def test_date_tool_used_only_when_available(world_path):
     assert date_steps(with_tool) and all(e["meta"]["route"] == "self" for e in date_steps(with_tool))
     assert not any(json.loads(e["messages"][-1]["content"]).get("tool", {}) and
                    json.loads(e["messages"][-1]["content"])["tool"]["name"] == "resolve_date" for e in with_tool["examples"])
-    # Without them (A2) a date said in words is a turn for the large model.
-    assert date_steps(without) and all(e["meta"]["route"] == "llm" for e in date_steps(without))
+    # Without them (A2) a date said in words is a turn for the large model ...
+    slot = lambda e: json.loads(e["messages"][-1]["content"])["slots"]["date"]  # noqa: E731
+    is_iso = lambda v: len(v) == 10 and v[4] == "-"  # noqa: E731
+    words = [e for e in date_steps(without) if not is_iso(slot(e))]
+    assert words and all(e["meta"]["route"] == "llm" for e in words)
+    # ... and after it says the date back, the small model carries the ISO date into the record.
+    carried = [e for e in date_steps(without) if is_iso(slot(e))]
+    assert carried and all(e["meta"]["route"] == "self" for e in carried)
+    assert slot(carried[0]) == plan.values["date"]
+    searches = [json.loads(e["messages"][-1]["content"])["tool"] for e in without["examples"]
+                if (json.loads(e["messages"][-1]["content"]).get("tool") or {}).get("name") == "search_inventory"]
+    assert searches and all(s["args"]["date"] == plan.values["date"] for s in searches)
+    later = [e for e in without["examples"] if e is not carried[0] and without["examples"].index(e) > without["examples"].index(carried[0])]
+    assert later and all(f"date: {plan.values['date']}" in e["messages"][1]["content"] for e in later)
 
 
 @pytest.mark.parametrize("kind", KINDS)
@@ -115,3 +127,12 @@ def test_cohen_kappa():
     assert cohen_kappa(["a", "b", "a", "b"], ["a", "b", "a", "b"]) == 1.0
     # observed 0.9, chance (8*7 + 2*3) / 100 = 0.62 -> (0.9 - 0.62) / 0.38
     assert cohen_kappa(["self"] * 8 + ["llm"] * 2, ["self"] * 7 + ["llm"] * 3) == pytest.approx(0.7368, abs=1e-3)
+
+
+def test_check_counts_equivalent_dates_as_equal():
+    from fastlane.training.check_model import _args_equal
+
+    assert _args_equal({"date": "2026-10-24", "time": "21:45"}, {"date": "October 24", "time": "21:45"})
+    assert _args_equal({"date": "2026-10-23"}, {"date": "the 23rd"})
+    assert not _args_equal({"date": "2026-10-17"}, {"date": "2026-10-22"})
+    assert not _args_equal({"date": "someday"}, {"date": "gibberish"})

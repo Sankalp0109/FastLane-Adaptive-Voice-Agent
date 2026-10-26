@@ -62,12 +62,19 @@ COMPACT_FORMAT = ('Reply with one JSON object: {"route": "self"|"llm"|"staff", "
                   '"tool": {"name": "", "args": {}} or null, "say": ""}.')
 
 
+NO_DATE_TOOL = ("No date tool in this setup: when the caller gives a date in words, route \"llm\"; after the agent "
+                "has said the date back, put it in slots.date as YYYY-MM-DD.")
+NO_DATE_TOOL_LARGE = ("There is no date tool: work dates out yourself from Now and say the date back to the caller "
+                      "(for example \"Sure, Wednesday 4 November.\").")
+
+
 def small_system(cfg: SystemConfig, specs: list[dict], compact: bool = False) -> str:
     """compact=True: the short prompt the LoRA model is trained with (it has learned the format and
     the routing rules, so only the world, the tools and the output shape are needed)."""
+    date_note = [] if cfg.date_tools else [NO_DATE_TOOL]
     if compact:
-        return "\n\n".join([WORLD_LINE, "Tools:\n" + compact_tools(specs), COMPACT_FORMAT])
-    parts = [WORLD_LINE, STYLE]
+        return "\n\n".join([WORLD_LINE, "Tools:\n" + compact_tools(specs), *date_note, COMPACT_FORMAT])
+    parts = [WORLD_LINE, STYLE, *date_note]
     if cfg.rules_in_prompt:
         parts.append(RULES)
     if cfg.enforce_rules:
@@ -82,6 +89,8 @@ def large_system(cfg: SystemConfig) -> str:
         parts.append(RULES)
     if cfg.enforce_rules:
         parts.append(GATEWAY_NOTE)
+    if not cfg.date_tools:
+        parts.append(NO_DATE_TOOL_LARGE)
     if cfg.large_reasoning:
         parts.append("Before you reply, work through the steps: what the caller wants, which facts you still need "
                      "(use tools), which rules apply, and what the best available option is.")

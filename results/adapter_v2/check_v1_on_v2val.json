@@ -1,0 +1,216 @@
+{
+  "model": "mlx:runs/mlx-fastlane-qwen2.5-3b-v1",
+  "prompt": "compact",
+  "examples": 267,
+  "json_ok": 1.0,
+  "route_accuracy": 0.966,
+  "escalation_precision": 1.0,
+  "escalation_recall": 0.654,
+  "tool_choice_accuracy": 0.967,
+  "tool_args_exact": 0.886,
+  "latency_ms_p50": 2222,
+  "latency_ms_p95": 4833,
+  "route_confusion": {
+    "llm->llm": 12,
+    "llm->self": 9,
+    "self->self": 241,
+    "staff->staff": 5
+  },
+  "arg_misses": [
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-11-04",
+          "movie": "Rocket Raja",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-18",
+          "movie": "Rocket Raja",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00050",
+          "name": "Padma Khan",
+          "passengers": [
+            {
+              "age": 35,
+              "gender": "F",
+              "name": "Padma Khan"
+            }
+          ]
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00050",
+          "name": "Padma Khan",
+          "quantity": 1
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-22",
+          "movie": "Godavari Express",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Godavari Express",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00209",
+          "name": "Rajesh Mukherjee",
+          "passengers": [
+            {
+              "age": 23,
+              "gender": "M",
+              "name": "Rajesh Mukherjee"
+            }
+          ]
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00209",
+          "name": "Rajesh Mukherjee",
+          "quantity": 1
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "October 24",
+          "origin": "Hyderabad",
+          "destination": "Chennai",
+          "time": "21:45",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-24",
+          "origin": "Hyderabad",
+          "destination": "Chennai",
+          "time": "21:45",
+          "quantity": 2
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-23",
+          "movie": "Chennai Nights",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "10:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-23",
+          "movie": "Chennai Nights",
+          "cinema": "Regal Talkies Ameerpet",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_policy",
+        "args": {
+          "query": "Are subtitles there for Telugu films?",
+          "domain": "movies"
+        }
+      },
+      "got": {
+        "name": "search_policy",
+        "args": {
+          "query": "Are subtitles available for Telugu films?",
+          "domain": "movies"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-24",
+          "movie": "Chennai Nights",
+          "cinema": "Starlight Multiplex Gachibowli",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Chennai Nights",
+          "cinema": "Starlight Multiplex Gachibowli",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      }
+    }
+  ]
+}

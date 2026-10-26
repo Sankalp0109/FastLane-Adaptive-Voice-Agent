@@ -150,7 +150,7 @@ fastlane/
 | 3 Retrieval | done — 25 docs (~21 pages at 450 words; target ~60, add `.md` files to `retrieval/docs/`), BM25 + version handling + "not covered", early lookup; 87 tests total |
 | 4 Models + orchestrator | done — Groq `gpt-oss-120b` (large), Ollama `qwen2.5:3b` (small, base until LoRA), all 12 systems run; `fastlane chat`; 119 tests total |
 | 5 Evaluation | done — 360-call test set (`data/test_calls.jsonl`, every gold outcome verified achievable), LLM caller (Qwen2.5-7B), resumable runner, Table 7 metrics, report + plot; 135 tests total. Free-tier pilot done (below) |
-| 6 Training | adapter v1 trained on Kaggle (3B, 2 epochs, val loss 0.0128) and served locally with MLX; date-handling gaps found and fixed in data + gateway; **v2 (both adapters) ready to train** |
+| 6 Training | v1 and v2 trained on Kaggle and served with MLX; v2 offline: route 98.9%, escalation recall 92.3%, args 92.5% (FastLane config 98.4%); A8 transfers routing but not restaurant arguments; **data v3 (A2 date fix) prepared, not trained** (see docs/EXPERIMENT_LOG.md §8) |
 | 7 Speech | todo |
 | 8 Experiments | todo |
 

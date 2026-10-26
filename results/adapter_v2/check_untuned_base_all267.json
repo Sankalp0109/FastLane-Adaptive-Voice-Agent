@@ -1,0 +1,241 @@
+{
+  "model": "mlx:runs/mlx-qwen2.5-3b-base",
+  "prompt": "full",
+  "examples": 267,
+  "json_ok": 0.993,
+  "route_accuracy": 0.891,
+  "escalation_precision": 0.462,
+  "escalation_recall": 0.231,
+  "tool_choice_accuracy": 0.498,
+  "tool_args_exact": 0.244,
+  "latency_ms_p50": 2203,
+  "latency_ms_p95": 7552,
+  "route_confusion": {
+    "llm->llm": 2,
+    "llm->self": 19,
+    "self->llm": 7,
+    "self->self": 234,
+    "staff->llm": 2,
+    "staff->self": 1,
+    "staff->staff": 2
+  },
+  "arg_misses": [
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "movies",
+          "option_id": "SH00180:classic",
+          "name": "Sanjay Mishra",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "movies",
+          "option_id": "SH00180:classic",
+          "quantity": 2,
+          "cinema": "Regal Talkies Ameerpet",
+          "seat_category": "classic",
+          "caller_name": "Sanjay Mishra",
+          "caller_phone": "8212398599",
+          "time": "20:30",
+          "movie": "Shadow Protocol"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-hitech@2026-10-26T20:00",
+          "name": "Anusha Yadav",
+          "party_size": 5
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-hitech@2026-10-26T20:00",
+          "restaurant": "Tandoor Tales Hitech City",
+          "quantity": 5,
+          "party_size": 5,
+          "special_request": "Sari",
+          "waive_deposit": false
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-23",
+          "origin": "Chennai",
+          "destination": "Hyderabad",
+          "time": "21:45",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-23",
+          "time": "19:45",
+          "origin": "Chennai",
+          "destination": "Hyderabad",
+          "quantity": 3,
+          "bus_type": "non-ac"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00216",
+          "name": "Venkatesh Bhat",
+          "passengers": [
+            {
+              "name": "Venkatesh Bhat",
+              "age": 22,
+              "gender": "M"
+            },
+            {
+              "name": "Shalini Bhat",
+              "age": 67,
+              "gender": "F"
+            },
+            {
+              "name": "Ramya Bhat",
+              "age": 32,
+              "gender": "F"
+            }
+          ]
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00216",
+          "quantity": 3,
+          "phone": "6743830208",
+          "seat_category": "nonac_sleeper",
+          "passengers": "Venkatesh Bhat (22, M); Shalini Bhat (67, F); Ramya Bhat (32, F)",
+          "special_request": null,
+          "waive_deposit": false
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-23",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "20:30",
+          "seat_category": "recliner",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "23rd October",
+          "time": "8:30 PM",
+          "quantity": 2,
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam",
+          "seat_category": "2 recliner"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-23",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "20:30",
+          "seat_category": "classic",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "cinemas",
+          "date": "23rd Oct",
+          "time": "18:30",
+          "quantity": "2",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "seat_category": "2 recliner"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00050",
+          "name": "Padma Khan",
+          "passengers": [
+            {
+              "age": 35,
+              "gender": "F",
+              "name": "Padma Khan"
+            }
+          ]
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "buses",
+          "option_id": "TR00050",
+          "quantity": 1,
+          "phone": "7312086606",
+          "seat_category": "lower_berth",
+          "special_request": null
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "movies",
+          "option_id": "SH01061:classic",
+          "name": "Padma Chaturvedi",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "movies",
+          "option_id": "SH01061:classic",
+          "quantity": 2,
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "movie": "Godavari Express",
+          "seat_category": "classic",
+          "caller_name": "Padma Chaturvedi",
+          "phone": "6854306808"
+        }
+      }
+    }
+  ]
+}

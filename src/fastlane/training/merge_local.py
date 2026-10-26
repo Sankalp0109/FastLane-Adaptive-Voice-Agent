@@ -20,6 +20,10 @@ LLAMA_CPP = WORK / "llama.cpp"
 
 
 def merge(adapter_dir: Path, base: str, out_dir: Path) -> Path:
+    """Always merges from scratch into an empty out_dir. (An earlier version reused an existing merged folder,
+    so a v2 adapter was silently built from the v1 merge left behind under the same name.)"""
+    import shutil
+
     import torch
     from peft import PeftModel
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -27,7 +31,8 @@ def merge(adapter_dir: Path, base: str, out_dir: Path) -> Path:
     print(f"loading {base} (float16, CPU) ...", flush=True)
     model = AutoModelForCausalLM.from_pretrained(base, dtype=torch.float16)
     merged = PeftModel.from_pretrained(model, str(adapter_dir)).merge_and_unload()
-    out_dir.mkdir(parents=True, exist_ok=True)
+    shutil.rmtree(out_dir, ignore_errors=True)
+    out_dir.mkdir(parents=True)
     merged.save_pretrained(out_dir, safe_serialization=True)
     AutoTokenizer.from_pretrained(base).save_pretrained(out_dir)
     print(f"merged model -> {out_dir}", flush=True)
@@ -64,8 +69,7 @@ def finish_mlx(adapter_dir: str | Path, name: str, base: str = "Qwen/Qwen2.5-3B-
     if not (adapter_dir / "adapter_config.json").exists():
         raise FileNotFoundError(f"{adapter_dir} has no adapter_config.json (point at the folder with adapter_model.safetensors)")
     merged_dir = WORK / f"{name}-merged"
-    if not (merged_dir / "config.json").exists():
-        merge(adapter_dir, base, merged_dir)
+    merge(adapter_dir, base, merged_dir)
     out = to_mlx(merged_dir, WORK / f"mlx-{name}")
     if not keep_merged:
         import shutil
@@ -82,8 +86,7 @@ def finish(adapter_dir: str | Path, name: str, base: str = "Qwen/Qwen2.5-3B-Inst
     if not (adapter_dir / "adapter_config.json").exists():
         raise FileNotFoundError(f"{adapter_dir} has no adapter_config.json (point at the folder with adapter_model.safetensors)")
     merged_dir = WORK / f"{name}-merged"
-    if not (merged_dir / "config.json").exists():
-        merge(adapter_dir, base, merged_dir)
+    merge(adapter_dir, base, merged_dir)
     source = merged_dir
     if via_llama_cpp:
         source = to_gguf(merged_dir, WORK / f"{name}.f16.gguf")

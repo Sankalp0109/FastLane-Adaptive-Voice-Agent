@@ -194,10 +194,26 @@ def _cmd_train_check(args: argparse.Namespace) -> int:
     from pathlib import Path
 
     from fastlane.training.build_dataset import TRAIN_DIR
-    from fastlane.training.check_model import check
+    from fastlane.training.check_model import check, summarise
 
+    if args.rescore:
+        rows = [json.loads(l) for l in Path(args.rescore).read_text().splitlines() if l.strip()]
+        if args.domain:
+            rows = [r for r in rows if r["meta"]["domain"] in args.domain]
+        result = summarise(rows, Path(args.rescore).stem)
+        if args.out:
+            Path(args.out).write_text(json.dumps(result, indent=2))
+        print(json.dumps(result, indent=2))
+        return 0
     val = Path(args.val) if args.val else TRAIN_DIR / "all_domains" / "val.jsonl"
-    print(json.dumps(check(args.model, val, args.n, args.full_prompt), indent=2))
+    where = None
+    if args.domain:
+        where = lambda m: m["domain"] in args.domain  # noqa: E731
+    result = check(args.model, val, args.n, args.full_prompt, save_rows=Path(args.save_rows) if args.save_rows else None, where=where)
+    if args.out:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(json.dumps(result, indent=2))
+    print(json.dumps(result, indent=2))
     return 0
 
 
@@ -294,6 +310,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--val", default=None)
     p.add_argument("--n", type=int, default=None, help="random sample of validation steps")
     p.add_argument("--full-prompt", action="store_true", help="use the full instruction prompt (for untuned models)")
+    p.add_argument("--domain", nargs="*", default=None, help="only steps from these domains")
+    p.add_argument("--out", default=None, help="write the summary JSON here")
+    p.add_argument("--save-rows", default=None, help="write per-step results (JSONL) here")
+    p.add_argument("--rescore", default=None, help="score a saved --save-rows file again instead of calling a model")
     p.set_defaults(func=_cmd_train_check)
     p = tr.add_parser("label-sheet", help="export 300 turns for two annotators (Cohen's kappa)")
     p.add_argument("--n", type=int, default=300)

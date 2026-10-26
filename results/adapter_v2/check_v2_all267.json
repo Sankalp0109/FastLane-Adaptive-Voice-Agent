@@ -1,0 +1,226 @@
+{
+  "model": "mlx:runs/mlx-fastlane-qwen2.5-3b",
+  "prompt": "compact",
+  "examples": 267,
+  "json_ok": 1.0,
+  "route_accuracy": 0.989,
+  "escalation_precision": 0.96,
+  "escalation_recall": 0.923,
+  "tool_choice_accuracy": 0.967,
+  "tool_args_exact": 0.925,
+  "latency_ms_p50": 2220,
+  "latency_ms_p95": 4512,
+  "route_confusion": {
+    "llm->llm": 19,
+    "llm->self": 2,
+    "self->llm": 1,
+    "self->self": 240,
+    "staff->staff": 5
+  },
+  "arg_misses": [
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-11-04",
+          "movie": "Rocket Raja",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Rocket Raja",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-23",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "20:30",
+          "seat_category": "recliner",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "23rd October",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Secunderabad",
+          "time": "20:30",
+          "seat_category": "recliner",
+          "quantity": 2
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-22",
+          "movie": "Godavari Express",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Godavari Express",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-23",
+          "origin": "Vijayawada",
+          "destination": "Hyderabad",
+          "time": "22:00",
+          "quantity": 1
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "the 23rd",
+          "origin": "Vijayawada",
+          "destination": "Hyderabad",
+          "time": "22:00"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-24",
+          "movie": "Chennai Nights",
+          "cinema": "Starlight Multiplex Gachibowli",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Chennai Nights",
+          "cinema": "Starlight Multiplex Gachibowli",
+          "time": "17:00",
+          "seat_category": "prime",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-20",
+          "movie": "Shadow Protocol",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "13:30",
+          "seat_category": "classic",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-20",
+          "movie": "Shadow Protocol",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "13:30",
+          "quantity": 2
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-11-10",
+          "movie": "Rocket Raja",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Rocket Raja",
+          "cinema": "Regal Talkies Ameerpet",
+          "time": "17:00",
+          "seat_category": "recliner",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-18",
+          "movie": "Rocket Raja",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "10:00",
+          "seat_category": "prime",
+          "quantity": 4
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-17",
+          "movie": "Rocket Raja",
+          "cinema": "Galaxy Cinemas Kukatpally",
+          "time": "10:00",
+          "seat_category": "prime",
+          "quantity": 4
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "scoring": "dates equal when they name the same day (check_model._day)",
+  "val_set": "data v2 all_domains/val.jsonl (267 steps)",
+  "a2_unseeable_date_steps": [
+    27,
+    34,
+    93,
+    151,
+    155,
+    164,
+    168,
+    182,
+    225,
+    242,
+    264
+  ],
+  "untuned_base": {
+    "all": {
+      "model": "untuned_base",
+      "prompt": "",
+      "examples": 267,
+      "json_ok": 1.0,
+      "route_accuracy": 0.891,
+      "escalation_precision": 0.462,
+      "escalation_recall": 0.231,
+      "tool_choice_accuracy": 0.498,
+      "tool_args_exact": 0.268,
+      "latency_ms_p50": 2203,
+      "latency_ms_p95": 7552,
+      "route_confusion": {
+        "llm->llm": 2,
+        "llm->self": 19,
+        "self->llm": 7,
+        "self->self": 234,
+        "staff->llm": 2,
+        "staff->self": 1,
+        "staff->staff": 2
+      }
+    },
+    "fastlane_cfg": {
+      "model": "untuned_base",
+      "prompt": "",
+      "examples": 159,
+      "json_ok": 1.0,
+      "route_accuracy": 0.918,
+      "escalation_precision": 0.5,
+      "escalation_recall": 0.25,
+      "tool_choice_accuracy": 0.51,
+      "tool_args_exact": 0.238,
+      "latency_ms_p50": 2097,
+      "latency_ms_p95": 7075,
+      "route_confusion": {
+        "llm->llm": 1,
+        "llm->self": 8,
+        "self->llm": 3,
+        "self->self": 144,
+        "staff->llm": 1,
+        "staff->self": 1,
+        "staff->staff": 1
+      }
+    },
+    "dates_kind": {
+      "model": "untuned_base",
+      "prompt": "",
+      "examples": 65,
+      "json_ok": 1.0,
+      "route_accuracy": 0.923,
+      "escalation_precision": 0.5,
+      "escalation_recall": 0.2,
+      "tool_choice_accuracy": 0.517,
+      "tool_args_exact": 0.375,
+      "latency_ms_p50": 2494,
+      "latency_ms_p95": 9932,
+      "route_confusion": {
+        "llm->llm": 1,
+        "llm->self": 4,
+        "self->llm": 1,
+        "self->self": 59
+      }
+    },
+    "A2": {
+      "model": "untuned_base",
+      "prompt": "",
+      "examples": 62,
+      "json_ok": 1.0,
+      "route_accuracy": 0.823,
+      "escalation_precision": 0.5,
+      "escalation_recall": 0.091,
+      "tool_choice_accuracy": 0.569,
+      "tool_args_exact": 0.333,
+      "latency_ms_p50": 2478,
+      "latency_ms_p95": 9932,
+      "route_confusion": {
+        "llm->llm": 1,
+        "llm->self": 10,
+        "self->llm": 1,
+        "self->self": 50
+      }
+    },
+    "restaurants": {
+      "model": "untuned_base",
+      "prompt": "",
+      "examples": 54,
+      "json_ok": 1.0,
+      "route_accuracy": 0.87,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.333,
+      "tool_choice_accuracy": 0.467,
+      "tool_args_exact": 0.5,
+      "latency_ms_p50": 1988,
+      "latency_ms_p95": 5659,
+      "route_confusion": {
+        "llm->llm": 1,
+        "llm->self": 5,
+        "self->self": 45,
+        "staff->llm": 1,
+        "staff->self": 1,
+        "staff->staff": 1
+      }
+    },
+    "all_minus_unseeable": {
+      "model": "untuned_base",
+      "prompt": "",
+      "examples": 256,
+      "json_ok": 1.0,
+      "route_accuracy": 0.887,
+      "escalation_precision": 0.462,
+      "escalation_recall": 0.231,
+      "tool_choice_accuracy": 0.509,
+      "tool_args_exact": 0.289,
+      "latency_ms_p50": 2207,
+      "latency_ms_p95": 7591,
+      "route_confusion": {
+        "llm->llm": 2,
+        "llm->self": 19,
+        "self->llm": 7,
+        "self->self": 223,
+        "staff->llm": 2,
+        "staff->self": 1,
+        "staff->staff": 2
+      }
+    }
+  },
+  "v1": {
+    "all": {
+      "model": "v1",
+      "prompt": "",
+      "examples": 267,
+      "json_ok": 1.0,
+      "route_accuracy": 0.966,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.654,
+      "tool_choice_accuracy": 0.967,
+      "tool_args_exact": 0.905,
+      "latency_ms_p50": 2222,
+      "latency_ms_p95": 4833,
+      "route_confusion": {
+        "llm->llm": 12,
+        "llm->self": 9,
+        "self->self": 241,
+        "staff->staff": 5
+      }
+    },
+    "fastlane_cfg": {
+      "model": "v1",
+      "prompt": "",
+      "examples": 159,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.952,
+      "tool_args_exact": 0.922,
+      "latency_ms_p50": 2236,
+      "latency_ms_p95": 5008,
+      "route_confusion": {
+        "llm->llm": 9,
+        "self->self": 147,
+        "staff->staff": 3
+      }
+    },
+    "dates_kind": {
+      "model": "v1",
+      "prompt": "",
+      "examples": 65,
+      "json_ok": 1.0,
+      "route_accuracy": 0.938,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.2,
+      "tool_choice_accuracy": 0.917,
+      "tool_args_exact": 0.727,
+      "latency_ms_p50": 1994,
+      "latency_ms_p95": 4239,
+      "route_confusion": {
+        "llm->llm": 1,
+        "llm->self": 4,
+        "self->self": 60
+      }
+    },
+    "A2": {
+      "model": "v1",
+      "prompt": "",
+      "examples": 62,
+      "json_ok": 1.0,
+      "route_accuracy": 0.855,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.182,
+      "tool_choice_accuracy": 1.0,
+      "tool_args_exact": 0.773,
+      "latency_ms_p50": 2316,
+      "latency_ms_p95": 4833,
+      "route_confusion": {
+        "llm->llm": 2,
+        "llm->self": 9,
+        "self->self": 51
+      }
+    },
+    "restaurants": {
+      "model": "v1",
+      "prompt": "",
+      "examples": 54,
+      "json_ok": 1.0,
+      "route_accuracy": 0.981,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.889,
+      "tool_choice_accuracy": 0.956,
+      "tool_args_exact": 0.96,
+      "latency_ms_p50": 2283,
+      "latency_ms_p95": 5048,
+      "route_confusion": {
+        "llm->llm": 5,
+        "llm->self": 1,
+        "self->self": 45,
+        "staff->staff": 3
+      }
+    },
+    "all_minus_unseeable": {
+      "model": "v1",
+      "prompt": "",
+      "examples": 256,
+      "json_ok": 1.0,
+      "route_accuracy": 0.965,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.654,
+      "tool_choice_accuracy": 0.965,
+      "tool_args_exact": 0.947,
+      "latency_ms_p50": 2135,
+      "latency_ms_p95": 4858,
+      "route_confusion": {
+        "llm->llm": 12,
+        "llm->self": 9,
+        "self->self": 230,
+        "staff->staff": 5
+      }
+    }
+  },
+  "v2": {
+    "all": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 267,
+      "json_ok": 1.0,
+      "route_accuracy": 0.989,
+      "escalation_precision": 0.96,
+      "escalation_recall": 0.923,
+      "tool_choice_accuracy": 0.967,
+      "tool_args_exact": 0.925,
+      "latency_ms_p50": 2220,
+      "latency_ms_p95": 4512,
+      "route_confusion": {
+        "llm->llm": 19,
+        "llm->self": 2,
+        "self->llm": 1,
+        "self->self": 240,
+        "staff->staff": 5
+      }
+    },
+    "fastlane_cfg": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 159,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.946,
+      "tool_args_exact": 0.984,
+      "latency_ms_p50": 2287,
+      "latency_ms_p95": 4789,
+      "route_confusion": {
+        "llm->llm": 9,
+        "self->self": 147,
+        "staff->staff": 3
+      }
+    },
+    "dates_kind": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 65,
+      "json_ok": 1.0,
+      "route_accuracy": 0.985,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.8,
+      "tool_choice_accuracy": 0.983,
+      "tool_args_exact": 0.818,
+      "latency_ms_p50": 1998,
+      "latency_ms_p95": 4017,
+      "route_confusion": {
+        "llm->llm": 4,
+        "llm->self": 1,
+        "self->self": 60
+      }
+    },
+    "A2": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 62,
+      "json_ok": 1.0,
+      "route_accuracy": 0.952,
+      "escalation_precision": 0.9,
+      "escalation_recall": 0.818,
+      "tool_choice_accuracy": 1.0,
+      "tool_args_exact": 0.773,
+      "latency_ms_p50": 2053,
+      "latency_ms_p95": 4017,
+      "route_confusion": {
+        "llm->llm": 9,
+        "llm->self": 2,
+        "self->llm": 1,
+        "self->self": 50
+      }
+    },
+    "restaurants": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 54,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.956,
+      "tool_args_exact": 1.0,
+      "latency_ms_p50": 2346,
+      "latency_ms_p95": 4504,
+      "route_confusion": {
+        "llm->llm": 6,
+        "self->self": 45,
+        "staff->staff": 3
+      }
+    },
+    "all_minus_unseeable": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 256,
+      "json_ok": 1.0,
+      "route_accuracy": 0.988,
+      "escalation_precision": 0.96,
+      "escalation_recall": 0.923,
+      "tool_choice_accuracy": 0.965,
+      "tool_args_exact": 0.968,
+      "latency_ms_p50": 2103,
+      "latency_ms_p95": 4726,
+      "route_confusion": {
+        "llm->llm": 19,
+        "llm->self": 2,
+        "self->llm": 1,
+        "self->self": 229,
+        "staff->staff": 5
+      }
+    }
+  },
+  "A8_mb": {
+    "restaurants": {
+      "model": "mb",
+      "prompt": "",
+      "examples": 54,
+      "json_ok": 1.0,
+      "route_accuracy": 0.981,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.889,
+      "tool_choice_accuracy": 0.889,
+      "tool_args_exact": 0.476,
+      "latency_ms_p50": 2431,
+      "latency_ms_p95": 5143,
+      "route_confusion": {
+        "llm->llm": 6,
+        "self->self": 45,
+        "staff->self": 1,
+        "staff->staff": 2
+      }
+    }
+  }
+}
