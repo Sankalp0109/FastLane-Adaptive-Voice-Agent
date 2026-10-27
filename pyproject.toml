@@ -15,7 +15,7 @@ large = ["anthropic>=0.40"]
 small = ["openai>=1.40"]
 train = ["torch", "transformers>=4.45", "peft>=0.12", "trl>=0.11", "datasets", "bitsandbytes"]
 eval = ["matplotlib"]
-speech = ["pipecat-ai", "faster-whisper", "jiwer"]
+speech = ["mlx-whisper; sys_platform == 'darwin'", "faster-whisper", "kokoro-onnx", "silero-vad", "fastapi", "uvicorn[standard]", "soundfile", "jiwer"]
 
 [project.scripts]
 fastlane = "fastlane.cli:main"
@@ -24,7 +24,7 @@ fastlane = "fastlane.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-fastlane = ["world/schema.sql", "retrieval/docs/**/*.md"]
+fastlane = ["world/schema.sql", "retrieval/docs/**/*.md", "speech/page.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

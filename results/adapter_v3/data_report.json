@@ -1,0 +1,100 @@
+{
+  "calls": 650,
+  "kept": 645,
+  "kept_by_kind": {
+    "book": "187/187",
+    "dates": "90/90",
+    "sold_out": "40/44",
+    "change_mind": "61/61",
+    "modify": "38/39",
+    "cancel": "41/41",
+    "policy": "59/59",
+    "usual": "34/34",
+    "returning_cancel": "11/11",
+    "red_flag": "32/32",
+    "rule_group": "14/14",
+    "rule_deposit": "13/13",
+    "rule_colleague": "13/13",
+    "rule_no_pax": "12/12"
+  },
+  "all_domains": {
+    "calls_kept": 645,
+    "val_calls": 64,
+    "train_examples": 3671,
+    "val_examples": 267,
+    "noisy_copies": 719,
+    "routes_train": {
+      "staff": 228,
+      "llm": 516,
+      "self": 2927
+    },
+    "kinds_train": {
+      "red_flag": 121,
+      "rule_no_pax": 122,
+      "cancel": 76,
+      "dates": 576,
+      "book": 1290,
+      "sold_out": 216,
+      "policy": 121,
+      "change_mind": 641,
+      "usual": 174,
+      "returning_cancel": 28,
+      "rule_deposit": 57,
+      "modify": 169,
+      "rule_group": 57,
+      "rule_colleague": 23
+    },
+    "configs_train": {
+      "fastlane": 2264,
+      "A2": 532,
+      "A7": 274,
+      "A4": 442,
+      "A6": 159
+    },
+    "domains_train": {
+      "movies": 1230,
+      "buses": 1360,
+      "restaurants": 1081
+    },
+    "approx_tokens_per_example": 907
+  },
+  "movies_buses": {
+    "calls_kept": 435,
+    "val_calls": 43,
+    "train_examples": 2644,
+    "val_examples": 165,
+    "noisy_copies": 516,
+    "routes_train": {
+      "self": 2152,
+      "llm": 387,
+      "staff": 105
+    },
+    "kinds_train": {
+      "book": 894,
+      "change_mind": 466,
+      "dates": 467,
+      "cancel": 43,
+      "sold_out": 174,
+      "policy": 83,
+      "usual": 98,
+      "modify": 172,
+      "red_flag": 83,
+      "rule_group": 27,
+      "rule_colleague": 11,
+      "rule_no_pax": 104,
+      "returning_cancel": 22
+    },
+    "configs_train": {
+      "fastlane": 1653,
+      "A2": 381,
+      "A4": 329,
+      "A7": 187,
+      "A6": 94
+    },
+    "domains_train": {
+      "buses": 1309,
+      "movies": 1335
+    },
+    "approx_tokens_per_example": 913
+  }
+}

@@ -28,11 +28,26 @@ def first_available(result: dict, category: str | None = None) -> str:
     raise AssertionError("nothing available")
 
 
+def reads_out_results(g: Gateway) -> Gateway:
+    """Most gateway tests are about other rules: let every search result count as read out to the caller, as an
+    agent would, so the grounding rule (venue/time must have come up in the call) is satisfied."""
+    call = g.call
+
+    def call_and_offer(name, args):
+        r = call(name, args)
+        if name in ("search_inventory", "find_alternatives") and r.get("ok"):
+            g.offered.append(json.dumps(r))
+        return r
+
+    g.call = call_and_offer
+    return g
+
+
 @pytest.fixture
 def gw(world):
     g = Gateway(world, CALLER)
     g.begin_turn("hello")
-    return g
+    return reads_out_results(g)
 
 
 def movie_option(gw, date="2026-10-22", qty=2):
@@ -135,6 +150,8 @@ def test_bus_needs_passenger_details(gw):
     r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Ravi", "quantity": 2,
                                    "passengers": [{"name": "Ravi", "age": 34, "gender": "M"}]})
     assert r["error"] == "rule_violation" and "passenger" in r["message"]
+    gw.end_turn("Please tell me the name, age and gender of each passenger.")
+    gw.begin_turn("Ravi Kumar, 34, male, and Lakshmi Kumar, thirty-one, female.")
     pax = [{"name": "Ravi Kumar", "age": 34, "gender": "M"}, {"name": "Lakshmi Kumar", "age": 31, "gender": "F"}]
     r = confirm(gw, "create_booking", {"domain": "buses", "option_id": option, "name": "Ravi Kumar", "passengers": pax})
     assert r["ok"] and [p["name"] for p in r["booking"]["passengers"]] == ["Ravi Kumar", "Lakshmi Kumar"]
@@ -286,9 +303,76 @@ def test_fastlane_enforces_rules():
 def test_passenger_gender_words_are_normalised(gw):
     r = gw.call("search_inventory", {"domain": "buses", "date": "2026-10-22", "destination": "Chennai", "quantity": 1})
     option = next(t["option_id"] for t in r["results"] if t["available"])
+    gw.begin_turn("Sindhu Goud, forty, female")
     r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Sindhu",
                                    "passengers": [{"name": "Sindhu Goud", "age": 40, "gender": "female"}]})
     assert r["error"] == "needs_readback"
     r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Sindhu",
                                    "passengers": [{"name": "Sindhu Goud", "age": 40, "gender": "alien"}]})
     assert r["error"] == "invalid_args"
+
+
+def test_bus_passengers_must_come_from_the_caller(gw):
+    """Pilot v3 failures: the small model invented passengers ("Caller", 40) and booked 1 of 3 requested seats."""
+    gw.begin_turn("I want 3 seats to Vijayawada on the 22nd, put it in my name Kavya Tiwari, 30.")
+    r = gw.call("search_inventory", {"domain": "buses", "date": "2026-10-22", "destination": "Vijayawada", "quantity": 3})
+    option = next(t["option_id"] for t in r["results"] if t["available"])
+    r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Kavya Tiwari",
+                                   "passengers": [{"name": "Kavya Tiwari", "age": 30, "gender": "F"}]})
+    assert r["error"] == "rule_violation" and {v["code"] for v in r["violations"]} == {"passenger_count"}
+    pax = [{"name": "Kavya Tiwari", "age": 30, "gender": "F"}, {"name": "Caller", "age": 40, "gender": "M"},
+           {"name": "Fatima Khan", "age": 52, "gender": "F"}]
+    r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Kavya Tiwari", "passengers": pax})
+    codes = [v["code"] for v in r["violations"]]
+    assert codes == ["passenger_unheard", "passenger_unheard"]  # "Caller" never said; Fatima's name not said either
+    gw.begin_turn("Okay, the others are Fatima Khan, fifty-two, female and Jagadeesh Rao, 41, male.")
+    pax[1] = {"name": "Jagadeesh Rao", "age": 41, "gender": "M"}
+    r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Kavya Tiwari", "passengers": pax})
+    assert r["error"] == "needs_readback"
+    pax[2] = {"name": "Fatima Khan", "age": 25, "gender": "F"}  # an age the caller never said
+    r = gw.call("create_booking", {"domain": "buses", "option_id": option, "name": "Kavya Tiwari", "passengers": pax})
+    assert [v["code"] for v in r["violations"]] == ["passenger_unheard"] and "age" in r["violations"][0]["message"]
+
+
+def test_said_numbers():
+    from fastlane.gateway.rules import said_numbers
+
+    assert {42, 31, 7} <= said_numbers("she is 42, he is thirty-one and the kid is seven")
+    assert 45 in said_numbers("forty five") and 20 in said_numbers("twenty")
+
+
+def test_booking_must_be_for_what_came_up_in_the_call(world):
+    """Voice demo: the small model searched with a cinema nobody had named and dropped the caller's 7 PM, and the
+    read-back offered Galaxy at 10 AM. Venue and time must have been said by the caller or offered by the agent."""
+    g = Gateway(world, CALLER)
+    g.begin_turn("Two prime tickets for Rocket Raja at Regal Ameerpet on the 22nd, the evening show.")
+    args = {"domain": "movies", "date": "2026-10-22", "movie": "Rocket Raja", "quantity": 2, "seat_category": "prime"}
+    other = next(x for x in g.call("search_inventory", args)["results"] if "Regal" not in x["cinema"])
+    opt = next(o["option_id"] for o in other["options"] if o["available"])
+    r = g.call("create_booking", {"domain": "movies", "option_id": opt, "name": "Ravi", "quantity": 2})
+    assert r["error"] == "rule_violation" and any(v["code"] == "not_requested" and "has not asked for" in v["message"] for v in r["violations"])
+    regal = g.call("search_inventory", {**args, "cinema": "Regal"})["results"] + g.call("search_inventory", {**args, "cinema": "Regal", "time": "evening"})["results"]
+    morning = next((s for s in regal if int(s["time"][:2]) < 12), None)
+    if morning is not None:  # right cinema, but a morning show when the caller asked for the evening
+        opt = next(o["option_id"] for o in morning["options"] if o["available"])
+        r = g.call("create_booking", {"domain": "movies", "option_id": opt, "name": "Ravi", "quantity": 2})
+        assert [v["code"] for v in r["violations"]] == ["not_requested"] and "neither asked for" in r["violations"][0]["message"]
+    evening = next(s for s in regal if 17 <= int(s["time"][:2]) <= 20)
+    opt = next(o["option_id"] for o in evening["options"] if o["available"])
+    assert g.call("create_booking", {"domain": "movies", "option_id": opt, "name": "Ravi", "quantity": 2})["error"] == "needs_readback"
+
+
+def test_offered_alternative_counts_but_a_rejected_readback_does_not(world):
+    g = Gateway(world, CALLER)
+    g.begin_turn("A table for 4 at Jubilee Hills on the 21st please.")
+    g.end_turn("Jubilee Hills has tables at 7:30 PM and 9 PM on the 21st. Which would you like?")
+    g.begin_turn("The first one.")
+    opt = "tandoor-jubilee@2026-10-21T19:30"
+    r = g.call("create_booking", {"domain": "restaurants", "option_id": opt, "name": "Asha", "party_size": 4})
+    assert r["error"] == "needs_readback"
+    g.end_turn(r["readback"])  # the read-back itself does not count as an offer
+    assert "7:30" not in " ".join(g.offered) or "Jubilee Hills has tables" in " ".join(g.offered)
+    bad = "tandoor-jubilee@2026-10-21T21:30"
+    g.begin_turn("No, that's wrong.")
+    r = g.call("create_booking", {"domain": "restaurants", "option_id": bad, "name": "Asha", "party_size": 4})
+    assert r["error"] == "rule_violation" and r["violations"][0]["code"] == "not_requested"

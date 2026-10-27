@@ -1,0 +1,259 @@
+{
+  "scoring": "dates equal when they name the same day",
+  "val_set": "data v3 all_domains/val.jsonl (267 steps)",
+  "v2": {
+    "all": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 267,
+      "json_ok": 1.0,
+      "route_accuracy": 0.993,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.923,
+      "tool_choice_accuracy": 0.959,
+      "tool_args_exact": 0.972,
+      "latency_ms_p50": 2316,
+      "latency_ms_p95": 4883,
+      "route_confusion": {
+        "llm->llm": 19,
+        "llm->self": 2,
+        "self->self": 241,
+        "staff->staff": 5
+      }
+    },
+    "fastlane_cfg": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 159,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.946,
+      "tool_args_exact": 0.984,
+      "latency_ms_p50": 2319,
+      "latency_ms_p95": 4900,
+      "route_confusion": {
+        "llm->llm": 9,
+        "self->self": 147,
+        "staff->staff": 3
+      }
+    },
+    "dates_kind": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 65,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.983,
+      "tool_args_exact": 1.0,
+      "latency_ms_p50": 1990,
+      "latency_ms_p95": 4051,
+      "route_confusion": {
+        "llm->llm": 5,
+        "self->self": 60
+      }
+    },
+    "A2": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 62,
+      "json_ok": 1.0,
+      "route_accuracy": 0.968,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.818,
+      "tool_choice_accuracy": 0.961,
+      "tool_args_exact": 1.0,
+      "latency_ms_p50": 2714,
+      "latency_ms_p95": 4883,
+      "route_confusion": {
+        "llm->llm": 9,
+        "llm->self": 2,
+        "self->self": 51
+      }
+    },
+    "A2_searches": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 11,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": null,
+      "escalation_recall": null,
+      "tool_choice_accuracy": 1.0,
+      "tool_args_exact": 1.0,
+      "latency_ms_p50": 3040,
+      "latency_ms_p95": 3272,
+      "route_confusion": {
+        "self->self": 11
+      }
+    },
+    "restaurants": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 54,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.956,
+      "tool_args_exact": 1.0,
+      "latency_ms_p50": 2383,
+      "latency_ms_p95": 4986,
+      "route_confusion": {
+        "llm->llm": 6,
+        "self->self": 45,
+        "staff->staff": 3
+      }
+    },
+    "non_A2": {
+      "model": "v2",
+      "prompt": "",
+      "examples": 205,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.958,
+      "tool_args_exact": 0.964,
+      "latency_ms_p50": 2313,
+      "latency_ms_p95": 4570,
+      "route_confusion": {
+        "llm->llm": 10,
+        "self->self": 190,
+        "staff->staff": 5
+      }
+    }
+  },
+  "v3": {
+    "all": {
+      "model": "v3",
+      "prompt": "",
+      "examples": 267,
+      "json_ok": 1.0,
+      "route_accuracy": 0.993,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.923,
+      "tool_choice_accuracy": 0.988,
+      "tool_args_exact": 0.99,
+      "latency_ms_p50": 1964,
+      "latency_ms_p95": 4242,
+      "route_confusion": {
+        "llm->llm": 20,
+        "llm->self": 1,
+        "self->self": 241,
+        "staff->self": 1,
+        "staff->staff": 4
+      }
+    },
+    "fastlane_cfg": {
+      "model": "v3",
+      "prompt": "",
+      "examples": 159,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.986,
+      "tool_args_exact": 0.984,
+      "latency_ms_p50": 1964,
+      "latency_ms_p95": 4242,
+      "route_confusion": {
+        "llm->llm": 9,
+        "self->self": 147,
+        "staff->staff": 3
+      }
+    },
+    "dates_kind": {
+      "model": "v3",
+      "prompt": "",
+      "examples": 65,
+      "json_ok": 1.0,
+      "route_accuracy": 0.985,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.8,
+      "tool_choice_accuracy": 1.0,
+      "tool_args_exact": 1.0,
+      "latency_ms_p50": 1884,
+      "latency_ms_p95": 3577,
+      "route_confusion": {
+        "llm->llm": 4,
+        "llm->self": 1,
+        "self->self": 60
+      }
+    },
+    "A2": {
+      "model": "v3",
+      "prompt": "",
+      "examples": 62,
+      "json_ok": 1.0,
+      "route_accuracy": 0.984,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.909,
+      "tool_choice_accuracy": 0.98,
+      "tool_args_exact": 1.0,
+      "latency_ms_p50": 1962,
+      "latency_ms_p95": 3947,
+      "route_confusion": {
+        "llm->llm": 10,
+        "llm->self": 1,
+        "self->self": 51
+      }
+    },
+    "A2_searches": {
+      "model": "v3",
+      "prompt": "",
+      "examples": 11,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": null,
+      "escalation_recall": null,
+      "tool_choice_accuracy": 0.909,
+      "tool_args_exact": 1.0,
+      "latency_ms_p50": 2866,
+      "latency_ms_p95": 2996,
+      "route_confusion": {
+        "self->self": 11
+      }
+    },
+    "restaurants": {
+      "model": "v3",
+      "prompt": "",
+      "examples": 54,
+      "json_ok": 1.0,
+      "route_accuracy": 1.0,
+      "escalation_precision": 1.0,
+      "escalation_recall": 1.0,
+      "tool_choice_accuracy": 0.978,
+      "tool_args_exact": 0.96,
+      "latency_ms_p50": 2052,
+      "latency_ms_p95": 4238,
+      "route_confusion": {
+        "llm->llm": 6,
+        "self->self": 45,
+        "staff->staff": 3
+      }
+    },
+    "non_A2": {
+      "model": "v3",
+      "prompt": "",
+      "examples": 205,
+      "json_ok": 1.0,
+      "route_accuracy": 0.995,
+      "escalation_precision": 1.0,
+      "escalation_recall": 0.933,
+      "tool_choice_accuracy": 0.989,
+      "tool_args_exact": 0.988,
+      "latency_ms_p50": 1964,
+      "latency_ms_p95": 4238,
+      "route_confusion": {
+        "llm->llm": 10,
+        "self->self": 190,
+        "staff->self": 1,
+        "staff->staff": 4
+      }
+    }
+  }
+}

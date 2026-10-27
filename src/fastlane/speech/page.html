@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FastLane Voice</title>
+<style>
+  :root {
+    --bg: #f6f5f2; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6a66; --line: #e3e1db;
+    --caller: #e8eefc; --agent: #ffffff; --accent: #1f5fd6; --ok: #1e8a4c; --warn: #b26a00; --staff: #b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151514; --panel: #1f1f1d; --ink: #ecebe7; --muted: #a09e98; --line: #34332f;
+            --caller: #23314f; --agent: #262624; --accent: #7aa7ff; --ok: #5cc38a; --warn: #f0b04a; --staff: #ff8a80; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 20px 16px 140px; }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  h1 { font-size: 20px; margin: 0; }
+  #models { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  button { font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 8px; padding: 8px 14px; cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .5; cursor: default; }
+  #status { display: flex; align-items: center; gap: 10px; margin: 16px 0 8px; color: var(--muted); }
+  #dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  #dot.listening { background: var(--ok); } #dot.thinking { background: var(--warn); } #dot.speaking { background: var(--accent); }
+  #meter { flex: 0 0 120px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+  #level { height: 100%; width: 0; background: var(--ok); transition: width 80ms linear; }
+  #log { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .msg { max-width: 85%; padding: 9px 12px; border-radius: 12px; border: 1px solid var(--line); }
+  .caller { align-self: flex-end; background: var(--caller); }
+  .agent { align-self: flex-start; background: var(--agent); }
+  .meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .tag { display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 4px; border: 1px solid currentColor; margin-right: 6px; }
+  .tag.small { color: var(--ok); } .tag.large { color: var(--warn); } .tag.staff { color: var(--staff); } .tag.template { color: var(--muted); }
+  #partial { align-self: flex-end; color: var(--muted); font-style: italic; min-height: 1.2em; }
+  form { position: fixed; left: 0; right: 0; bottom: 0; background: var(--bg); border-top: 1px solid var(--line); }
+  form div { max-width: 760px; margin: 0 auto; padding: 12px 16px; display: flex; gap: 8px; }
+  input { flex: 1; min-width: 0; font: inherit; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
+  .hint { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>FastLane voice demo</h1>
+      <div id="models">Not connected</div>
+    </div>
+    <div>
+      <button id="start" class="primary">Start call</button>
+      <button id="stop" disabled>End call</button>
+    </div>
+  </header>
+  <div id="status"><span id="dot"></span><span id="state">Press “Start call”, allow the microphone, then speak after the greeting.</span>
+    <span id="meter"><div id="level"></div></span></div>
+  <p class="hint">Speak in turns: the agent replies after you pause. You can also type below instead of speaking.
+    <span id="mic"></span></p>
+  <div id="log"><div id="partial"></div></div>
+</main>
+<form id="textform"><div>
+  <input id="text" placeholder="Type instead of speaking…" autocomplete="off" disabled>
+  <button id="send" disabled>Send</button>
+</div></form>
+<script>
+const $ = id => document.getElementById(id);
+let ws, ctx, node, stream, playingSources = 0, spokenPending = false, speaking = false, nextTime = 0, lastAgent = null;
+
+const WORKLET = `
+class Rec extends AudioWorkletProcessor {
+  constructor() { super(); this.step = sampleRate / 16000; this.acc = 0; this.buf = []; }
+  process(inputs) {
+    const ch = inputs[0] && inputs[0][0];
+    if (!ch) return true;
+    for (let i = 0; i < ch.length; i++) { this.acc += 1; if (this.acc >= this.step) { this.acc -= this.step; this.buf.push(ch[i]); } }
+    if (this.buf.length >= 1600) {
+      const out = new Int16Array(this.buf.length); let peak = 0;
+      for (let i = 0; i < this.buf.length; i++) { const v = Math.max(-1, Math.min(1, this.buf[i])); out[i] = v * 32767; peak = Math.max(peak, Math.abs(v)); }
+      this.port.postMessage({ pcm: out.buffer, peak }, [out.buffer]); this.buf = [];
+    }
+    return true;
+  }
+}
+registerProcessor('rec', Rec);`;
+
+function setState(kind, text) { $('dot').className = kind; $('state').textContent = text; }
+
+function add(cls, text, meta) {
+  const el = document.createElement('div'); el.className = 'msg ' + cls; el.textContent = text;
+  if (meta) { const m = document.createElement('div'); m.className = 'meta'; m.innerHTML = meta; el.appendChild(m); }
+  $('log').insertBefore(el, $('partial')); el.scrollIntoView({ block: 'end', behavior: 'smooth' });
+  return el;
+}
+
+function secs(ms) { return (ms / 1000).toFixed(1) + ' s'; }
+
+function play(buf) {
+  const i16 = new Int16Array(buf), f = new Float32Array(i16.length);
+  for (let i = 0; i < i16.length; i++) f[i] = i16[i] / 32768;
+  const ab = ctx.createBuffer(1, f.length, 16000); ab.copyToChannel(f, 0);
+  const src = ctx.createBufferSource(); src.buffer = ab; src.connect(ctx.destination);
+  const t = Math.max(ctx.currentTime + 0.03, nextTime); src.start(t); nextTime = t + ab.duration;
+  playingSources++; speaking = true; setState('speaking', 'Agent speaking…');
+  src.onended = () => { playingSources--; maybeDone(); };
+}
+
+function maybeDone() {
+  if (spokenPending && playingSources === 0) {
+    spokenPending = false; speaking = false;
+    ws.send(JSON.stringify({ type: 'playback_done' }));
+    setState(stream ? 'listening' : '', stream ? 'Your turn — speak now' : 'Your turn — type below');
+  }
+}
+
+function onEvent(ev) {
+  switch (ev.type) {
+    case 'ready':
+      $('models').textContent = `${ev.system} · small ${ev.small || '—'} · large ${ev.large || '—'} · STT ${ev.stt} · TTS ${ev.tts} · caller ${ev.phone}`;
+      break;
+    case 'listening': setState('listening', 'Listening…'); break;
+    case 'mic':
+      $('mic').textContent = `server hears: ${ev.seconds.toFixed(0)} s of audio, level ${ev.peak.toFixed(2)}` +
+        (ev.peak < 0.02 ? ' (very quiet — check the input device)' : ''); break;
+    case 'partial': $('partial').textContent = ev.text + ' …'; break;
+    case 'final':
+      $('partial').textContent = '';
+      add('caller', ev.text, `transcribed in ${secs(ev.stt_ms)}`);
+      setState('thinking', 'Thinking…'); break;
+    case 'agent': {
+      const by = ev.handled_by || 'template';
+      lastAgent = add('agent', ev.text, `<span class="tag ${by}">${by}</span>${ev.reason ? ev.reason : ''}`);
+      break;
+    }
+    case 'timings':
+      if (lastAgent && ev.voice_ms) {
+        lastAgent.querySelector('.meta').innerHTML += ` · STT ${secs(ev.stt_ms)} · agent ${secs(ev.agent_ms)} · first audio ${secs(ev.voice_ms)}` +
+          (ev.vad_wait_ms ? ` (+${secs(ev.vad_wait_ms)} pause)` : '');
+      } else if (lastAgent) {
+        lastAgent.querySelector('.meta').innerHTML += ` · agent ${secs(ev.agent_ms)}`;
+      }
+      break;
+    case 'spoken': spokenPending = true; maybeDone(); break;
+    case 'ended': setState('', 'Call ended.'); stop(false); break;
+  }
+}
+
+async function start() {
+  $('start').disabled = true;
+  ctx = new AudioContext();
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } });
+    await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([WORKLET], { type: 'application/javascript' })));
+    node = new AudioWorkletNode(ctx, 'rec');
+    ctx.createMediaStreamSource(stream).connect(node);
+    // Some browsers only run a worklet that is connected through to the output: route it into a muted gain.
+    const mute = ctx.createGain(); mute.gain.value = 0; node.connect(mute).connect(ctx.destination);
+    await ctx.resume();
+    node.port.onmessage = e => {
+      $('level').style.width = Math.min(100, e.data.peak * 250) + '%';
+      if (ws && ws.readyState === 1 && !speaking) ws.send(e.data.pcm);
+    };
+    add('agent', `Microphone on (${stream.getAudioTracks()[0].label || 'default input'}, ${ctx.sampleRate} Hz).`);
+  } catch (err) {
+    stream = null; add('agent', 'Microphone not available (' + err.name + ': ' + err.message + '). You can still type.');
+  }
+  ws = new WebSocket(`ws://${location.host}/ws`); ws.binaryType = 'arraybuffer';
+  ws.onmessage = m => (m.data instanceof ArrayBuffer ? play(m.data) : onEvent(JSON.parse(m.data)));
+  ws.onclose = () => { setState('', 'Disconnected.'); stop(false); };
+  setState('thinking', 'Connecting…');
+  $('stop').disabled = false; $('text').disabled = false; $('send').disabled = false;
+}
+
+function stop(closeSocket = true) {
+  if (closeSocket && ws) ws.close();
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  stream = null; $('start').disabled = false; $('stop').disabled = true; $('text').disabled = true; $('send').disabled = true;
+  $('level').style.width = '0';
+}
+
+$('start').onclick = start;
+$('stop').onclick = () => stop(true);
+$('textform').onsubmit = e => {
+  e.preventDefault();
+  const t = $('text').value.trim();
+  if (!t || !ws || ws.readyState !== 1 || speaking) return;
+  add('caller', t, 'typed'); $('text').value = '';
+  setState('thinking', 'Thinking…'); speaking = true;
+  ws.send(JSON.stringify({ type: 'text', text: t }));
+};
+</script>
+</body>
+</html>

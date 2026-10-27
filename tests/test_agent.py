@@ -47,7 +47,9 @@ def test_easy_booking_needs_no_large_model(world, index):
     large = ScriptedClient([], name="large")
     agent = make(world, index, small=small, large=large)
     agent.greet()
-    readback = agent.respond("Two prime tickets for Rocket Raja on the 22nd, name Ravi Kumar")
+    show = Gateway(world, CALLER).inv.show(opt.split(":")[0])
+    when = f"{show['start_min'] // 60 % 12 or 12}:{show['start_min'] % 60:02d} {'PM' if show['start_min'] >= 720 else 'AM'}"
+    readback = agent.respond(f"Two prime tickets for Rocket Raja at {show['cinema']} on the 22nd at {when}, name Ravi Kumar")
     assert readback.startswith("Just to confirm") and "Rocket Raja" in readback
     done = agent.respond("yes, go ahead")
     assert done.startswith("Done") and "Reference" in done
@@ -340,3 +342,49 @@ def test_spoken_date_slot_is_resolved_into_the_record(world, index):
     agent.greet()
     agent.respond("Rocket Raja next Friday")
     assert agent.gw.record.date == "2026-10-23" and agent.traces[-1].handled_by == "small"
+
+
+def test_numeric_policy_answer_goes_to_large(world, index):
+    """Pilot v3: the small model read the bus refund table wrongly; amounts are now the large model's job."""
+    q = {"query": "refund if I cancel 10 hours before departure", "domain": "buses"}
+    small = ScriptedClient([small_json(tool="search_policy", args=q), small_json(say="You get 90% back.")])
+    large = ScriptedClient(["Cancelling 4 to 12 hours before departure refunds 25% of the fare."], name="large")
+    agent = make(world, index, small=small, large=large)
+    agent.greet()
+    reply = agent.respond("How much refund if I cancel my bus ticket 10 hours before departure?")
+    tr = agent.traces[-1]
+    assert "25%" in reply and tr.handled_by == "large" and tr.escalation_reason == "policy answer with numbers"
+
+
+def test_policy_answer_without_numbers_stays_small(world, index):
+    q = {"query": "are subtitles available", "domain": "movies"}
+    small = ScriptedClient([small_json(tool="search_policy", args=q), small_json(say="Yes, all non-English films have English subtitles.")])
+    agent = make(world, index, small=small, large=ScriptedClient([], name="large"))
+    agent.greet()
+    agent.respond("Are subtitles there for Telugu films?")
+    assert agent.traces[-1].handled_by == "small"
+
+
+def test_fallback_client_waits_for_primary_when_backup_fails():
+    from fastlane.models.openai_compat import FallbackClient, RateLimited
+
+    class LimitedOnce:
+        name, max_wait_s, calls = "groq:x", None, 0
+
+        def chat(self, messages, **kw):
+            self.calls += 1
+            if self.max_wait_s is not None:
+                raise RateLimited(30, "tokens per minute")
+            return ScriptedClient(["from primary after waiting"]).chat(messages)
+
+    class Slow:
+        name = "gemini:y"
+
+        def chat(self, messages, **kw):
+            raise TimeoutError("backup too slow")
+
+    primary = LimitedOnce()
+    fb = FallbackClient(primary, Slow())
+    r = fb.chat([{"role": "user", "content": "hi"}])
+    assert r.text == "from primary after waiting" and r.throttle_ms >= 0
+    assert primary.calls == 2 and primary.max_wait_s == 10.0  # waiting allowed only for that one call

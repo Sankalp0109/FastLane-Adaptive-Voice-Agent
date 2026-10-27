@@ -172,8 +172,11 @@ def test_runner_scores_a_booking_call(world_path, scripts):
              and x.gold["outcomes"][0][0]["status"] == "confirmed")
     e = s.gold["outcomes"][0][0]
     args = {"domain": "restaurants", "option_id": _option(World.fresh(world_path), e), "name": s.caller_name, "party_size": e["party_size"]}
-    small = ScriptedClient([json.dumps({"route": "self", "slots": {}, "tool": {"name": "create_booking", "args": args}, "say": ""})])
-    replies = iter(["Yes, that's correct.", "Thank you, bye."])
+    branch = World.fresh(world_path).one("SELECT name FROM restaurants WHERE id=?", (e["restaurant_id"],))["name"]
+    offer = f"{branch} has a table at {e['time']} on that day. Shall I book it?"  # a perfect agent offers first
+    small = ScriptedClient([json.dumps({"route": "self", "slots": {}, "tool": None, "say": offer}),
+                            json.dumps({"route": "self", "slots": {}, "tool": {"name": "create_booking", "args": args}, "say": ""})])
+    replies = iter(["Yes please, book that one.", "Yes, that's correct.", "Thank you, bye."])
     caller = ScriptedClient(lambda m, t: json.dumps({"say": next(replies), "done": False}), name="caller")
     rec = run_call(s, "fastlane", 0, small, ScriptedClient([], name="large"), caller, world_path=world_path)
     assert rec["error"] is None and rec["success"], rec["mismatch"]

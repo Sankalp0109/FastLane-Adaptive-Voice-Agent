@@ -1,0 +1,38 @@
+[
+  {
+    "backend": "mlx:whisper-large-v3-turbo",
+    "clips": 300,
+    "wer": 0.2014,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.278,
+    "ms_median": 1274
+  },
+  {
+    "backend": "mlx:whisper-large-v3-turbo (no prompt)",
+    "clips": 300,
+    "wer": 0.1358,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.313,
+    "ms_median": 1382
+  },
+  {
+    "backend": "faster-whisper:small.en",
+    "clips": 300,
+    "wer": 0.1443,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.329,
+    "ms_median": 1456
+  },
+  {
+    "backend": "sarvam:saarika:v2.5",
+    "clips": 300,
+    "wer": 0.058,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.101,
+    "ms_median": 461
+  }
+]

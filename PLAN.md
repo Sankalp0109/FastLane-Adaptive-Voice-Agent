@@ -137,6 +137,19 @@ fastlane/
   WER overall and on names/places/numbers/dates.
 - **Done when:** local demo runs in a browser with a text fallback.
 
+**Phase 7 build plan (2026-10-26).** Everything runs locally on the M4 (16 GB); cloud STT/TTS are optional add-ons.
+The pipeline is a small FastAPI + WebSocket server instead of Pipecat: the orchestrator is synchronous, and a
+thin custom loop keeps every stage timed in the same trace. The stages match the Pipecat design and can be swapped later.
+
+| Step | What | Done when |
+|---|---|---|
+| 7.1 STT | `speech/stt.py`: one `transcribe(audio) -> (text, ms)` interface; backends mlx-whisper (default), faster-whisper, Sarvam Saaras (needs `SARVAM_API_KEY`); domain word list (cinemas, films, cities, branches) as the Whisper prompt | transcribes a WAV; latency measured |
+| 7.2 TTS | `speech/tts.py`: Kokoro-82M (local ONNX), sentence by sentence; Sarvam Bulbul (Indian-English voice) optional | speaks a FastLane reply; time to first audio measured |
+| 7.3 Turn-taking | `speech/vad.py`: Silero VAD end-of-speech; partial transcripts every ~0.6 s feed early lookup | a spoken turn is cut at the pause and transcribed |
+| 7.4 Browser demo | `speech/server.py` + page: mic → VAD → STT → agent → TTS streamed back; text box fallback; per-turn timings (end of speech → first audio) | `fastlane voice` call works in the browser |
+| 7.5 STT comparison | `fastlane speech wer`: Svarah (Indian-English) + TTS-made calls + own recordings; WER overall and on names/places/numbers/dates | table of WER by backend |
+| 7.6 Speech noise | replace the rule-based noise copies with a TTS → STT round trip (optional retrain) | — |
+
 ### Phase 8 — Experiments and report
 - Run all 12 systems, collect metrics, produce figures/tables for the report; README results section.
 
@@ -150,8 +163,8 @@ fastlane/
 | 3 Retrieval | done — 25 docs (~21 pages at 450 words; target ~60, add `.md` files to `retrieval/docs/`), BM25 + version handling + "not covered", early lookup; 87 tests total |
 | 4 Models + orchestrator | done — Groq `gpt-oss-120b` (large), Ollama `qwen2.5:3b` (small, base until LoRA), all 12 systems run; `fastlane chat`; 119 tests total |
 | 5 Evaluation | done — 360-call test set (`data/test_calls.jsonl`, every gold outcome verified achievable), LLM caller (Qwen2.5-7B), resumable runner, Table 7 metrics, report + plot; 135 tests total. Free-tier pilot done (below) |
-| 6 Training | v1 and v2 trained on Kaggle and served with MLX; v2 offline: route 98.9%, escalation recall 92.3%, args 92.5% (FastLane config 98.4%); A8 transfers routing but not restaurant arguments; **data v3 (A2 date fix) prepared, not trained** (see docs/EXPERIMENT_LOG.md §8) |
-| 7 Speech | todo |
+| 6 Training | v1 and v2 trained on Kaggle and served with MLX; v2 offline: route 98.9%, escalation recall 92.3%, args 92.5% (FastLane config 98.4%); A8 transfers routing but not restaurant arguments; **v3 (A2 date fix) trained and current**: route 99.3%, tool 98.8%, args 99.0% offline (see docs/EXPERIMENT_LOG.md §8–9) |
+| 7 Speech | in progress — 7.1–7.4 done: `fastlane voice` browser demo works end to end (STT ~1.0 s, end of speech → first audio median 3.2 s + 0.6 s pause); gateway grounding rule added (§13); 7.5 done (§15–16): Sarvam best on real Indian speech (Svarah WER 5.8% vs Whisper 9.5–10.5%, 3× faster); domain word list lifts places 48% → 97% in-domain; names weak for all (26–37%); 7.6 next |
 | 8 Experiments | todo |
 
 ### Phase 4 findings (first real calls)

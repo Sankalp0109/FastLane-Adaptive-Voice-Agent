@@ -1,0 +1,95 @@
+{
+  "model": "mlx:runs/mlx-fastlane-qwen2.5-3b-v2",
+  "prompt": "compact",
+  "examples": 267,
+  "json_ok": 1.0,
+  "route_accuracy": 0.993,
+  "escalation_precision": 1.0,
+  "escalation_recall": 0.923,
+  "tool_choice_accuracy": 0.959,
+  "tool_args_exact": 0.972,
+  "latency_ms_p50": 2316,
+  "latency_ms_p95": 4883,
+  "route_confusion": {
+    "llm->llm": 19,
+    "llm->self": 2,
+    "self->self": 241,
+    "staff->staff": 5
+  },
+  "arg_misses": [
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-23",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "20:30",
+          "seat_category": "recliner",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "23rd October",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Secunderabad",
+          "time": "20:30",
+          "seat_category": "recliner",
+          "quantity": 2
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-23",
+          "origin": "Vijayawada",
+          "destination": "Hyderabad",
+          "time": "22:00",
+          "quantity": 1
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "the 23rd",
+          "origin": "Vijayawada",
+          "destination": "Hyderabad",
+          "time": "22:00"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-20",
+          "movie": "Shadow Protocol",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "13:30",
+          "seat_category": "classic",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-20",
+          "movie": "Shadow Protocol",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "13:30",
+          "quantity": 2
+        }
+      }
+    }
+  ]
+}

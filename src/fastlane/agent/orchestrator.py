@@ -16,6 +16,7 @@ router call before each turn). Every other difference between systems is a Syste
 
 from __future__ import annotations
 
+import re
 import time
 from datetime import date
 from difflib import SequenceMatcher
@@ -220,6 +221,8 @@ class Agent:
                     return self._large(tr, trigger, steps)
                 continue
             if p.say:
+                if large_ok and use_model_route and self._numeric_policy_answer(p.say, steps):
+                    return self._large(tr, "policy answer with numbers", steps)
                 return p.say
             if large_ok and use_model_route:
                 return self._large(tr, "small model gave no reply", steps)
@@ -245,6 +248,12 @@ class Agent:
             if self.cfg.templates:
                 return templates.done(name, res["booking"], res)
         return None
+
+    @staticmethod
+    def _numeric_policy_answer(say: str, steps: list[tuple[str, str, dict]]) -> bool:
+        """A policy answer with amounts, percentages or hours is worked out by the large model from the same search
+        result (pilot v3: the small model read a refund table wrongly, 90% instead of 25%)."""
+        return any(name == "search_policy" for _, name, _ in steps) and bool(re.search(r"\d|%|\bpercent", say))
 
     @staticmethod
     def _tool_trigger(name: str, res: dict) -> str | None:

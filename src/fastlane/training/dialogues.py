@@ -38,6 +38,9 @@ SLOT_ORDER = {
     "restaurants": ["restaurant", "date", "time", "party_size", "name"],
 }
 STAFF_EVENTS = {"red_flag", "deposit_waiver", "group_limit", "party_limit"}
+DOMAIN_CUES = {"movies": {"movie", "cinema", "seat_category"}, "buses": {"destination", "passengers"},
+               "restaurants": {"restaurant", "party_size"}}  # details that tell the domain without saying it
+NEUTRAL_INTROS = ["Hi, ", "Hello, ", "Namaste, ", "Hello ji, ", "", "I want to book - ", "Hi, can you book "]
 DATE_EXPRS = ["next Friday", "this Saturday", "this Sunday", "day after tomorrow", "tomorrow", "next Monday", "next Tuesday",
               "coming Wednesday", "next Thursday", "Dussehra", "Diwali", "day before Diwali", "Bhai Dooj", "in 3 days",
               "a week from today", "next Saturday", "coming Sunday", "Dhanteras"]
@@ -637,17 +640,26 @@ class Caller:
         intro = {"movies": ["I want to book movie tickets", "Hello, tickets please", "Hi, I'd like to watch a movie"],
                  "buses": ["I need a bus ticket", "Hi, I want to book a bus", "Hello, bus booking please"],
                  "restaurants": ["I want to book a table", "Hi, table reservation please", "Hello, I'd like to reserve a table"]}[d]
+        # Data v4: any details in any order (v1-v3 used a fixed prefix of at most 3 slots, so the model dropped
+        # "two prime tickets" or "Regal Ameerpet tomorrow" said in one breath).
         order = SLOT_ORDER[d][:-1]
-        n = rng.choice([0, 1, 1, 2, 2, 3])
+        n = min(len(order), rng.choice([0, 1, 1, 2, 2, 3, 3, 4, 5]))
         if p.kind == "dates":
-            chosen = ["date"] + [s for s in order[:n] if s != "date"]
+            chosen = ["date"] + rng.sample([s for s in order if s != "date"], max(0, n - 1))
         else:
-            chosen = order[:n]
+            chosen = rng.sample(order, n)
+        rng.shuffle(chosen)
         sim.event = Event("give", {"intent": "book"})
         if not chosen:
             return rng.choice(intro) + "."
         text, canon = self._utter(chosen, lead="")
+        if d == "buses" and "passengers" not in chosen and rng.random() < 0.4:
+            qty = len(self.sim.target["passengers"])
+            text = f"{P.say_number(qty, rng)} {'seat' if qty == 1 else 'seats'}, {text}"  # "2 seats to Vijayawada"
+            canon["quantity"] = qty
         sim.event.slots.update(canon)
+        if set(chosen) & DOMAIN_CUES[d] and rng.random() < 0.35:
+            return f"{rng.choice(NEUTRAL_INTROS)}{text}"  # no domain word; the details say which domain it is
         return f"{rng.choice(intro)} - {text}"
 
     def _sold_out_opening(self) -> str:
@@ -764,8 +776,8 @@ class Caller:
             return rng.choice(["Just put my name, I'll sort out the rest with the conductor.", "Why do you need all that? Just book it in my name."])
         slots = [asked] if asked in SLOT_ORDER[p.domain] else []
         remaining = [s for s in SLOT_ORDER[p.domain][:-1] if s not in self.revealed and s not in slots and s not in sim.known]
-        if slots and remaining and rng.random() < 0.25:
-            slots.append(remaining[0])  # callers often add the next detail unprompted
+        if slots and remaining and rng.random() < 0.4:
+            slots += rng.sample(remaining, min(len(remaining), rng.choice([1, 1, 2])))  # extra details, any of them
         if not slots:
             slots = remaining[:1] or (["name"] if "name" not in sim.known else [])
         if not slots:

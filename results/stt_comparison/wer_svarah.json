@@ -1,0 +1,47 @@
+[
+  {
+    "backend": "sarvam:saarika:v2.5",
+    "clips": 300,
+    "wer": 0.058,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.101,
+    "ms_median": 461
+  },
+  {
+    "backend": "mlx:whisper-large-v3-turbo",
+    "clips": 300,
+    "wer": 0.1494,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.292,
+    "ms_median": 1395
+  },
+  {
+    "backend": "mlx:whisper-large-v3-turbo (no prompt)",
+    "clips": 300,
+    "wer": 0.1048,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.32,
+    "ms_median": 1422
+  },
+  {
+    "backend": "faster-whisper:small.en",
+    "clips": 300,
+    "wer": 0.1227,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.338,
+    "ms_median": 1500
+  },
+  {
+    "backend": "faster-whisper:small.en (no prompt)",
+    "clips": 300,
+    "wer": 0.0952,
+    "detail_accuracy": {},
+    "detail_counts": {},
+    "rtf_median": 0.303,
+    "ms_median": 1343
+  }
+]

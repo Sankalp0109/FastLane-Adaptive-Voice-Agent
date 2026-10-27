@@ -6,6 +6,7 @@ Each check returns a list of Violation; an empty list means the action is allowe
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 
@@ -94,6 +95,113 @@ def check_bus_booking(quantity: int, passengers: list[dict] | None, depart: date
             v.append(Violation("passenger_details", f"Passenger {p.get('name') or '?'} needs a valid age."))
         if p.get("gender") not in ("M", "F", "O"):
             v.append(Violation("passenger_details", f"Passenger {p.get('name') or '?'} needs a gender (M/F/O)."))
+    return v
+
+
+_UNITS = {w: i for i, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen "
+                                       "fifteen sixteen seventeen eighteen nineteen".split())}
+_TENS = {w: 10 * i for i, w in enumerate("_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()) if w != "_"}
+
+
+def said_numbers(text: str) -> set[int]:
+    """Numbers a caller said, as digits ("42") or words ("forty-two", "forty two")."""
+    t = text.lower().replace("-", " ")
+    out = {int(n) for n in re.findall(r"\b\d{1,3}\b", t)}
+    words = re.findall(r"[a-z]+", t)
+    for i, w in enumerate(words):
+        if w in _UNITS:
+            out.add(_UNITS[w])
+        elif w in _TENS:
+            nxt = words[i + 1] if i + 1 < len(words) else ""
+            out.add(_TENS[w] + (_UNITS[nxt] if nxt in _UNITS and _UNITS[nxt] < 10 else 0))
+    return out
+
+
+def check_passenger_source(passengers: list[dict], heard: str, known: list[dict], requested: int | None) -> list[Violation]:
+    """Passenger details must come from the caller (or their own booking history), never be guessed, and the
+    caller's requested seat count must be covered. `heard` is everything the caller has said in this call."""
+    v = []
+    if requested and len(passengers) < requested:
+        v.append(Violation("passenger_count", f"The caller asked for {requested} seats but details were given for "
+                                              f"{len(passengers)}; ask for the name, age and gender of every passenger."))
+    words = set(re.findall(r"[a-z]+", heard.lower()))
+    numbers = said_numbers(heard)
+    known_names = {str(k.get("name", "")).lower().split()[0] for k in known if k.get("name")}
+    for pax in passengers:
+        first = (str(pax.get("name", "")).lower().split() or [""])[0]
+        from_history = first in known_names and any(k.get("age") == pax.get("age") for k in known
+                                                    if str(k.get("name", "")).lower().split()[:1] == [first])
+        if from_history:
+            continue
+        if first not in words:
+            v.append(Violation("passenger_unheard", f"The caller has not given a passenger named {pax.get('name')!r}; "
+                                                    "ask for each passenger's name, age and gender, do not guess."))
+        elif pax.get("age") not in numbers:
+            v.append(Violation("passenger_unheard", f"The caller has not said {pax.get('name')}'s age; ask for it, do not guess."))
+    return v
+
+
+# --- grounding: what is booked must have come up in the call (pilot v3 / voice demo: a cinema and a time
+# nobody had mentioned were put into a booking)
+_GENERIC_WORDS = {"cinemas", "cinema", "multiplex", "talkies", "tandoor", "tales", "hills", "city", "the"}
+_HOUR_WORDS = "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve"
+_TIME_SPAN = re.compile(
+    rf"\b(?:(?:half past|quarter past|quarter to)\s+(?:\d{{1,2}}|{_HOUR_WORDS})"
+    rf"|(?:\d{{1,2}}|{_HOUR_WORDS})(?:[:.]\d{{2}}|\s+(?:fifteen|thirty|forty[- ]five))?\s*"
+    r"(?:a\.?\s?m\b\.?|p\.?\s?m\b\.?|o'?\s?clock|hrs)"
+    r"|\d{1,2}:\d{2})"
+    r"(?:\s+(?:in the (?:morning|afternoon|evening|night)|at night))?",
+    re.IGNORECASE)
+_PARTS_OF_DAY = re.compile(r"\b(morning|afternoon|evening|night|noon|lunch|dinner)\b", re.IGNORECASE)
+
+
+def times_said(text: str, parts_of_day: bool = True) -> list[tuple[int, int]]:
+    """Every time window mentioned in free text ("the 7 PM show", "half past seven", "19:00", "evening").
+    A time without am/pm ("10 o'clock") may be either half of the day."""
+    from fastlane.gateway.dates import parse_time
+
+    out: list[tuple[int, int]] = []
+    for m in _TIME_SPAN.finditer(text):
+        span = m.group(0)
+        w = parse_time(span)
+        if w is None:
+            continue
+        out.append(w)
+        if not re.search(r"[ap]\.?\s?m\b|morning|afternoon|evening|night", span, re.IGNORECASE) and not re.fullmatch(r"\d{2}:\d{2}", span):
+            out.append(((w[0] + 720) % 1440, (w[1] + 720) % 1440))  # "10 o'clock": 10 AM or 10 PM
+    if parts_of_day:
+        for m in _PARTS_OF_DAY.finditer(text):
+            w = parse_time(m.group(1).lower())
+            if w is not None:
+                out.append(w)
+    return out
+
+
+def _words(text: str) -> set[str]:
+    toks = re.findall(r"[a-z]+", text.lower())
+    return set(toks) | {a + b for a, b in zip(toks, toks[1:])}  # "hi tech" also as "hitech"
+
+
+def check_grounded(caller: str, agent: str, venue: str | None, venue_aliases: list[str], minute: int | None,
+                   what: str) -> list[Violation]:
+    """The venue and the time of a new booking must have been said by the caller or offered by the agent earlier in
+    the call (`caller`, `agent`: everything each side said before this request). `what` names the venue kind."""
+    from difflib import SequenceMatcher
+
+    v = []
+    said = _words(caller) | _words(agent)
+    if venue:
+        names = {w for w in re.findall(r"[a-z]+", venue.lower()) if w not in _GENERIC_WORDS} | {a.lower() for a in venue_aliases}
+        heard = any(n in said or (len(n) >= 5 and any(SequenceMatcher(None, n, w).ratio() >= 0.8 for w in said if len(w) >= 4))
+                    for n in names)
+        if not heard:
+            v.append(Violation("not_requested", f"The caller has not asked for {venue}; ask which {what} they want, do not choose one."))
+    if minute is not None:
+        windows = times_said(caller) + times_said(agent, parts_of_day=False)
+        if not any(lo <= minute <= hi for lo, hi in windows):
+            hhmm = f"{minute // 60:02d}:{minute % 60:02d}"
+            v.append(Violation("not_requested", f"The time {hhmm} was neither asked for by the caller nor offered to them; "
+                                                f"ask which time they want or offer the available times."))
     return v
 
 

@@ -30,8 +30,11 @@ def client_for(spec: str) -> LLMClient:
         backup = role_spec("large_backup")
         if backup and backup.lower() != "none":
             b_provider, _, b_model = backup.partition(":")
-            return FallbackClient(client, OpenAICompatClient(b_provider, b_model))
+            return FallbackClient(client, OpenAICompatClient(b_provider, b_model, timeout=BACKUP_TIMEOUT_S, max_retries=0))
     return client
+
+
+BACKUP_TIMEOUT_S = 20.0  # a backup reply slower than this is abandoned for the (rate-limited) primary
 
 
 def ollama_has(model: str) -> bool:

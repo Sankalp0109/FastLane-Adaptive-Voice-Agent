@@ -1,0 +1,67 @@
+[
+  {
+    "system": "fastlane",
+    "description": "Fine-tuned small model answers easy turns and passes hard ones to the large model or staff.",
+    "calls": 3,
+    "success": 1.0,
+    "success_ci95": [
+      0.438,
+      1.0
+    ],
+    "turns": 16,
+    "model_ms_p50": 3245.8,
+    "model_ms_p95": 16172.6,
+    "lookup_turn_ms_p95": 5259.3,
+    "large_turn_rate": 0.5,
+    "large_calls_per_call": 4.67,
+    "tokens_per_call": {
+      "small": [
+        5141,
+        453
+      ],
+      "large": [
+        10364,
+        856
+      ]
+    },
+    "cost_per_call_usd": 0.0,
+    "throttle_s_per_call": 3.5,
+    "large_model_mix": {
+      "gemini:gemini-3.5-flash": 2,
+      "groq:openai/gpt-oss-120b": 12
+    },
+    "errors": 0,
+    "router_precision": 0.5,
+    "router_hard_recall": 0.667,
+    "hard_turns": 6,
+    "escalation_reasons": {
+      "tool error": 3,
+      "small model": 2,
+      "policy answer with numbers": 1,
+      "small model gave no reply": 1,
+      "unconfident policy match": 1
+    },
+    "unsafe_write_calls": 0.0,
+    "unconfirmed_writes": 0,
+    "rule_violating_writes": 0,
+    "missed_handoffs": "0/0",
+    "invalid_tool_call_rate": 0.05,
+    "injected_error_success": null,
+    "early_lookup": {
+      "started": 2,
+      "reused": 0,
+      "wasted": 1,
+      "cache_hits": 0,
+      "saved_ms_total": 0.0
+    },
+    "policy_answer_accuracy": 1.0,
+    "success_by_category": {
+      "dates": "1/1",
+      "policy": "1/1",
+      "rule_break": "1/1"
+    },
+    "success_by_domain": {
+      "buses": "3/3"
+    }
+  }
+]

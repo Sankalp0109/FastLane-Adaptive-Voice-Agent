@@ -24,6 +24,7 @@ python3 -m venv .venv
 | `fastlane docs build` | Regenerate the data-backed policy documents |
 | `fastlane docs search "refund if I cancel the bus 10 hours before"` | Query the policy index |
 | `fastlane chat --system fastlane -v` | Talk to a system in text (`--say "..." "..."` for a scripted run) |
+| `fastlane voice` | Browser voice demo at http://127.0.0.1:8765 (mic → VAD → Whisper → agent → Kokoro TTS, text fallback); needs `pip install -e ".[speech]"`, `fastlane serve` running, and the Groq key |
 | `fastlane testset build` | Regenerate the 360 test calls (`data/test_calls.jsonl`) |
 | `fastlane eval run --system fastlane B1 --run pilot --calls 24` | Simulated calls, resumable, results in `data/runs/<run>/` |
 | `fastlane eval report --run pilot` | `REPORT.md`, `summary.json` and the success-vs-p95 plot |

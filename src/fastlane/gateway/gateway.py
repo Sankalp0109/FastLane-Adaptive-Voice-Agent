@@ -23,10 +23,11 @@ from typing import Any, Callable, Protocol
 
 from pydantic import ValidationError
 
-from fastlane.config import FASTLANE, SystemConfig
+from fastlane.config import CITY, FASTLANE, SystemConfig
 from fastlane.gateway import readback as rb
 from fastlane.gateway import rules
 from fastlane.gateway.dates import resolve_date, spoken_date
+from fastlane.gateway.matching import CITY_ALIASES
 from fastlane.gateway.inventory import CATEGORIES, Inventory, InventoryError, _resolve
 from fastlane.gateway.record import BookingRecord, Passenger
 from fastlane.gateway.tools import TOOLS, WRITE_TOOLS, tool_specs
@@ -108,6 +109,9 @@ class Gateway:
         self.inject = Counter(inject_failures or {})
         self.turn = 0
         self.caller_text = ""
+        self.heard: list[str] = []  # everything the caller has said, for checking passenger details
+        self.known_people: list[dict] = []  # people the caller's own history vouches for (name, age)
+        self.offered: list[str] = []  # what the agent said (minus read-backs) and the caller's history, for grounding checks
         self.agent_text = ""
         self.prev_agent_text = ""
         self.pending: PendingAction | None = None
@@ -148,6 +152,7 @@ class Gateway:
     def begin_turn(self, caller_text: str) -> None:
         self.turn += 1
         self.caller_text = caller_text
+        self.heard.append(caller_text)
         self.prev_agent_text = self.agent_text
         self.confirmed_digest = None
         p = self.pending
@@ -170,6 +175,11 @@ class Gateway:
         if p is not None and p.readback.delivered_in(agent_text):
             p.delivered_turn = self.turn
             self.record.readback_status = "delivered"
+        else:  # a read-back offers nothing: a rejected wrong read-back must not make its details "offered"
+            self.offered.append(agent_text)
+
+    def _grounded(self, venue: str | None, aliases: list[str], minute: int | None, what: str) -> list[rules.Violation]:
+        return rules.check_grounded(" ".join(self.heard), " ".join(self.offered), venue, aliases, minute, what)
 
     # ================================================================ dispatch
     def call(self, name: str, args: dict | None) -> dict:
@@ -327,6 +337,8 @@ class Gateway:
             usual["passengers"] = Counter(json.dumps(d["passengers"]) for d in bus).most_common(1)[0][0]
             usual["passengers"] = json.loads(usual["passengers"])
         self.record.set(track=False, caller_name=cust["name"])
+        self.known_people = [p for p in usual.get("passengers", []) if isinstance(p, dict)]
+        self.offered.append(json.dumps({"usual": usual, "upcoming": upcoming}, ensure_ascii=False))
         return {
             "returning_caller": bool(past or upcoming),
             "name": cust["name"],
@@ -443,6 +455,7 @@ class Gateway:
             raise GatewayError("invalid_args", "quantity (number of tickets) is needed.")
         start = datetime.fromisoformat(show["date"]) + timedelta(minutes=show["start_min"])
         violations = rules.check_movie_booking(qty, start, self.now)
+        violations += self._grounded(show["cinema"], [], show["start_min"], "cinema")
         self._precheck(violations)
         free = self.inv.free_seats(show, cat)
         seats = pick_cinema_seats(free, qty, show["seats_per_row"])
@@ -480,6 +493,10 @@ class Gateway:
             raise GatewayError("invalid_args", "passengers (name, age, gender for each seat) are needed.")
         depart = datetime.fromisoformat(trip["date"]) + timedelta(minutes=trip["depart_min"])
         violations = rules.check_bus_booking(qty, pax, depart, self.now)
+        violations += rules.check_passenger_source(pax, " ".join(self.heard), self.known_people, self.record.quantity)
+        violations += self._grounded(trip["destination"], CITY_ALIASES.get(trip["destination"], []), trip["depart_min"], "destination")
+        if trip["origin"] != CITY:  # Hyderabad is the default origin; any other must have been said
+            violations += self._grounded(trip["origin"], CITY_ALIASES.get(trip["origin"], []), None, "origin")
         self._precheck(violations)
         free = self.inv.free_berths(trip)
         seats = pick_bus_seats(free, qty, trip["bus_type"], a.seat_preference)
@@ -528,6 +545,7 @@ class Gateway:
             raise GatewayError("invalid_args", "party_size is needed.")
         when = datetime.fromisoformat(d) + timedelta(minutes=start)
         violations = rules.check_restaurant_booking(party, when, self.now, rest)
+        violations += self._grounded(rest["name"], [], start, "branch")
         deposit = rules.restaurant_deposit(party, rest)
         if deposit and a.waive_deposit:
             violations.append(rules.Violation("deposit_waived", f"Parties of {rest['deposit_min_party']}+ must pay a deposit; only staff can waive it."))
@@ -679,6 +697,8 @@ class Gateway:
             qty = a.quantity or len(pax)
             start = datetime.fromisoformat(trip["date"]) + timedelta(minutes=trip["depart_min"])
             violations = rules.check_bus_booking(qty, pax, start, self.now)
+            if a.passengers:
+                violations += rules.check_passenger_source(pax, " ".join(self.heard), self.known_people + view["passengers"], None)
             self._release(bid)
             free = self.inv.free_berths(trip)
             seats = pick_bus_seats(free, qty, trip["bus_type"])

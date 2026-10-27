@@ -1,0 +1,122 @@
+{
+  "Nepali": {
+    "n": 34,
+    "turbo+prompt": 0.079,
+    "turbo": 0.084,
+    "fw+prompt": 0.137,
+    "fw": 0.104,
+    "sarvam": 0.081
+  },
+  "Kannada": {
+    "n": 32,
+    "turbo+prompt": 0.508,
+    "turbo": 0.429,
+    "fw+prompt": 0.127,
+    "fw": 0.111,
+    "sarvam": 0.07
+  },
+  "Urdu": {
+    "n": 28,
+    "turbo+prompt": 0.067,
+    "turbo": 0.071,
+    "fw+prompt": 0.067,
+    "fw": 0.083,
+    "sarvam": 0.039
+  },
+  "Odia": {
+    "n": 23,
+    "turbo+prompt": 0.075,
+    "turbo": 0.071,
+    "fw+prompt": 0.124,
+    "fw": 0.119,
+    "sarvam": 0.058
+  },
+  "Konkani": {
+    "n": 18,
+    "turbo+prompt": 0.07,
+    "turbo": 0.058,
+    "fw+prompt": 0.125,
+    "fw": 0.08,
+    "sarvam": 0.052
+  },
+  "Bodo": {
+    "n": 17,
+    "turbo+prompt": 0.163,
+    "turbo": 0.153,
+    "fw+prompt": 0.232,
+    "fw": 0.163,
+    "sarvam": 0.108
+  },
+  "Maithili": {
+    "n": 17,
+    "turbo+prompt": 0.072,
+    "turbo": 0.072,
+    "fw+prompt": 0.144,
+    "fw": 0.059,
+    "sarvam": 0.007
+  },
+  "Tamil": {
+    "n": 16,
+    "turbo+prompt": 0.032,
+    "turbo": 0.016,
+    "fw+prompt": 0.104,
+    "fw": 0.104,
+    "sarvam": 0.008
+  },
+  "Telugu": {
+    "n": 15,
+    "turbo+prompt": 0.038,
+    "turbo": 0.032,
+    "fw+prompt": 0.043,
+    "fw": 0.048,
+    "sarvam": 0.022
+  },
+  "Kashmiri": {
+    "n": 14,
+    "turbo+prompt": 0.572,
+    "turbo": 0.034,
+    "fw+prompt": 0.082,
+    "fw": 0.034,
+    "sarvam": 0.034
+  },
+  "Gujarati": {
+    "n": 14,
+    "turbo+prompt": 0.076,
+    "turbo": 0.057,
+    "fw+prompt": 0.121,
+    "fw": 0.121,
+    "sarvam": 0.051
+  },
+  "Dogri": {
+    "n": 13,
+    "turbo+prompt": 0.069,
+    "turbo": 0.079,
+    "fw+prompt": 0.086,
+    "fw": 0.086,
+    "sarvam": 0.076
+  },
+  "Malayalam": {
+    "n": 13,
+    "turbo+prompt": 0.067,
+    "turbo": 0.076,
+    "fw+prompt": 0.101,
+    "fw": 0.092,
+    "sarvam": 0.084
+  },
+  "Hindi": {
+    "n": 12,
+    "turbo+prompt": 0.159,
+    "turbo": 0.068,
+    "fw+prompt": 0.083,
+    "fw": 0.053,
+    "sarvam": 0.061
+  },
+  "Assamese": {
+    "n": 10,
+    "turbo+prompt": 0.156,
+    "turbo": 0.115,
+    "fw+prompt": 0.104,
+    "fw": 0.104,
+    "sarvam": 0.062
+  }
+}

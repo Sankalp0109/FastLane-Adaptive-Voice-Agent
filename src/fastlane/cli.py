@@ -83,6 +83,24 @@ def _cmd_chat(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_speech_wer(args: argparse.Namespace) -> int:
+    from pathlib import Path
+
+    from fastlane.speech.wer import compare
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    compare(args.set, args.backends, args.n, out)
+    return 0
+
+
+def _cmd_voice(args: argparse.Namespace) -> int:
+    from fastlane.speech.server import serve
+
+    serve(args.system, args.stt, args.tts, args.phone, port=args.port, silence_ms=args.silence_ms, use_prompt=not args.no_prompt)
+    return 0
+
+
 def _cmd_testset_build(args: argparse.Namespace) -> int:
     from collections import Counter
 
@@ -333,6 +351,25 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--say", nargs="*", help="non-interactive: caller lines to send in order")
     p.add_argument("-v", "--verbose", action="store_true")
     p.set_defaults(func=_cmd_chat)
+
+    sp = sub.add_parser("speech", help="speech tools (Phase 7)").add_subparsers(dest="speech_command", required=True)
+    p = sp.add_parser("wer", help="compare STT backends: WER and key-detail accuracy")
+    p.add_argument("--set", default="tts", help="tts | svarah | dir:PATH (wav + txt pairs)")
+    p.add_argument("--backends", nargs="+", default=["mlx", "mlx+noprompt", "faster-whisper:small.en"],
+                   help="STT specs; add '+noprompt' to drop the domain word list")
+    p.add_argument("--n", type=int, default=None, help="number of clips (svarah default 300)")
+    p.add_argument("--out", default="results/stt_comparison")
+    p.set_defaults(func=_cmd_speech_wer)
+
+    p = sub.add_parser("voice", help="browser voice demo: mic -> VAD -> STT -> agent -> TTS (Phase 7)")
+    p.add_argument("--system", default="fastlane")
+    p.add_argument("--phone", default="9876500001", help="caller ID the call comes from")
+    p.add_argument("--stt", default="mlx", help="mlx[:repo] | faster-whisper[:size] | sarvam[:model]")
+    p.add_argument("--tts", default="kokoro", help="kokoro[:voice] | sarvam[:speaker]")
+    p.add_argument("--port", type=int, default=8765)
+    p.add_argument("--silence-ms", type=int, default=600, help="pause that ends the caller's turn")
+    p.add_argument("--no-prompt", action="store_true", help="do not give Whisper the list of film/cinema/city names")
+    p.set_defaults(func=_cmd_voice)
 
     return parser
 

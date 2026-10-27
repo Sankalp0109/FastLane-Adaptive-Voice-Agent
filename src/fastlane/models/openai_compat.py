@@ -210,4 +210,19 @@ class FallbackClient:
 
                 print(f"[{self.name}] {self.primary.name} limited for {e.wait_s:.0f}s; using {self.backup.name}", file=sys.stderr, flush=True)
         self.backup_calls += 1
-        return self.backup.chat(messages, **kwargs)
+        t0 = time.perf_counter()
+        try:
+            return self.backup.chat(messages, **kwargs)
+        except Exception as e:  # backup too slow or failing (pilot v3: one Gemini reply took 45 s): wait for the primary
+            import sys
+
+            lost_ms = (time.perf_counter() - t0) * 1000
+            print(f"[{self.name}] backup failed ({type(e).__name__}) after {lost_ms / 1000:.0f}s; waiting for {self.primary.name}",
+                  file=sys.stderr, flush=True)
+            saved, self.primary.max_wait_s = self.primary.max_wait_s, None
+            try:
+                r = self.primary.chat(messages, **kwargs)
+            finally:
+                self.primary.max_wait_s = saved
+            r.throttle_ms += lost_ms  # time lost on the backup counts as waiting, not as model latency
+            return r

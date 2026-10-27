@@ -1,0 +1,107 @@
+[
+  {
+    "backend": "sarvam:saarika:v2.5",
+    "clips": 142,
+    "wer": 0.0814,
+    "detail_accuracy": {
+      "places": 0.806,
+      "films": 0.167,
+      "dates": 1.0,
+      "names": 0.368,
+      "numbers": 0.967
+    },
+    "detail_counts": {
+      "places": 31,
+      "films": 6,
+      "dates": 28,
+      "names": 38,
+      "numbers": 120
+    },
+    "rtf_median": 0.149,
+    "ms_median": 422
+  },
+  {
+    "backend": "mlx:whisper-large-v3-turbo",
+    "clips": 142,
+    "wer": 0.0798,
+    "detail_accuracy": {
+      "places": 0.968,
+      "films": 0.667,
+      "dates": 1.0,
+      "names": 0.263,
+      "numbers": 0.942
+    },
+    "detail_counts": {
+      "places": 31,
+      "films": 6,
+      "dates": 28,
+      "names": 38,
+      "numbers": 120
+    },
+    "rtf_median": 0.484,
+    "ms_median": 1474
+  },
+  {
+    "backend": "mlx:whisper-large-v3-turbo (no prompt)",
+    "clips": 142,
+    "wer": 0.0943,
+    "detail_accuracy": {
+      "places": 0.484,
+      "films": 0.333,
+      "dates": 1.0,
+      "names": 0.263,
+      "numbers": 0.958
+    },
+    "detail_counts": {
+      "places": 31,
+      "films": 6,
+      "dates": 28,
+      "names": 38,
+      "numbers": 120
+    },
+    "rtf_median": 0.473,
+    "ms_median": 1441
+  },
+  {
+    "backend": "faster-whisper:small.en",
+    "clips": 142,
+    "wer": 0.0782,
+    "detail_accuracy": {
+      "places": 0.968,
+      "films": 1.0,
+      "dates": 1.0,
+      "names": 0.263,
+      "numbers": 0.975
+    },
+    "detail_counts": {
+      "places": 31,
+      "films": 6,
+      "dates": 28,
+      "names": 38,
+      "numbers": 120
+    },
+    "rtf_median": 0.491,
+    "ms_median": 1489
+  },
+  {
+    "backend": "faster-whisper:small.en (no prompt)",
+    "clips": 142,
+    "wer": 0.108,
+    "detail_accuracy": {
+      "places": 0.484,
+      "films": 0.167,
+      "dates": 1.0,
+      "names": 0.263,
+      "numbers": 0.975
+    },
+    "detail_counts": {
+      "places": 31,
+      "films": 6,
+      "dates": 28,
+      "names": 38,
+      "numbers": 120
+    },
+    "rtf_median": 0.428,
+    "ms_median": 1292
+  }
+]
