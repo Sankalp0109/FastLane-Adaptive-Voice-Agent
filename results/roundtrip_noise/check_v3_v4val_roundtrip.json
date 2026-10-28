@@ -1,0 +1,146 @@
+{
+  "model": "mlx:runs/mlx-fastlane-qwen2.5-3b",
+  "prompt": "compact",
+  "examples": 245,
+  "json_ok": 1.0,
+  "route_accuracy": 0.988,
+  "escalation_precision": 1.0,
+  "escalation_recall": 0.885,
+  "tool_choice_accuracy": 0.968,
+  "tool_args_exact": 0.943,
+  "latency_ms_p50": 2514,
+  "latency_ms_p95": 4954,
+  "route_confusion": {
+    "llm->llm": 19,
+    "llm->self": 2,
+    "self->self": 219,
+    "staff->self": 1,
+    "staff->staff": 4
+  },
+  "arg_misses": [
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurants",
+          "date": "2026-10-26",
+          "time": "20:00",
+          "restaurant": "Tandoor Tales Hitech City",
+          "party_size": 5
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurants",
+          "date": "2026-10-26",
+          "time": "20:00",
+          "restaurant": "Tandoor Tales Hitech City",
+          "party_size": 2
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-23",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "20:30",
+          "seat_category": "recliner",
+          "quantity": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "23rd October",
+          "movie": "Chennai Nights",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "18:00",
+          "seat_category": "recliner",
+          "quantity": 2
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "modify_booking",
+        "args": {
+          "booking_id": "RT8BFR9",
+          "phone": "7824833197",
+          "party_size": 5
+        }
+      },
+      "got": {
+        "name": "modify_booking",
+        "args": {
+          "booking_id": "RT8BFR9",
+          "phone": "7824833197",
+          "quantity": 5
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_policy",
+        "args": {
+          "query": "Is there an interval in the film?",
+          "domain": "movies"
+        }
+      },
+      "got": {
+        "name": "search_policy",
+        "args": {
+          "query": "An interval in the film.",
+          "domain": "movies"
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-30",
+          "movie": "Little Champs in Space",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "20:30",
+          "seat_category": "classic",
+          "quantity": 4
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "movies",
+          "date": "2026-10-30",
+          "movie": "Little Champs in Space",
+          "cinema": "Moonbeam Cinemas Secunderabad",
+          "time": "18:00",
+          "seat_category": "classic",
+          "quantity": 4
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_policy",
+        "args": {
+          "query": "Is there a toilet on the bus?",
+          "domain": "buses"
+        }
+      },
+      "got": {
+        "name": "search_policy",
+        "args": {
+          "query": "Is there a toilet on the back?",
+          "domain": "restaurants"
+        }
+      }
+    }
+  ]
+}

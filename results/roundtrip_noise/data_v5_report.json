@@ -1,0 +1,118 @@
+{
+  "roundtrip": {
+    "lines": 1762,
+    "transcripts": 3524,
+    "usable": 0.5568,
+    "changed_and_usable": 0.3011,
+    "mean_wer": 0.3572,
+    "lost_by_kind": {
+      "names": 1334,
+      "numbers": 335,
+      "short": 175,
+      "yes/no": 168,
+      "places": 146,
+      "reference": 87,
+      "films": 75,
+      "dates": 29
+    },
+    "by_voice": {
+      "indian": {
+        "n": 1812,
+        "mean_wer": 0.4054,
+        "usable": 0.5315
+      },
+      "other": {
+        "n": 1712,
+        "mean_wer": 0.3063,
+        "usable": 0.5835
+      }
+    },
+    "stt_ms_median": 1537.9
+  },
+  "all_domains": {
+    "clean_examples": 2201,
+    "calls_kept": 645,
+    "val_calls": 64,
+    "train_examples": 3153,
+    "val_examples": 245,
+    "noisy_copies": 514,
+    "routes_train": {
+      "self": 2496,
+      "llm": 471,
+      "staff": 186
+    },
+    "kinds_train": {
+      "rule_no_pax": 88,
+      "book": 1167,
+      "red_flag": 125,
+      "change_mind": 568,
+      "sold_out": 206,
+      "modify": 169,
+      "returning_cancel": 28,
+      "usual": 182,
+      "dates": 496,
+      "cancel": 70,
+      "policy": 121,
+      "rule_deposit": 45,
+      "rule_colleague": 24,
+      "rule_group": 48
+    },
+    "configs_train": {
+      "A4": 405,
+      "A2": 497,
+      "fastlane": 2050,
+      "A6": 143,
+      "A7": 242
+    },
+    "domains_train": {
+      "buses": 1219,
+      "movies": 1115,
+      "restaurants": 1003
+    },
+    "approx_tokens_per_example": 920,
+    "noise": "roundtrip",
+    "val_roundtrip_changed": 192
+  },
+  "movies_buses": {
+    "clean_examples": 1601,
+    "calls_kept": 435,
+    "val_calls": 43,
+    "train_examples": 2243,
+    "val_examples": 146,
+    "noisy_copies": 368,
+    "routes_train": {
+      "self": 1832,
+      "staff": 93,
+      "llm": 318
+    },
+    "kinds_train": {
+      "change_mind": 407,
+      "book": 817,
+      "modify": 167,
+      "sold_out": 181,
+      "dates": 402,
+      "red_flag": 81,
+      "usual": 81,
+      "returning_cancel": 22,
+      "cancel": 40,
+      "policy": 83,
+      "rule_no_pax": 65,
+      "rule_group": 27,
+      "rule_colleague": 9
+    },
+    "configs_train": {
+      "fastlane": 1472,
+      "A2": 354,
+      "A7": 172,
+      "A4": 308,
+      "A6": 76
+    },
+    "domains_train": {
+      "movies": 1207,
+      "buses": 1175
+    },
+    "approx_tokens_per_example": 926,
+    "noise": "roundtrip",
+    "val_roundtrip_changed": 108
+  }
+}

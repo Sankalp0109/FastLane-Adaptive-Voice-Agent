@@ -29,6 +29,9 @@
   #level { height: 100%; width: 0; background: var(--ok); transition: width 80ms linear; }
   #log { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
   .msg { max-width: 85%; padding: 9px 12px; border-radius: 12px; border: 1px solid var(--line); }
+  .notice { align-self: center; max-width: 100%; text-align: center; color: var(--muted); font-size: 13px; padding: 8px 12px;
+            border: 1px dashed var(--line); border-radius: 8px; }
+  .notice.staff { color: var(--staff); border-color: var(--staff); }
   .caller { align-self: flex-end; background: var(--caller); }
   .agent { align-self: flex-start; background: var(--agent); }
   .meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
@@ -65,7 +68,7 @@
 </div></form>
 <script>
 const $ = id => document.getElementById(id);
-let ws, ctx, node, stream, playingSources = 0, spokenPending = false, speaking = false, nextTime = 0, lastAgent = null;
+let ws, ctx, node, stream, playingSources = 0, spokenPending = false, speaking = false, nextTime = 0, lastAgent = null, ended = null;
 
 const WORKLET = `
 class Rec extends AudioWorkletProcessor {
@@ -108,9 +111,20 @@ function play(buf) {
 function maybeDone() {
   if (spokenPending && playingSources === 0) {
     spokenPending = false; speaking = false;
+    if (ended) { endCall(); return; }  // the last reply has been heard: now close the call
     ws.send(JSON.stringify({ type: 'playback_done' }));
     setState(stream ? 'listening' : '', stream ? 'Your turn — speak now' : 'Your turn — type below');
   }
+}
+
+function endCall() {
+  const text = ended.staff
+    ? 'Call transferred to a member of staff. In this demo there is no staff line, so the call ends here; the hand-off summary is in the call log. Press “Start call” for a new call.'
+    : 'Call ended. Press “Start call” for a new call.';
+  const el = document.createElement('div'); el.className = 'notice' + (ended.staff ? ' staff' : ''); el.textContent = text;
+  $('log').insertBefore(el, $('partial')); el.scrollIntoView({ block: 'end', behavior: 'smooth' });
+  setState('', ended.staff ? 'Transferred to staff — call ended.' : 'Call ended.');
+  stop(true);
 }
 
 function onEvent(ev) {
@@ -141,12 +155,15 @@ function onEvent(ev) {
       }
       break;
     case 'spoken': spokenPending = true; maybeDone(); break;
-    case 'ended': setState('', 'Call ended.'); stop(false); break;
+    case 'ended':  // after 'spoken': end now if the reply has already finished playing, else when it has
+      ended = { staff: !!ev.staff };
+      if (!spokenPending && playingSources === 0) endCall(); else maybeDone();
+      break;
   }
 }
 
 async function start() {
-  $('start').disabled = true;
+  $('start').disabled = true; ended = null; spokenPending = false; speaking = false; playingSources = 0; nextTime = 0;
   ctx = new AudioContext();
   try {
     stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } });
@@ -166,7 +183,7 @@ async function start() {
   }
   ws = new WebSocket(`ws://${location.host}/ws`); ws.binaryType = 'arraybuffer';
   ws.onmessage = m => (m.data instanceof ArrayBuffer ? play(m.data) : onEvent(JSON.parse(m.data)));
-  ws.onclose = () => { setState('', 'Disconnected.'); stop(false); };
+  ws.onclose = () => { if (!ended) setState('', 'Disconnected.'); stop(false); };
   setState('thinking', 'Connecting…');
   $('stop').disabled = false; $('text').disabled = false; $('send').disabled = false;
 }

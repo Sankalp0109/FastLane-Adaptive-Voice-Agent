@@ -64,6 +64,9 @@ COMPACT_FORMAT = ('Reply with one JSON object: {"route": "self"|"llm"|"staff", "
 
 NO_DATE_TOOL = ("No date tool in this setup: when the caller gives a date in words, route \"llm\"; after the agent "
                 "has said the date back, put it in slots.date as YYYY-MM-DD.")
+# Large model only (the small-model prompt is the trained one): its replies are read aloud by TTS on a phone call.
+SPOKEN_LARGE = ("Your reply is read aloud on a phone call: plain sentences only, no markdown, bold, bullet points, "
+                "numbered lists or headings; name a few options in one sentence.")
 NO_DATE_TOOL_LARGE = ("There is no date tool: work dates out yourself from Now and say the date back to the caller "
                       "(for example \"Sure, Wednesday 4 November.\").")
 
@@ -99,7 +102,9 @@ def large_system(cfg: SystemConfig) -> str:
     if cfg.router == "small":
         parts.append("You are handling one hard turn of a call that a smaller assistant is running. Finish this turn "
                      "(use tools as needed) and reply to the caller; control then returns to the smaller assistant.")
-    parts.append("If the caller needs a human (payments, complaints, out-of-scope, limits), call handoff_to_staff with a short summary.")
+    parts.append(SPOKEN_LARGE)
+    parts.append("If the caller needs a human (payments, complaints, out-of-scope, limits), call handoff_to_staff with a short "
+                 "summary in the same turn: saying that you will transfer the caller does not transfer them.")
     return "\n\n".join(parts)
 
 

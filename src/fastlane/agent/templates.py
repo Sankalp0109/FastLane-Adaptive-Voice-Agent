@@ -45,5 +45,52 @@ def done(action: str, booking: dict, extra: dict | None = None) -> str:
     return f"Done, your booking is {verb}. Reference {ref}.{seat_txt} You'll get an SMS shortly. Anything else?"
 
 
+_LIST_ITEM = re.compile(r"^\s*(?:[-*•]|\d+[.)])\s+(.*)$")
+
+
+def plain(text: str) -> str:
+    """Replies are read aloud: no markdown, and a list becomes one sentence ("A, B and C").
+    (Voice demo: the large model sent "**Transfer reason:**" and a numbered list of cinemas to the TTS.)"""
+    text = re.sub(r"\*\*|__|`", "", text)
+    text = re.sub(r"^\s*#+\s*", "", text, flags=re.M)
+    text = re.sub(r"(?<![\w*])\*(?=\S)([^*\n]+?)(?<=\S)\*(?![\w*])", r"\1", text)  # *italic*
+    out: list[str] = []
+    items: list[str] = []
+
+    def flush() -> None:
+        if items:
+            joined = items[0] if len(items) == 1 else ", ".join(items[:-1]) + " and " + items[-1]
+            out.append(joined + ".")
+            items.clear()
+
+    for line in text.split("\n"):
+        m = _LIST_ITEM.match(line)
+        if m:
+            items.append(re.sub(r"\s+[–—-]\s+", " ", m.group(1)).strip().rstrip(".,;"))
+        elif line.strip():
+            flush()
+            out.append(line.strip())
+    flush()
+    return " ".join(out)
+
+
+_PROMISE = re.compile(r"\b(?:I'?ll|I will|I'?m|I am|let me|we'?ll|we will)\s+(?:now\s+|just\s+|going to\s+)*"
+                      r"(?:transfer|connect|put(?:ting)? you through|pass(?:ing)? you|hand(?:ing)? you|forward)", re.I)
+_TO_HUMAN = re.compile(r"\b(staff|colleague|team|human|person|manager|someone|agent|supervisor|representative)\b", re.I)
+_OFFER = re.compile(r"\b(would you like|shall I|should I|do you want|if you (?:want|like|prefer)|can I)\b", re.I)
+
+
+def promised_handoff(text: str) -> str | None:
+    """The sentences up to and including one where the agent says it is transferring the caller to a person
+    (not an offer or a question), or None. The model sometimes says so without calling handoff_to_staff."""
+    parts = re.split(r"(?<=[.!?])\s+", text.strip())
+    for i, s in enumerate(parts):
+        if s.rstrip().endswith("?") or _OFFER.search(s):
+            continue
+        if _PROMISE.search(s) and _TO_HUMAN.search(s):
+            return " ".join(parts[: i + 1])
+    return None
+
+
 def handoff_summary(record_text: str, last_caller: str, reason: str) -> str:
     return f"Reason: {reason}. Caller said: \"{last_caller[:200]}\". Record: {record_text.replace(chr(10), '; ')[:400]}"

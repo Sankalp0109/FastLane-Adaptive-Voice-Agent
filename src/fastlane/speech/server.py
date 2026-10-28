@@ -199,7 +199,7 @@ class Call:
             f.write(json.dumps(asdict(vt), ensure_ascii=False) + "\n")
         await self.send("timings", **{k: v for k, v in asdict(vt).items() if k.endswith("_ms") or k in ("turn", "handled_by")})
         if self.agent.ended:
-            await self.send("ended")
+            await self.send("ended", staff=tr.handled_by == "staff")
 
     async def say(self, text: str, vt: VoiceTurn | None, t0: float | None = None) -> None:
         """Speak a reply sentence by sentence; the page plays each chunk as it arrives."""

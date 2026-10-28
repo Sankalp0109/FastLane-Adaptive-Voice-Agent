@@ -73,27 +73,11 @@ def split_and_write(calls: list[dict], examples: list[dict], out_dir: Path, doma
         if ex["meta"]["domain"] not in domains:
             continue
         (val if ex["meta"]["plan"] in val_plans else train).append(ex)
-    # Speech-noise copies of ~30% of training examples (caller lines mis-transcribed, targets unchanged).
-    noisy = []
-    for ex in train:
-        if rng.random() < noise_share:
-            msgs = [dict(m) for m in ex["messages"]]
-            msgs[1]["content"] = noisy_user_content(msgs[1]["content"], rng)
-            if msgs[1]["content"] != ex["messages"][1]["content"]:
-                noisy.append({"messages": msgs, "meta": {**ex["meta"], "noisy": True}})
-    train += noisy
-    # Escalations are ~5% of steps; repeat them so the adapter does not learn to never pass a turn on.
-    # Validation keeps the natural mix so its numbers stay honest.
-    train += [ex for ex in train if ex["meta"]["route"] != "self" for _ in range(route_upsample - 1)]
-    rng.shuffle(train)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    for name, rows in (("train", train), ("val", val)):
-        with (out_dir / f"{name}.jsonl").open("w") as f:
-            for ex in rows:
-                f.write(json.dumps(ex, ensure_ascii=False) + "\n")
+    train, n_noisy = augment(train, rng, noisy_user_content, noise_share, route_upsample)
+    write_rows(out_dir, train, val)
     stats = {
         "calls_kept": len(kept_plans), "val_calls": n_val, "train_examples": len(train), "val_examples": len(val),
-        "noisy_copies": len(noisy),
+        "noisy_copies": n_noisy,
         "routes_train": dict(Counter(e["meta"]["route"] for e in train)),
         "kinds_train": dict(Counter(e["meta"]["kind"] for e in train)),
         "configs_train": dict(Counter(e["meta"]["config"] for e in train)),
@@ -102,6 +86,64 @@ def split_and_write(calls: list[dict], examples: list[dict], out_dir: Path, doma
     }
     (out_dir / "stats.json").write_text(json.dumps(stats, indent=2))
     return stats
+
+
+def augment(train: list[dict], rng: random.Random, noise_fn, noise_share: float = 0.3, route_upsample: int = 3) -> tuple[list[dict], int]:
+    """Speech-noise copies of ~30% of training examples (caller lines mis-transcribed, targets unchanged), then
+    escalations repeated: they are ~5% of steps, and the adapter must not learn to never pass a turn on.
+    Validation keeps the natural mix so its numbers stay honest."""
+    noisy = []
+    for ex in train:
+        if rng.random() < noise_share:
+            msgs = [dict(m) for m in ex["messages"]]
+            msgs[1]["content"] = noise_fn(msgs[1]["content"], rng)
+            if msgs[1]["content"] != ex["messages"][1]["content"]:
+                noisy.append({"messages": msgs, "meta": {**ex["meta"], "noisy": True}})
+    train = train + noisy
+    train += [ex for ex in train if ex["meta"]["route"] != "self" for _ in range(route_upsample - 1)]
+    rng.shuffle(train)
+    return train, len(noisy)
+
+
+def write_rows(out_dir: Path, train: list[dict], val: list[dict]) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for name, rows in (("train", train), ("val", val)):
+        with (out_dir / f"{name}.jsonl").open("w") as f:
+            for ex in rows:
+                f.write(json.dumps(ex, ensure_ascii=False) + "\n")
+
+
+def renoise(seed: int = SEED + 9001, noise_share: float = 0.3, route_upsample: int = 3) -> dict:
+    """Phase 7.6: swap the rule-based noise copies in data/train for TTS -> STT round-trip copies (same calls,
+    same clean examples). Also writes val_roundtrip.jsonl: the validation steps with round-trip caller lines."""
+    from fastlane.training.roundtrip import RoundTripNoise, load_cache, summary
+
+    trips = load_cache()
+    noise = RoundTripNoise(trips)
+    report = {"roundtrip": summary(trips)}
+    for adapter in ("all_domains", "movies_buses"):
+        out_dir = TRAIN_DIR / adapter
+        rows = [json.loads(r) for r in (out_dir / "train.jsonl").read_text().splitlines() if r.strip()]
+        clean = list({json.dumps(ex, sort_keys=True): ex for ex in rows if not ex["meta"].get("noisy")}.values())
+        val = [json.loads(r) for r in (out_dir / "val.jsonl").read_text().splitlines() if r.strip()]
+        rng = random.Random(seed)
+        train, n_noisy = augment(clean, rng, noise.user_content, noise_share, route_upsample)
+        write_rows(out_dir, train, val)
+        vrng = random.Random(seed + 1)
+        val_rt = []
+        for ex in val:
+            msgs = [dict(m) for m in ex["messages"]]
+            msgs[1]["content"] = noise.user_content(msgs[1]["content"], vrng)
+            val_rt.append({"messages": msgs, "meta": {**ex["meta"], "noisy": msgs[1]["content"] != ex["messages"][1]["content"]}})
+        (out_dir / "val_roundtrip.jsonl").write_text("".join(json.dumps(ex, ensure_ascii=False) + "\n" for ex in val_rt))
+        stats = json.loads((out_dir / "stats.json").read_text())
+        stats.update({"noise": "roundtrip", "train_examples": len(train), "noisy_copies": n_noisy,
+                      "routes_train": dict(Counter(e["meta"]["route"] for e in train)),
+                      "val_roundtrip_changed": sum(ex["meta"]["noisy"] for ex in val_rt)})
+        (out_dir / "stats.json").write_text(json.dumps(stats, indent=2))
+        report[adapter] = {"clean_examples": len(clean), **stats}
+    (TRAIN_DIR / "renoise_report.json").write_text(json.dumps(report, indent=2))
+    return report
 
 
 def build(n_plans: int = 700, seed: int = SEED + 9001) -> dict:

@@ -388,3 +388,38 @@ def test_fallback_client_waits_for_primary_when_backup_fails():
     r = fb.chat([{"role": "user", "content": "hi"}])
     assert r.text == "from primary after waiting" and r.throttle_ms >= 0
     assert primary.calls == 2 and primary.max_wait_s == 10.0  # waiting allowed only for that one call
+
+
+def test_announced_handoff_is_made_in_the_same_turn(world, index):
+    """Voice demo: the large model said it would transfer a 100-ticket group but called no tool, so the caller
+    kept talking to the agent ("are u still there")."""
+    said = ("I'm sorry, but 100 tickets exceeds the booking limit. I'll transfer you to one of our staff members who can "
+            "help arrange a group booking.\n\n**Transfer reason:** large_group")
+    small = ScriptedClient([small_json(route="llm", reason="over the limit")])
+    agent = make(world, index, small=small, large=ScriptedClient([said], name="large"))
+    agent.greet()
+    reply = agent.respond("100 tickets please")
+    assert agent.ended and agent.traces[-1].handled_by == "staff" and agent.gw.handoff["reason"] == "large_group"
+    assert "Transfer reason" not in reply and "**" not in reply
+    assert reply.startswith("I'm sorry") and reply.endswith("you won't need to repeat them.")
+
+
+def test_offer_to_transfer_is_not_a_handoff(world, index):
+    small = ScriptedClient([small_json(route="llm", reason="unsure")])
+    large = ScriptedClient(["Would you like me to connect you to a staff member?"], name="large")
+    agent = make(world, index, small=small, large=large)
+    agent.greet()
+    agent.respond("can I talk about my refund")
+    assert not agent.ended and agent.traces[-1].handled_by == "large"
+
+
+def test_large_reply_markdown_is_made_speakable(world, index):
+    listing = ("We have four FastLane cinemas in Hyderabad:\n\n1. Galaxy – Kukatpally  \n2. Starlight – Gachibowli  \n"
+               "3. Regal – Ameerpet  \n4. Moonbeam – Secunderabad\n\nWhich cinema would you like for *Drighyam 3*?")
+    small = ScriptedClient([small_json(route="llm", reason="list")])
+    agent = make(world, index, small=small, large=ScriptedClient([listing], name="large"))
+    agent.greet()
+    reply = agent.respond("give list of cinema")
+    assert reply == ("We have four FastLane cinemas in Hyderabad: Galaxy Kukatpally, Starlight Gachibowli, Regal Ameerpet "
+                     "and Moonbeam Secunderabad. Which cinema would you like for Drighyam 3?")
+    assert "plain sentences" in agent._large_system

@@ -124,6 +124,9 @@ class Agent:
                 raise
             tr.escalation_reason = f"agent error: {type(e).__name__}: {e}"[:300]
             text = templates.FALLBACK
+        text = templates.plain(text)
+        if not self.ended and (said := templates.promised_handoff(text)):
+            text = self._promised_handoff(tr, said)
         if templates.is_goodbye(caller_text) and self.gw.pending is None:
             self.ended = True
         tr.ended = self.ended
@@ -397,16 +400,23 @@ class Agent:
         return templates.FALLBACK
 
     # ================================================================ staff and tools
-    def _staff(self, tr: TurnTrace, reason: str) -> str:
-        code = "other"
+    @staticmethod
+    def _staff_code(reason: str) -> str:
         low = reason.lower()
         if low in {"payment", "complaint", "out_of_scope", "large_group", "repeated_failure", "identity", "caller_request"}:
-            code = low
-        else:
-            for key, words in STAFF_REASONS.items():
-                if any(w in low for w in words):
-                    code = key
-                    break
+            return low
+        return next((key for key, words in STAFF_REASONS.items() if any(w in low for w in words)), "other")
+
+    def _promised_handoff(self, tr: TurnTrace, said: str) -> str:
+        """The model told the caller it is transferring them but called no tool (voice demo: the caller then
+        talked to a line that no longer answered). Hand off in the same turn; keep its explanation."""
+        code = self._staff_code(" ".join(t for who, t in self.turns[-2:] if who == "Caller") + " " + said)
+        self._staff(tr, code)
+        tr.escalation_reason = f"{tr.escalation_reason}; hand-off the model announced"
+        return f"{said} I've passed on the details, so you won't need to repeat them."
+
+    def _staff(self, tr: TurnTrace, reason: str) -> str:
+        code = self._staff_code(reason)
         caller = self.turns[-1][1] if self.turns else ""
         summary = templates.handoff_summary(self.gw.record.render(), caller, reason)
         self._tool("handoff_to_staff", {"reason": code, "summary": summary}, "orchestrator", tr)

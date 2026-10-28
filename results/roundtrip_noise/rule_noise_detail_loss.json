@@ -1,0 +1,13 @@
+{
+  "rule_copies": 3524,
+  "with_a_lost_detail": 0.149,
+  "lost_by_kind": {
+    "places": 349,
+    "numbers": 64,
+    "names": 61,
+    "films": 39,
+    "dates": 22,
+    "reference": 8,
+    "yes/no": 1
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "lines": 1762,
+  "transcripts": 3524,
+  "usable": 0.5568,
+  "changed_and_usable": 0.3011,
+  "mean_wer": 0.3572,
+  "lost_by_kind": {
+    "names": 1334,
+    "numbers": 335,
+    "short": 175,
+    "yes/no": 168,
+    "places": 146,
+    "reference": 87,
+    "films": 75,
+    "dates": 29
+  },
+  "by_voice": {
+    "indian": {
+      "n": 1812,
+      "mean_wer": 0.4054,
+      "usable": 0.5315
+    },
+    "other": {
+      "n": 1712,
+      "mean_wer": 0.3063,
+      "usable": 0.5835
+    }
+  },
+  "stt_ms_median": 1537.9
+}

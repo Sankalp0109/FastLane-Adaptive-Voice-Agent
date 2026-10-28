@@ -183,6 +183,26 @@ def _cmd_colab_bundle(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_train_roundtrip(args: argparse.Namespace) -> int:
+    import json
+
+    from fastlane.training.build_dataset import TRAIN_DIR
+    from fastlane.training.roundtrip import rejudge, run
+
+    result = rejudge() if args.rejudge else run(TRAIN_DIR, args.variants, args.stt, args.limit)
+    print(json.dumps(result, indent=2))
+    return 0
+
+
+def _cmd_train_renoise(args: argparse.Namespace) -> int:
+    import json
+
+    from fastlane.training.build_dataset import renoise
+
+    print(json.dumps(renoise(), indent=2))
+    return 0
+
+
 def _cmd_train_finish(args: argparse.Namespace) -> int:
     if args.ollama:
         from fastlane.training.merge_local import finish
@@ -296,6 +316,14 @@ def build_parser() -> argparse.ArgumentParser:
     p = tr.add_parser("data", help="generate practice-call training data for the small model")
     p.add_argument("--plans", type=int, default=650)
     p.set_defaults(func=_cmd_train_data)
+    p = tr.add_parser("roundtrip", help="speak every caller line (Kokoro) and transcribe it back (STT), cached")
+    p.add_argument("--variants", type=int, default=2, help="voices/noise settings per line")
+    p.add_argument("--stt", default="mlx")
+    p.add_argument("--limit", type=int, default=None, help="only the first N caller lines")
+    p.add_argument("--rejudge", action="store_true", help="re-score the cached transcripts only")
+    p.set_defaults(func=_cmd_train_roundtrip)
+    p = tr.add_parser("renoise", help="replace the rule-based noise copies in data/train with round-trip ones")
+    p.set_defaults(func=_cmd_train_renoise)
     p = tr.add_parser("mlx", help="LoRA fine-tuning on Apple Silicon with MLX")
     p.add_argument("--adapter", default="all_domains", choices=["all_domains", "movies_buses"])
     p.add_argument("--model", default="mlx-community/Qwen2.5-3B-Instruct-4bit")
