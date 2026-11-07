@@ -1,0 +1,35 @@
+=== B1 11-06 03:01:36
+[B1] 0 done, 24 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/mid/B1.jsonl
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 49s; using gemini:gemini-3.5-flash
+[B1] 1/24 mov-simple-001 seed=0 success=False turns=5 max_model_ms=15391 wall=51.43s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 54s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (InternalServerError) after 6s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[B1] 2/24 mov-dates-041 seed=0 success=False turns=10 max_model_ms=11296 wall=152.87s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 3/24 mov-sold_out-056 seed=0 success=False turns=4 max_model_ms=7350 wall=72.77s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 40s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 46s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 4/24 mov-change_mind-071 seed=0 success=True turns=7 max_model_ms=1742 wall=189.15s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 5/24 mov-policy-081 seed=0 success=False turns=3 max_model_ms=927 wall=49.0s
+[B1] 6/24 mov-returning-095 seed=0 success=True turns=2 max_model_ms=1353 wall=6.77s
+[B1] 7/24 mov-red_flag-108 seed=0 success=True turns=1 max_model_ms=403 wall=0.44s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 8/24 mov-rule_break-116 seed=0 success=True turns=2 max_model_ms=1164 wall=47.14s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash

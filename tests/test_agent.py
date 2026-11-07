@@ -60,6 +60,19 @@ def test_easy_booking_needs_no_large_model(world, index):
     assert agent.traces[1].model_ms == 200.0  # two small steps x 100 ms
 
 
+def test_repeated_small_tool_call_goes_to_large_at_once(world, index):
+    """Mid run: the small model made the same search_policy call four times before the step limit (about 7 s)."""
+    query = {"query": "Can I cancel my movie tickets two hours before the show?", "domain": "movies"}
+    small = ScriptedClient([small_json(tool="search_policy", args=query)] * 4)
+    large = ScriptedClient(["Cancellations are allowed up to 4 hours before the show."], name="large")
+    agent = make(world, index, small=small, large=large)
+    agent.greet()
+    agent.respond("Can I cancel my movie tickets two hours before the show?")
+    tr = agent.traces[-1]
+    assert tr.handled_by == "large" and tr.escalation_reason == "small model repeated a tool call"
+    assert len(small.calls) == 2 and [t.tool for t in tr.tools] == ["search_policy"]
+
+
 def test_small_routes_hard_turn_to_large(world, index):
     small = ScriptedClient([small_json(route="llm", reason="relative date")])
     large = ScriptedClient([{"tool": "resolve_date", "args": {"expression": "next Friday"}}, "Next Friday is the 23rd of October. Which film?"], name="large")

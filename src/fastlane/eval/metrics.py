@@ -90,6 +90,16 @@ def summarize_system(rows: list[dict]) -> dict:
         out["router_precision"] = _rate(tp, tp + fp)
         out["router_hard_recall"] = _rate(tp, tp + fn)
         out["hard_turns"] = tp + fn
+        # The labels count every relative or festival date as hard, but with date tools the small model resolves dates
+        # in code by design. Second view: a turn whose only hard moments are dates is not hard when the tools exist.
+        if cfg is None or cfg.date_tools:
+            def hard_code(t):
+                return t["hard"] and not set(t.get("moments") or []) <= {"relative_date", "festival_date"}
+            tp2 = sum(1 for t in turns if hard_code(t) and t["handled_by"] in ("large", "staff"))
+            fp2 = sum(1 for t in turns if not hard_code(t) and t["handled_by"] in ("large", "staff"))
+            fn2 = sum(1 for t in turns if hard_code(t) and t["handled_by"] not in ("large", "staff"))
+            out["router_precision_dates_in_code"] = _rate(tp2, tp2 + fp2)
+            out["router_hard_recall_dates_in_code"] = _rate(tp2, tp2 + fn2)
         reasons: dict[str, int] = defaultdict(int)
         for t in turns:
             if t["escalation_reason"]:

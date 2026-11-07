@@ -146,7 +146,7 @@ class Gateway:
         return names
 
     def specs(self) -> list[dict]:
-        return tool_specs(self.tool_names)
+        return tool_specs(self.tool_names, gated=self.cfg.enforce_rules)
 
     # ================================================================ turns
     def begin_turn(self, caller_text: str) -> None:
@@ -181,6 +181,9 @@ class Gateway:
     def _grounded(self, venue: str | None, aliases: list[str], minute: int | None, what: str) -> list[rules.Violation]:
         return rules.check_grounded(" ".join(self.heard), " ".join(self.offered), venue, aliases, minute, what)
 
+    def _count_heard(self, count: int, what: str, base: int | None = None) -> list[rules.Violation]:
+        return rules.check_count_heard(count, " ".join(self.heard), " ".join(self.offered), what, base)
+
     # ================================================================ dispatch
     def call(self, name: str, args: dict | None) -> dict:
         args = dict(args or {})
@@ -202,6 +205,9 @@ class Gateway:
             except ValidationError as e:
                 problems = "; ".join(f"{'.'.join(map(str, err['loc']))}: {err['msg']}" for err in e.errors()[:4])
                 raise GatewayError("invalid_args", f"Invalid arguments: {problems}") from None
+            if getattr(parsed, "domain", None) == "restaurants" and getattr(parsed, "party_size", 0) is None and parsed.quantity:
+                # A8: the movies+buses adapter says `quantity` for guests; the count is the same, only the field differs.
+                parsed = parsed.model_copy(update={"party_size": parsed.quantity})
             data = self._handlers[name](parsed)
             result = {"ok": True, **data}
             event.ok = True
@@ -456,6 +462,7 @@ class Gateway:
         start = datetime.fromisoformat(show["date"]) + timedelta(minutes=show["start_min"])
         violations = rules.check_movie_booking(qty, start, self.now)
         violations += self._grounded(show["cinema"], [], show["start_min"], "cinema")
+        violations += self._count_heard(qty, "tickets")
         self._precheck(violations)
         free = self.inv.free_seats(show, cat)
         seats = pick_cinema_seats(free, qty, show["seats_per_row"])
@@ -546,6 +553,7 @@ class Gateway:
         when = datetime.fromisoformat(d) + timedelta(minutes=start)
         violations = rules.check_restaurant_booking(party, when, self.now, rest)
         violations += self._grounded(rest["name"], [], start, "branch")
+        violations += self._count_heard(party, "guests")
         deposit = rules.restaurant_deposit(party, rest)
         if deposit and a.waive_deposit:
             violations.append(rules.Violation("deposit_waived", f"Parties of {rest['deposit_min_party']}+ must pay a deposit; only staff can waive it."))
@@ -676,6 +684,8 @@ class Gateway:
             qty = a.quantity or view["quantity"]
             start = datetime.fromisoformat(show["date"]) + timedelta(minutes=show["start_min"])
             violations = rules.check_movie_booking(qty, start, self.now)
+            if qty != view["quantity"]:
+                violations += self._count_heard(qty, "tickets", view["quantity"])
             self._release(bid)
             free = self.inv.free_seats(show, cat)
             seats = pick_cinema_seats(free, qty, show["seats_per_row"])
@@ -720,9 +730,11 @@ class Gateway:
             else:
                 rest, d = self.inv.restaurant(view["restaurant_id"]), view["date"]
                 start_min = int(view["time"][:2]) * 60 + int(view["time"][3:])
-            party = a.party_size or view["party_size"]
+            party = a.party_size or a.quantity or view["party_size"]
             when = datetime.fromisoformat(d) + timedelta(minutes=start_min)
             violations = rules.check_restaurant_booking(party, when, self.now, rest)
+            if party != view["party_size"]:
+                violations += self._count_heard(party, "guests", view["party_size"])
             self._release(bid)
             table = self.inv.free_table(rest["id"], d, start_min, party)
             if table is None:

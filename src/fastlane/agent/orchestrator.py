@@ -214,6 +214,9 @@ class Agent:
                 return self._large(tr, reason, steps)
             if p.tool:
                 name, args = p.tool["name"], p.tool["args"]
+                if large_ok and self._repeats_tool(name, args, tr):
+                    # Mid run: the same search_policy call four times in a row (about 7 s) before the step limit.
+                    return self._large(tr, "small model repeated a tool call", steps)
                 res = self._tool(name, args, "small", tr)
                 steps.append((r.text or "", name, res))
                 outcome = self._after_tool(tr, name, args, res)
@@ -251,6 +254,11 @@ class Agent:
             if self.cfg.templates:
                 return templates.done(name, res["booking"], res)
         return None
+
+    @staticmethod
+    def _repeats_tool(name: str, args: dict, tr: TurnTrace) -> bool:
+        """The small model already made this exact call in this turn and it succeeded (a retry after an error is fine)."""
+        return any(t.tool == name and t.args == args and t.ok and t.by == "small" for t in tr.tools)
 
     @staticmethod
     def _numeric_policy_answer(say: str, steps: list[tuple[str, str, dict]]) -> bool:

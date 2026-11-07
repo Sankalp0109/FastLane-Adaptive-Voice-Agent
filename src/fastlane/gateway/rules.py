@@ -141,6 +141,48 @@ def check_passenger_source(passengers: list[dict], heard: str, known: list[dict]
     return v
 
 
+# Counts said without a number: "just me", "the two of us"; Hindi numerals as Indian callers say them.
+_SAID_ONE = re.compile(r"\b(?:just me|only me|myself|by myself|alone|single ticket|a ticket|a seat)\b", re.IGNORECASE)
+_SAID_TWO = re.compile(r"\b(?:couple|pair|two of us|both of us|me and my (?:wife|husband|friend|mother|mom|father|dad|"
+                       r"sister|brother|son|daughter|partner|colleague|girlfriend|boyfriend|fianc[eé]e?))\b", re.IGNORECASE)
+_HINDI_NUMBERS = {"ek": 1, "do": 2, "teen": 3, "char": 4, "chaar": 4, "paanch": 5, "panch": 5, "chhe": 6, "saat": 7,
+                  "aath": 8, "nau": 9, "das": 10}
+
+
+_NUM = r"(\d{1,2}|" + "|".join(list(_UNITS)[1:13]) + ")"
+# Counts the agent offered: "a table for 4", "4 tickets", "party of six", the caller's usual from their history.
+_COUNT_OFFERED = re.compile(rf"\b(?:for|of)\s+{_NUM}\b(?!\s*(?::|am|pm|a\.m|p\.m|o'?clock|th|st|nd|rd))"
+                            rf"|\b{_NUM}\s+(?:tickets?|seats?|guests?|people|persons?|adults?)\b(?!\s+(?:left|available|free|remaining))"
+                            rf"|\"(?:tickets|party_size)\":\s*(\d+)", re.IGNORECASE)
+_MORE = re.compile(rf"\b(?:{_NUM}\s+(more|extra|additional|less|fewer)|(another|one more))\b", re.IGNORECASE)
+
+
+def _as_int(word: str) -> int:
+    return int(word) if word.isdigit() else _UNITS[word.lower()]
+
+
+def check_count_heard(count: int, heard: str, offered: str, what: str, base: int | None = None) -> list[Violation]:
+    """A ticket count or party size must have been said by the caller, or offered by the agent next to a count word
+    (e.g. the caller's usual party size from their history). `base` is the current count when a booking is changed,
+    so "one more person" allows base + 1. Voice demo: a misheard word ("Authenticates") became 4 tickets, and the
+    rule-based noise copies taught the model to fill in counts nobody said ("for tickets" -> quantity 4)."""
+    numbers = said_numbers(heard)
+    numbers |= {n for w, n in _HINDI_NUMBERS.items() if re.search(rf"\b{w}\b", heard, re.IGNORECASE)}
+    numbers |= {_as_int(g) for m in _COUNT_OFFERED.finditer(offered) for g in m.groups() if g}
+    if _SAID_ONE.search(heard):
+        numbers.add(1)
+    if _SAID_TWO.search(heard):
+        numbers.add(2)
+    if base is not None:
+        for m in _MORE.finditer(heard):
+            n, direction, another = m.groups()
+            numbers.add(base + 1 if another else base + _as_int(n) if direction.lower() in ("more", "extra", "additional")
+                        else base - _as_int(n))
+    if count in numbers:
+        return []
+    return [Violation("count_unheard", f"The caller has not said {count} {what}; ask how many {what} they want, do not guess.")]
+
+
 # --- grounding: what is booked must have come up in the call (pilot v3 / voice demo: a cinema and a time
 # nobody had mentioned were put into a booking)
 _GENERIC_WORDS = {"cinemas", "cinema", "multiplex", "talkies", "tandoor", "tales", "hills", "city", "the"}

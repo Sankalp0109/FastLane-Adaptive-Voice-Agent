@@ -29,14 +29,16 @@ def first_available(result: dict, category: str | None = None) -> str:
 
 
 def reads_out_results(g: Gateway) -> Gateway:
-    """Most gateway tests are about other rules: let every search result count as read out to the caller, as an
-    agent would, so the grounding rule (venue/time must have come up in the call) is satisfied."""
+    """Most gateway tests are about other rules: let every search result and its count ("for 2") count as read out
+    to the caller, as an agent would, so the grounding and count rules are satisfied."""
     call = g.call
 
     def call_and_offer(name, args):
         r = call(name, args)
         if name in ("search_inventory", "find_alternatives") and r.get("ok"):
             g.offered.append(json.dumps(r))
+            if count := args.get("quantity") or args.get("party_size"):
+                g.offered.append(f"for {count}")
         return r
 
     g.call = call_and_offer
@@ -88,6 +90,7 @@ def test_caller_correction_cancels_pending(gw):
 
 
 def test_confirmation_is_for_exact_arguments(gw):
+    gw.begin_turn("two tickets, or maybe three")
     args = {"domain": "movies", "option_id": movie_option(gw), "name": "Ravi", "quantity": 2}
     r = gw.call("create_booking", args)
     gw.end_turn(r["readback"])
@@ -205,6 +208,16 @@ def test_modify_not_executed_until_confirmed(world):
 
 
 # ------------------------------------------------------------------ variants
+
+def test_ungated_write_tools_do_not_promise_a_readback(world):
+    """B1 run of 2026-11-06: without the gate, the gated description ("the first call returns a read-back") made the
+    large model book every movie twice."""
+    gated = {s["name"]: s["description"] for s in Gateway(world, CALLER).specs()}
+    ungated = {s["name"]: s["description"] for s in Gateway(world, CALLER, config=SYSTEMS["B1"]).specs()}
+    assert "first call returns a read-back" in gated["create_booking"]
+    for tool in ("create_booking", "modify_booking", "cancel_booking"):
+        assert "read-back" not in ungated[tool] and "as soon as you call" in ungated[tool]
+
 
 def test_without_enforcement_writes_go_through_but_are_logged_unsafe(world):
     gw = Gateway(world, CALLER, config=SYSTEMS["A3"])
@@ -339,6 +352,38 @@ def test_said_numbers():
 
     assert {42, 31, 7} <= said_numbers("she is 42, he is thirty-one and the kid is seven")
     assert 45 in said_numbers("forty five") and 20 in said_numbers("twenty")
+
+
+def test_ticket_count_must_have_been_said(world):
+    """Voice demo: "Authenticates" was misheard and booked as 4 tickets; rule-based noise ("for tickets") taught the
+    model to fill in counts nobody said. A count must be said by the caller or offered next to a count word."""
+    from fastlane.gateway.rules import check_count_heard
+
+    g = Gateway(world, CALLER)
+    g.begin_turn("Rocket Raja tickets for the 22nd at Regal Ameerpet, the 7 PM show, prime.")
+    r = g.call("search_inventory", {"domain": "movies", "date": "2026-10-22", "movie": "Rocket Raja", "cinema": "Regal",
+                                    "time": "19:00", "quantity": 4})
+    g.end_turn("Regal Ameerpet has the 7 PM show with 6 prime seats left.")  # availability is not a count
+    opt = first_available(r, "prime")
+    r = g.call("create_booking", {"domain": "movies", "option_id": opt, "name": "Ravi", "quantity": 4})
+    assert "count_unheard" in [v["code"] for v in r["violations"]]
+    g.begin_turn("Four tickets please.")
+    r = g.call("create_booking", {"domain": "movies", "option_id": opt, "name": "Ravi", "quantity": 4})
+    assert "count_unheard" not in [v["code"] for v in r.get("violations", [])]
+    for heard, offered, count, base in [("for me and my wife", "", 2, None), ("just me", "", 1, None), ("char log", "", 4, None),
+                                        ("the usual", '{"usual": {"party_size": 6}}', 6, None), ("ok", "A table for 3?", 3, None),
+                                        ("make it one more person", "", 5, 4), ("two less please", "", 4, 6)]:
+        assert check_count_heard(count, heard, offered, "guests", base) == [], heard
+    assert check_count_heard(4, "for tickets please", "", "tickets")  # the rule-noise copy: no count was said
+
+
+def test_restaurant_quantity_is_read_as_party_size(gw):
+    """A8: the movies+buses adapter fills `quantity` (its movie/bus field) for restaurant guests."""
+    gw.begin_turn("A table for 4 at Jubilee Hills on the 21st, 7:30 PM.")
+    r = gw.call("search_inventory", {"domain": "restaurants", "date": "2026-10-21", "time": "19:30", "quantity": 4})
+    assert r["ok"] and r["party_size"] == 4
+    r = gw.call("create_booking", {"domain": "restaurants", "option_id": "tandoor-jubilee@2026-10-21T19:30", "name": "Asha", "quantity": 4})
+    assert r["error"] == "needs_readback" and "4" in r["readback"]
 
 
 def test_booking_must_be_for_what_came_up_in_the_call(world):

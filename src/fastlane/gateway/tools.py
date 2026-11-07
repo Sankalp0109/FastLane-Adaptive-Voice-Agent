@@ -129,6 +129,17 @@ TOOLS: dict[str, tuple[type[_Args], str]] = {
 
 WRITE_TOOLS = {"create_booking", "modify_booking", "cancel_booking"}
 
+# Without the read-back gate (B1, A3) a write happens on the first call, so the gated descriptions above would make a
+# model that follows them book twice (B1 run of 2026-11-06: 3 of the first 3 bookings were made twice).
+UNGATED_DESCRIPTIONS = {
+    "create_booking": "Create a booking. It is made as soon as you call this: first read the full details back to the "
+                      "caller and get a clear yes, then call it once.",
+    "modify_booking": "Change an existing booking (time, date, venue, quantity, passengers). Needs the booking's phone "
+                      "number. The change is made as soon as you call this: read it back and get a clear yes first.",
+    "cancel_booking": "Cancel an existing booking. Needs the booking's phone number. It is cancelled as soon as you call "
+                      "this: read it back and get a clear yes first. Returns the refund.",
+}
+
 
 def _strip_titles(node):
     """Drop pydantic's auto-generated 'title' keys: they repeat the property names and cost tokens."""
@@ -139,10 +150,13 @@ def _strip_titles(node):
     return node
 
 
-def tool_specs(names: list[str]) -> list[dict]:
-    """Provider-neutral specs: name, description, JSON schema of the arguments."""
+def tool_specs(names: list[str], gated: bool = True) -> list[dict]:
+    """Provider-neutral specs: name, description, JSON schema of the arguments. gated=False: writes are not held
+    for a read-back, and the write tools say so."""
     out = []
     for name in names:
         model, description = TOOLS[name]
+        if not gated:
+            description = UNGATED_DESCRIPTIONS.get(name, description)
         out.append({"name": name, "description": description, "input_schema": _strip_titles(model.model_json_schema())})
     return out

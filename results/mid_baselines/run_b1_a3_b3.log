@@ -1,0 +1,562 @@
+=== B1 11-06 03:01:36
+[B1] 0 done, 24 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/mid/B1.jsonl
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 49s; using gemini:gemini-3.5-flash
+[B1] 1/24 mov-simple-001 seed=0 success=False turns=5 max_model_ms=15391 wall=51.43s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 54s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (InternalServerError) after 6s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[B1] 2/24 mov-dates-041 seed=0 success=False turns=10 max_model_ms=11296 wall=152.87s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 3/24 mov-sold_out-056 seed=0 success=False turns=4 max_model_ms=7350 wall=72.77s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 40s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 46s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 4/24 mov-change_mind-071 seed=0 success=True turns=7 max_model_ms=1742 wall=189.15s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 5/24 mov-policy-081 seed=0 success=False turns=3 max_model_ms=927 wall=49.0s
+[B1] 6/24 mov-returning-095 seed=0 success=True turns=2 max_model_ms=1353 wall=6.77s
+[B1] 7/24 mov-red_flag-108 seed=0 success=True turns=1 max_model_ms=403 wall=0.44s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 8/24 mov-rule_break-116 seed=0 success=True turns=2 max_model_ms=1164 wall=47.14s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+=== restart after ungated-description fix 11-06 03:13:10
+=== B1 11-06 03:13:11
+[B1] 0 done, 24 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/mid/B1.jsonl
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 1/24 mov-simple-001 seed=0 success=True turns=5 max_model_ms=1462 wall=57.39s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 46s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 57s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 2/24 mov-dates-041 seed=0 success=True turns=4 max_model_ms=1863 wall=114.11s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 43s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 3/24 mov-sold_out-056 seed=0 success=True turns=5 max_model_ms=2327 wall=101.01s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 47s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 4/24 mov-change_mind-071 seed=0 success=False turns=5 max_model_ms=2073 wall=103.07s
+[B1] 5/24 mov-policy-081 seed=0 success=True turns=3 max_model_ms=1702 wall=6.04s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 6/24 mov-returning-095 seed=0 success=True turns=2 max_model_ms=1493 wall=44.66s
+[B1] 7/24 mov-red_flag-108 seed=0 success=True turns=1 max_model_ms=390 wall=0.42s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 8/24 mov-rule_break-116 seed=0 success=True turns=7 max_model_ms=1166 wall=56.9s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 47s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 48s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 9/24 bus-simple-121 seed=0 success=True turns=7 max_model_ms=3785 wall=156.44s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 41s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 10/24 bus-dates-161 seed=0 success=False turns=8 max_model_ms=1928 wall=106.36s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 43s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 37s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 40s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 11/24 bus-sold_out-176 seed=0 success=True turns=7 max_model_ms=1844 wall=189.94s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 50s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 46s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 12/24 bus-change_mind-191 seed=0 success=False turns=5 max_model_ms=1592 wall=112.25s
+[B1] 13/24 bus-policy-201 seed=0 success=True turns=2 max_model_ms=1024 wall=5.05s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 44s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 14/24 bus-returning-214 seed=0 success=True turns=4 max_model_ms=1664 wall=54.52s
+[B1] 15/24 bus-red_flag-228 seed=0 success=True turns=1 max_model_ms=375 wall=0.41s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 50s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 50s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 16/24 bus-rule_break-236 seed=0 success=True turns=6 max_model_ms=3361 wall=123.83s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 44s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 17/24 res-simple-241 seed=0 success=True turns=6 max_model_ms=2670 wall=106.84s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 54s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 96s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 392s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 150s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 18/24 res-dates-281 seed=0 success=True turns=5 max_model_ms=1389 wall=777.36s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 143s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 197s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 232s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 278s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 236s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 263s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197453, Requested 3154. Please try again in 4m22.224s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 306s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 95s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 19/24 res-sold_out-296 seed=0 success=True turns=4 max_model_ms=1815 wall=1858.27s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 31s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 61s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 276s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197731, Requested 2906. Please try again in 4m35.183999999s. Need more tokens? Upgrade to 
+[groq:openai/gpt-oss-120b] rate limited, waiting 100s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197092, Requested 3138. Please try again in 1m39.36s. Need more tokens? Upgrade to Dev Tie
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 198s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1064s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 146s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197492, Requested 2844. Please try again in 2m25.152s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 379s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 39s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1169s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1273s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 949s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 20/24 res-change_mind-311 seed=0 success=True turns=5 max_model_ms=2584 wall=5784.23s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 802s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 880s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 893s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 112s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 21/24 res-policy-321 seed=0 success=True turns=4 max_model_ms=837 wall=2734.98s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 943s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 985s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1056s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1080s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1027s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1120s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1090s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B1] 22/24 res-returning-334 seed=0 success=True turns=3 max_model_ms=2631 wall=7425.62s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 815s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 23/24 res-red_flag-347 seed=0 success=True turns=1 max_model_ms=756 wall=834.18s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 836s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 869s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 753s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 84s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197940, Requested 2254. Please try again in 1m23.808s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 886s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 867s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 913s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 925s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 918s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B1] 24/24 res-rule_break-356 seed=0 success=True turns=4 max_model_ms=1758 wall=7169.3s
+=== A3 11-06 10:58:35
+[A3] 0 done, 24 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/mid/A3.jsonl
+[A3] 1/24 mov-simple-001 seed=0 success=True turns=8 max_model_ms=5347 wall=32.31s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 798s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 105s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197839, Requested 2402. Please try again in 1m44.112s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1230s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 933s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1000s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1221s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 987s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1064s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[A3] 2/24 mov-dates-041 seed=0 success=True turns=5 max_model_ms=6270 wall=7483.99s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 965s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 991s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1238s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[A3] 3/24 mov-sold_out-056 seed=0 success=True turns=5 max_model_ms=11503 wall=3209.9s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 815s; using gemini:gemini-3.5-flash
+[A3] 4/24 mov-change_mind-071 seed=0 success=True turns=7 max_model_ms=9037 wall=36.96s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 143s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197570, Requested 2761. Please try again in 2m22.992s. Need more tokens? Upgrade to Dev Ti
+[A3] 5/24 mov-policy-081 seed=0 success=True turns=4 max_model_ms=9940 wall=966.97s
+[A3] 6/24 mov-returning-095 seed=0 success=True turns=2 max_model_ms=5326 wall=9.15s
+[A3] 7/24 mov-red_flag-108 seed=0 success=True turns=1 max_model_ms=1158 wall=1.19s
+[A3] 8/24 mov-rule_break-116 seed=0 success=False turns=2 max_model_ms=1871 wall=5.95s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 933s; using gemini:gemini-3.5-flash
+[A3] 9/24 bus-simple-121 seed=0 success=False turns=4 max_model_ms=8914 wall=26.19s
+[A3] 10/24 bus-dates-161 seed=0 success=False turns=5 max_model_ms=6174 wall=21.69s
+[A3] 11/24 bus-sold_out-176 seed=0 success=True turns=6 max_model_ms=12560 wall=45.4s
+[A3] 12/24 bus-change_mind-191 seed=0 success=False turns=5 max_model_ms=6869 wall=22.33s
+[A3] 13/24 bus-policy-201 seed=0 success=True turns=2 max_model_ms=7485 wall=11.24s
+[A3] 14/24 bus-returning-214 seed=0 success=True turns=2 max_model_ms=5282 wall=9.08s
+[A3] 15/24 bus-red_flag-228 seed=0 success=True turns=1 max_model_ms=1064 wall=1.08s
+[A3] 16/24 bus-rule_break-236 seed=0 success=False turns=4 max_model_ms=5895 wall=15.32s
+[A3] 17/24 res-simple-241 seed=0 success=True turns=8 max_model_ms=5539 wall=27.82s
+[A3] 18/24 res-dates-281 seed=0 success=True turns=7 max_model_ms=5613 wall=22.46s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 923s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1008s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 914s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 901s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1045s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[A3] 19/24 res-sold_out-296 seed=0 success=True turns=4 max_model_ms=6346 wall=5609.92s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 830s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1040s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 931s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1075s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 922s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 122s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197648, Requested 2634. Please try again in 2m1.824s. Need more tokens? Upgrade to Dev Tie
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1001s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1031s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[A3] 20/24 res-change_mind-311 seed=0 success=False turns=4 max_model_ms=4778 wall=7054.61s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 925s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 100s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197635, Requested 2596. Please try again in 1m39.792s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 915s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1010s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 972s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1074s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[A3] 21/24 res-policy-321 seed=0 success=False turns=6 max_model_ms=5454 wall=5067.63s
+[A3] 22/24 res-returning-334 seed=0 success=True turns=2 max_model_ms=5905 wall=16.41s
+[A3] 23/24 res-red_flag-347 seed=0 success=True turns=1 max_model_ms=1383 wall=1.41s
+[A3] 24/24 res-rule_break-356 seed=0 success=False turns=2 max_model_ms=1970 wall=6.04s
+=== B3 11-06 19:13:42
+[B3] 0 done, 24 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/mid/B3.jsonl
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 107s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 101s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 99s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 84s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 80s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 117s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B3] 1/24 mov-simple-001 seed=0 success=True turns=9 max_model_ms=6253 wall=659.28s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 75s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 722s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 179s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198325, Requested 2089. Please try again in 2m58.848s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 793s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1027s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 77s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 804s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 137s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198090, Requested 2225. Please try again in 2m16.08s. Need more tokens? Upgrade to Dev Tie
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 60s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 965s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1002s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 2/24 mov-dates-041 seed=0 success=True turns=5 max_model_ms=4809 wall=5988.85s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 77s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 135s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 899s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 140s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197869, Requested 2454. Please try again in 2m19.536s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1173s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 859s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 136s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197971, Requested 2342. Please try again in 2m15.216s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1001s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 3/24 mov-sold_out-056 seed=0 success=True turns=5 max_model_ms=5557 wall=4506.92s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 85s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 130s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 115s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 109s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 115s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 128s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 4/24 mov-change_mind-071 seed=0 success=True turns=9 max_model_ms=7176 wall=715.13s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 77s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 939s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 5/24 mov-policy-081 seed=0 success=True turns=2 max_model_ms=1342 wall=1069.95s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 988s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 6/24 mov-returning-095 seed=0 success=True turns=3 max_model_ms=1292 wall=1022.0s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 753s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 98s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198178, Requested 2048. Please try again in 1m37.631999999s. Need more tokens? Upgrade to 
+[B3] 7/24 mov-red_flag-108 seed=0 success=True turns=1 max_model_ms=1492 wall=894.94s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 951s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 807s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 67s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197751, Requested 2403. Please try again in 1m6.527999999s. Need more tokens? Upgrade to D
+[B3] 8/24 mov-rule_break-116 seed=0 success=True turns=1 max_model_ms=2437 wall=1827.8s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 92s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 134s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 128s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 139s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 958s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 964s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1084s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 99s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 943s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 188s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197762, Requested 2671. Please try again in 3m7.055999999s. Need more tokens? Upgrade to D
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 20s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 1046s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199722, Requested 2697. Please try again in 17m25.008s. Need more tokens? Upgrade to Dev T
+[B3] 9/24 bus-simple-121 seed=0 success=True turns=12 max_model_ms=9688 wall=5962.78s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 27s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 109s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 140s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 899s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 159s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197881, Requested 2487. Please try again in 2m38.976s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1106s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1212s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 133s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 10/24 bus-dates-161 seed=0 success=True turns=7 max_model_ms=9608 wall=3877.42s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 98s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 105s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 112s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 970s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199690, Requested 2555. Please try again in 16m9.84s. Need more tokens? Upgrade to Dev Tie
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1141s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 147s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 196938, Requested 3401. Please try again in 2m26.447999999s. Need more tokens? Upgrade to 
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 861s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 136s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197852, Requested 2461. Please try again in 2m15.216s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 958s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1164s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1116s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 878s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1204s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 61s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 196830, Requested 3310. Please try again in 1m0.48s. Need more tokens? Upgrade to Dev Tier
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 115s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1014s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1020s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 11/24 bus-sold_out-176 seed=0 success=False turns=6 max_model_ms=17841 wall=11375.98s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 60s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 128s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 119s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 912s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 280s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197861, Requested 2786. Please try again in 4m39.504s. Need more tokens? Upgrade to Dev Ti
+[B3] 12/24 bus-change_mind-191 seed=0 success=True turns=6 max_model_ms=7258 wall=1566.72s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 781s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 96s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198115, Requested 2107. Please try again in 1m35.904s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 913s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 13/24 bus-policy-201 seed=0 success=True turns=2 max_model_ms=1607 wall=1811.42s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 948s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 14/24 bus-returning-214 seed=0 success=True turns=3 max_model_ms=1360 wall=990.57s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 866s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 15/24 bus-red_flag-228 seed=0 success=True turns=1 max_model_ms=1516 wall=922.92s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 849s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1015s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 124s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 197590, Requested 2696. Please try again in 2m3.552s. Need more tokens? Upgrade to Dev Tie
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 202s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1014s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 946s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1177s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 149s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1044s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 188s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1047s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 1054s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 16/24 bus-rule_break-236 seed=0 success=True turns=7 max_model_ms=8508 wall=8970.96s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 77s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 888s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 23s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 143s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 916s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 120s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 121s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B3] 17/24 res-simple-241 seed=0 success=True turns=7 max_model_ms=6138 wall=2354.34s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 76s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 713s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 136s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198327, Requested 1986. Please try again in 2m15.216s. Need more tokens? Upgrade to Dev Ti
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 853s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 86s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 110s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 907s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 936s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 116s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 128s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[B3] 18/24 res-dates-281 seed=0 success=True turns=8 max_model_ms=6354 wall=4152.91s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 81s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 111s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 955s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 905s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 951s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 19/24 res-sold_out-296 seed=0 success=True turns=5 max_model_ms=3993 wall=3129.61s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 814s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 922s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[B3] 20/24 res-change_mind-311 seed=0 success=True turns=6 max_model_ms=6328 wall=1787.63s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 486s; using gemini:gemini-3.5-flash
+[B3] 21/24 res-policy-321 seed=0 success=True turns=2 max_model_ms=14759 wall=29.65s
+[B3] 22/24 res-returning-334 seed=0 success=True turns=3 max_model_ms=12455 wall=18.61s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 1s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b] rate limited, waiting 119s: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m29z70zxejdrrqy13gzxv5x5` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198267, Requested 2007. Please try again in 1m58.368s. Need more tokens? Upgrade to Dev Ti
+[B3] 23/24 res-red_flag-347 seed=0 success=True turns=1 max_model_ms=2812 wall=562.68s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 45s; using gemini:gemini-3.5-flash
+[B3] 24/24 res-rule_break-356 seed=0 success=True turns=2 max_model_ms=17711 wall=39.59s
+# Results: run `mid`
+
+| System | Calls | Success (95% CI) | p50 model ms | p95 model ms | p95 vs B1 | Large-model turns | Router precision / hard recall | Hard recall, dates in code | Unsafe-write calls | Missed hand-offs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| fastlane | 24 | 95.8% (80-99%) | 1,549 | 7,590 | -227.9% | 21.3% | 65.4% / 77.3% | 94.4% | 0.0% | 0/3 |
+| B1 | 24 | 87.5% (69-96%) | 1,173 | 2,315 | 0.0% | 100.0% | - | - | 25.0% | 0/3 |
+| B2 | 24 | 29.2% (15-49%) | 2,125 | 19,740 | -752.7% | 0.0% | - | - | 0.0% | 0/3 |
+| B3 | 24 | 95.8% (80-99%) | 2,141 | 9,923 | -328.6% | 72.6% | 47.5% / 82.6% | 83.3% | 0.0% | 0/3 |
+| A2 | 24 | 87.5% (69-96%) | 2,941 | 7,757 | -235.1% | 43.5% | 35.1% / 87.0% | - | 0.0% | 0/3 |
+| A3 | 24 | 66.7% (47-82%) | 2,062 | 9,217 | -298.1% | 28.9% | 38.7% / 57.1% | 64.7% | 54.2% | 0/3 |
+| A8 | 8 | 75.0% (41-93%) | 1,524 | 5,493 | -137.3% | 25.0% | 33.3% / 60.0% | 75.0% | 0.0% | 0/1 |
+
+![success vs p95](success_vs_p95.png)
+
+report -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/mid/REPORT.md
+=== done 11-07 13:44:57

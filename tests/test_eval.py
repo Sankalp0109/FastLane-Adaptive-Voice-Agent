@@ -164,6 +164,11 @@ def test_runner_end_to_end_with_scripted_models(world_path, scripts):
     assert rec["turns"][0]["handled_by"] == "staff"
     summary = summarize([rec])[0]
     assert summary["success"] == 1.0 and summary["missed_handoffs"] == "0/1"
+    # A relative-date turn kept by the small model is a miss under the test labels, but not when dates are resolved
+    # in code (FastLane's design); the second recall leaves such turns out.
+    rec["turns"].append({**rec["turns"][0], "hard": True, "moments": ["relative_date"], "handled_by": "small"})
+    summary = summarize([rec])[0]
+    assert summary["router_hard_recall"] == 0.5 and summary["router_hard_recall_dates_in_code"] == 1.0
 
 
 def test_runner_scores_a_booking_call(world_path, scripts):
@@ -173,7 +178,7 @@ def test_runner_scores_a_booking_call(world_path, scripts):
     e = s.gold["outcomes"][0][0]
     args = {"domain": "restaurants", "option_id": _option(World.fresh(world_path), e), "name": s.caller_name, "party_size": e["party_size"]}
     branch = World.fresh(world_path).one("SELECT name FROM restaurants WHERE id=?", (e["restaurant_id"],))["name"]
-    offer = f"{branch} has a table at {e['time']} on that day. Shall I book it?"  # a perfect agent offers first
+    offer = f"{branch} has a table for {e['party_size']} at {e['time']} on that day. Shall I book it?"  # a perfect agent offers first
     small = ScriptedClient([json.dumps({"route": "self", "slots": {}, "tool": None, "say": offer}),
                             json.dumps({"route": "self", "slots": {}, "tool": {"name": "create_booking", "args": args}, "say": ""})])
     replies = iter(["Yes please, book that one.", "Yes, that's correct.", "Thank you, bye."])

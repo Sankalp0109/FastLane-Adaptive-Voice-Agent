@@ -19,8 +19,8 @@ def _fmt(x, pct: bool = False) -> str:
 
 def markdown(summaries: list[dict]) -> str:
     lines = [
-        "| System | Calls | Success (95% CI) | p50 model ms | p95 model ms | p95 vs B1 | Large-model turns | Router precision / hard recall | Unsafe-write calls | Missed hand-offs |",
-        "|---|---|---|---|---|---|---|---|---|---|",
+        "| System | Calls | Success (95% CI) | p50 model ms | p95 model ms | p95 vs B1 | Large-model turns | Router precision / hard recall | Hard recall, dates in code | Unsafe-write calls | Missed hand-offs |",
+        "|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for s in summaries:
         ci = s["success_ci95"]
@@ -28,7 +28,7 @@ def markdown(summaries: list[dict]) -> str:
         lines.append(
             f"| {s['system']} | {s['calls']} | {_fmt(s['success'], True)} ({ci[0] * 100:.0f}-{ci[1] * 100:.0f}%) | "
             f"{_fmt(s['model_ms_p50'])} | {_fmt(s['model_ms_p95'])} | {_fmt(s.get('p95_vs_B1'), True)} | "
-            f"{_fmt(s['large_turn_rate'], True)} | {router} | {_fmt(s['unsafe_write_calls'], True)} | {s['missed_handoffs']} |"
+            f"{_fmt(s['large_turn_rate'], True)} | {router} | {_fmt(s.get('router_hard_recall_dates_in_code'), True)} | {_fmt(s['unsafe_write_calls'], True)} | {s['missed_handoffs']} |"
         )
     return "\n".join(lines)
 
