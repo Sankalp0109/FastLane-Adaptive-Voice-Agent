@@ -378,6 +378,53 @@ def test_policy_answer_without_numbers_stays_small(world, index):
     assert agent.traces[-1].handled_by == "small"
 
 
+def test_policy_figure_without_search_goes_to_large(world, index):
+    """v5 check: after a failed turn the small model answered "Your refund will be 100%" without searching."""
+    small = ScriptedClient([small_json(say="Your refund will be 100%.")])
+    large = ScriptedClient(["Cancelling 4 to 12 hours before departure refunds 25% of the fare."], name="large")
+    agent = make(world, index, small=small, large=large)
+    agent.greet()
+    reply = agent.respond("How much refund if I cancel my bus ticket 10 hours before departure?")
+    tr = agent.traces[-1]
+    assert "25%" in reply and tr.handled_by == "large" and tr.escalation_reason == "policy answer with numbers"
+
+
+def test_number_without_policy_word_stays_small(world, index):
+    small = ScriptedClient([small_json(say="Which show - 10 AM or 1:30 PM?")])
+    agent = make(world, index, small=small, large=ScriptedClient([], name="large"))
+    agent.greet()
+    agent.respond("I want tickets for Rocket Raja")
+    assert agent.traces[-1].handled_by == "small"
+
+
+def test_fallback_client_switches_when_primary_unreachable():
+    import httpx2 as httpx  # the HTTP client the openai package uses
+    from openai import APIConnectionError
+
+    from fastlane.models.openai_compat import FallbackClient
+
+    class Down:
+        name, max_wait_s, calls = "groq:x", None, 0
+
+        def chat(self, messages, **kw):
+            self.calls += 1
+            raise APIConnectionError(request=httpx.Request("POST", "https://api.groq.com"))
+
+    class Broken:
+        name, max_wait_s = "groq:x", None
+
+        def chat(self, messages, **kw):
+            raise ValueError("bad request")
+
+    primary, backup = Down(), ScriptedClient(["from backup", "again backup"], name="gemini:y")
+    fb = FallbackClient(primary, backup)
+    assert fb.chat([{"role": "user", "content": "hi"}]).text == "from backup"
+    assert fb.chat([{"role": "user", "content": "hi"}]).text == "again backup"
+    assert primary.calls == 1  # not retried while marked unreachable
+    with pytest.raises(ValueError):  # other errors are not hidden behind the backup
+        FallbackClient(Broken(), ScriptedClient(["x"], name="gemini:y")).chat([{"role": "user", "content": "hi"}])
+
+
 def test_fallback_client_waits_for_primary_when_backup_fails():
     from fastlane.models.openai_compat import FallbackClient, RateLimited
 

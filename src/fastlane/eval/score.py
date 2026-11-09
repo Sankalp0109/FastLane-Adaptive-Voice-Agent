@@ -7,6 +7,7 @@ and policy-answer expectations must also hold.
 
 from __future__ import annotations
 
+import re
 from itertools import permutations
 from typing import Any
 
@@ -62,9 +63,14 @@ _SPACES = dict.fromkeys(map(ord, "\u00a0\u2007\u2009\u200a\u202f\u205f\u3000"), 
 _DASHES = dict.fromkeys(map(ord, "\u2010\u2011\u2012\u2013\u2014\u2212"), "-")
 
 
+_UNIT_ADJ = re.compile(r"\b(\w+)-(hour|minute|day)s?\b")
+
+
 def normalise_text(text: str) -> str:
-    """LLMs write '4\u202fhours' and 'non\u2011AC'; compare on plain spaces and hyphens."""
-    return " ".join(text.translate(_SPACES).translate(_DASHES).replace("₹", "rs ").lower().split())
+    """LLMs write '4\u202fhours' and 'non\u2011AC'; compare on plain spaces and hyphens. 'A 4-hour
+    window' states the same rule as '4 hours' (v3 check: a correct answer scored wrong), so 'N-hour' reads as 'N hours'."""
+    text = " ".join(text.translate(_SPACES).translate(_DASHES).replace("₹", "rs ").lower().split())
+    return _UNIT_ADJ.sub(r"\1 \2s", text)
 
 
 def score_call(gold: dict, changed: list[dict], agent_text: str, handoff: dict | None) -> dict:

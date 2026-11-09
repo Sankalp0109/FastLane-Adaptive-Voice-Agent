@@ -183,6 +183,15 @@ class OpenAICompatClient:
         )
 
 
+def _unreachable(e: Exception) -> bool:
+    """A connection failure or a server-side (5xx) error: the provider cannot answer now, the request is fine."""
+    from openai import APIConnectionError, APIStatusError
+
+    if isinstance(e, APIConnectionError):
+        return True
+    return isinstance(e, APIStatusError) and (getattr(e, "status_code", 0) or 0) >= 500
+
+
 class FallbackClient:
     """Primary model, with a backup for calls the primary cannot serve soon (rate limits).
 
@@ -195,6 +204,7 @@ class FallbackClient:
         self.primary, self.backup = primary, backup
         self.name = f"{primary.name}|{backup.name}"
         self._blocked_until = 0.0
+        self.unreachable_block_s = 30.0
         self.backup_calls = 0
         self.primary_calls = 0
 
@@ -209,6 +219,16 @@ class FallbackClient:
                 import sys
 
                 print(f"[{self.name}] {self.primary.name} limited for {e.wait_s:.0f}s; using {self.backup.name}", file=sys.stderr, flush=True)
+            except Exception as e:
+                # v5 check (2026-11-09): Groq was unreachable for ~40 min; connection errors reached the agent as
+                # "Sorry, I didn't quite get that" in 4 calls. After the client's own retries, use the backup.
+                if not _unreachable(e):
+                    raise
+                self._blocked_until = time.monotonic() + self.unreachable_block_s
+                import sys
+
+                print(f"[{self.name}] {self.primary.name} unreachable ({type(e).__name__}); using {self.backup.name} "
+                      f"for {self.unreachable_block_s:.0f}s", file=sys.stderr, flush=True)
         self.backup_calls += 1
         t0 = time.perf_counter()
         try:

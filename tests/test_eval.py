@@ -191,3 +191,14 @@ def test_runner_scores_a_booking_call(world_path, scripts):
 def test_answer_keywords_survive_llm_unicode():
     gold = {"outcomes": [[]], "handoff": False, "answer_any": ["4 hours", "non-ac"]}
     assert score_call(gold, [], "only up to 4 hours before; the non‑AC bus", None)["answer_ok"] is True
+
+
+@pytest.mark.parametrize("said,ok", [
+    ("Cancellations within the 4‑hour window are not refunded.", True),  # v3 check: scored wrong before
+    ("No refund within four-hour of the show.", True),
+    ("You can cancel up to 4 hours before the show.", True),
+    ("You can cancel any time.", False),
+])
+def test_answer_matching_reads_n_hour_as_n_hours(said, ok):
+    gold = {"outcomes": [[]], "handoff": False, "answer_any": ["4 hours", "four hours"]}
+    assert score_call(gold, [], said, None)["answer_ok"] is ok

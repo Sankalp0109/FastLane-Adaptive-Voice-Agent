@@ -49,6 +49,8 @@ STAFF_REASONS = {
     "out_of_scope": ("out of scope", "flight", "train", "hotel", "not offered", "outside"),
 }
 POLICY_CONFIDENCE_MIN = 0.35
+# Words that make a number in a small-model reply a policy figure (refund share, fee, deposit, charge).
+_POLICY_FIGURE = re.compile(r"%|\bpercent|\brefund|\bfees?\b|\bdeposit|\bcharges?\b|\bpenalt", re.I)
 
 
 class Agent:
@@ -263,8 +265,13 @@ class Agent:
     @staticmethod
     def _numeric_policy_answer(say: str, steps: list[tuple[str, str, dict]]) -> bool:
         """A policy answer with amounts, percentages or hours is worked out by the large model from the same search
-        result (pilot v3: the small model read a refund table wrongly, 90% instead of 25%)."""
-        return any(name == "search_policy" for _, name, _ in steps) and bool(re.search(r"\d|%|\bpercent", say))
+        result (pilot v3: the small model read a refund table wrongly, 90% instead of 25%). A refund, fee or deposit
+        figure given without any policy search this turn has no source at all and goes there too (v5 check: "Your
+        refund will be 100%" and "Your deposit is Rs. 200" with no search)."""
+        has_number = bool(re.search(r"\d|%|\bpercent", say))
+        if any(name == "search_policy" for _, name, _ in steps):
+            return has_number
+        return has_number and bool(_POLICY_FIGURE.search(say))
 
     @staticmethod
     def _tool_trigger(name: str, res: dict) -> str | None:
