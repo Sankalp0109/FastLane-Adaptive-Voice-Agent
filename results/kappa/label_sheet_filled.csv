@@ -1,0 +1,777 @@
+id,conversation_tail,annotator_a,annotator_b,rule_label
+tr-mov-dates-0322#1353,"Caller: Yes, we are 3 people ji
+Agent: Your name for the booking, please?
+Caller: Hmm, Venkatesh Tiwari ji",self,self,self
+tr-res-usual-0024#14,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Anusha here, my usual table - Sari, Monday the 26th please",self,llm,llm
+tr-bus-rule_no_pax-0131#1649,"Caller: on 28 Oct, the 6 AM bus
+Agent: May I have the name, age and gender of every passenger?
+Caller: Just put my name, I'll sort out the rest with the conductor.",self,llm,llm
+tr-res-red_flag-0546#192,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: The bus conductor misbehaved with my mother, this is unacceptable.",staff,staff,staff
+tr-mov-red_flag-0500#2150,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I left my spectacles in the hall yesterday.",staff,llm,staff
+tr-res-book-0417#300,"Caller: Hello, I'd like to reserve a table - Ji, at Banjara Hills, the 23rd na
+Agent: For what time?
+Caller: Ji, 12 PM, 3 people, and nut allergy please",self,staff,self
+tr-bus-sold_out-0218#98,"Caller: Hi, I need 1 AC sleeper seat to Bengaluru on 6th November, the 10 PM bus.
+Agent: May I have the name, age and gender of every passenger?
+Caller: passengers are Bhavana Banerjee, 22, female please.",self,self,self
+tr-res-usual-0343#489,"Caller: Hi, Vikram here, my usual table - the 25th
+Agent: Welcome back! Your usual is a table for 6 at Tandoor Tales Jubilee Hills. Which time would you like?
+Caller: 8:30 PM please please",self,self,self
+tr-bus-rule_no_pax-0473#1490,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, bus booking please - Hmm, from Bangalore to Hyderabad, on November 1 please",self,self,self
+tr-mov-cancel-0401#1227,"Caller: I want to cancel my reservation.
+Agent: Sure. May I have the booking reference?
+Caller: booking number MV DQFZD",self,llm,self
+tr-mov-dates-0001#0,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book movie tickets - Okay, on in 3 days, the movie is Shadow Protocol ji",self,self,self
+tr-bus-modify-0406#2222,"Caller: Hello, I need to make a change to my bus ticket.
+Agent: Could you give me the booking reference number?
+Caller: it's BSSGJ4W",self,llm,self
+tr-res-dates-0309#1894,"Caller: Okay, eight people, and need a high chair
+Agent: Under which name should I book?
+Caller: Sari, name is Roshni Gupta please.",self,self,self
+tr-bus-sold_out-0279#345,"Caller: passengers are Prakash Khan, 58, male; Sandeep Khan, 54, male please
+Agent: Under which name should I book?
+Caller: Okay, book it under Prakash Khan",self,self,self
+tr-bus-change_mind-0023#473,"Caller: See, my name is Ramya Menon please.
+Agent: Just to confirm: 1 seat on the non-AC sleeper bus from Hyderabad to Chennai, Monday, 19 October, departing 9:45 PM, for Ramya Menon (53), total ₹1050, phone ending 6970. Shall I book it?
+Caller: Actually, make it the 7:30 PM one instead.",llm,self,llm
+tr-mov-usual-0482#586,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, it's Manoj again. Book my usual seats - Shadow Protocol, on 25 Oct",llm,llm,llm
+tr-mov-book-0499#1616,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book movie tickets.",self,self,self
+tr-mov-dates-0122#55,"Caller: Hi, I'd like to watch a movie - Ji, coming Wednesday please, Rocket Raja movie ji
+Agent: Which cinema would you prefer? We have Galaxy Kukatpally, Starlight Gachibowli, Regal Ameerpet and Moonbeam Secunderabad.
+Caller: Ji, Galaxy is fine please",self,self,self
+tr-res-change_mind-0194#1059,"Caller: Usha Das
+Agent: Just to confirm: a table for 3 at Tandoor Tales Banjara Hills, Tuesday, 3 November at 1:30 PM, under Usha Das, phone ending 7936. Shall I book it?
+Caller: No wait, make it four people, more are coming.",llm,self,llm
+tr-res-usual-0343#2210,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Vikram here, my usual table - the 25th",self,llm,llm
+tr-mov-book-0242#1601,"Caller: Yes, Friday the 16th, Regal is fine ji
+Agent: Which show time would you like?
+Caller: 17:00 show please na",self,self,self
+tr-mov-modify-0390#1472,"Caller: booking number MV 3GCW3
+Agent: Which time would you like to move it to?
+Caller: the 10 AM one",self,self,self
+tr-bus-red_flag-0369#1442,"Caller: Hi, I need help with something.
+Agent: Sure, please tell me the problem.
+Caller: My refund for last week's cancellation still hasn't come.",staff,staff,staff
+tr-bus-change_mind-0585#374,"Caller: Priya Rao, 34, female. Vijay Rao, 33, male, that's all
+Agent: May I have the name for the booking?
+Caller: See, name is Priya Rao",self,self,self
+tr-bus-book-0597#205,"Caller: Anjali Nair, 32, F
+Agent: Your name for the booking, please?
+Caller: it's Anjali Nair",self,self,self
+tr-mov-policy-0566#1654,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, quick question. How many tickets can I book in one go?",self,llm,self
+tr-bus-book-0664#401,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, bus booking please - Hyd to Bengaluru please.",self,self,self
+tr-bus-book-0323#1255,"Caller: Hmm, the 26th, 10 PM AC sleeper na
+Agent: May I have the name, age and gender of every passenger?
+Caller: Haan, passengers are Pavan Varma, 47, male and Bhavana Varma, 57, female",self,self,self
+tr-bus-book-0559#1061,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want to book a bus - I'm going to Bangalore ji",self,self,self
+tr-mov-dates-0480#174,"Caller: See, recliner please
+Agent: How many tickets?
+Caller: we are 3 people",self,self,self
+tr-bus-book-0268#1939,"Caller: Haan, 14:00 one, Deepika Banerjee, 30, female and Bhavana Banerjee, 20, F and Lakshmi Banerjee, 18, female, that's all ji
+Agent: Your name for the booking, please?
+Caller: Okay, my name is Deepika Banerjee",self,self,self
+tr-res-usual-0187#79,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Ashok here, my usual table - See, on 20th October please",self,llm,llm
+tr-mov-modify-0562#1550,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, I need to make a change to my movie booking.",self,llm,self
+tr-mov-book-0391#528,"Caller: prime
+Agent: How many tickets do you need?
+Caller: Ji, two",self,self,self
+tr-bus-sold_out-0315#1793,"Caller: Sari, Roshni Hussain, 58, female; Bhaskar Hussain, 69, male, that's all please
+Agent: Under which name should I book?
+Caller: Haan, book it under Roshni Hussain",self,self,self
+tr-bus-sold_out-0123#970,"Caller: Hi, I need 2 non-AC sleeper seats to Bengaluru on 6th November, the 10:30 PM bus.
+Agent: May I have the name, age and gender of every passenger?
+Caller: Hmm, passengers are Shalini Goud, 31, female; Sravani Goud, 53, F",self,self,self
+tr-mov-dates-0486#184,"Caller: three tickets please
+Agent: May I have the name for the booking?
+Caller: name is Swathi Ahmed na",self,self,self
+tr-mov-change_mind-0141#949,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, tickets please - Haan, Chennai Nights please, on October 28 ji",self,self,self
+tr-res-change_mind-0167#1524,"Caller: it's Amit Chowdary
+Agent: Just to confirm: a table for 7 at Tandoor Tales Hitech City, Wednesday, 4 November at 9:30 PM, under Amit Chowdary, phone ending 3038. A deposit of ₹1750 is needed to hold the table; we will SMS a payment link. Shall I book it?
+Caller: Actually, make it 8 people, more are coming.",llm,llm,llm
+tr-res-book-0374#448,"Caller: See, the Hitech City branch, for 27th October please
+Agent: For what time?
+Caller: Haan, at half past 9 in the evening, 2 of us",self,self,self
+tr-bus-change_mind-0578#2244,"Caller: See, Tarun Agarwal ji
+Agent: Just to confirm: 1 seat on the AC seater bus from Hyderabad to Vijayawada, Saturday, 31 October, departing 6 AM, for Tarun Agarwal (48), total ₹750, phone ending 8087. Shall I book it?
+Caller: Sorry, one change - make it the 10 PM one instead.",llm,self,llm
+tr-mov-dates-0478#1345,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I'd like to watch a movie - Okay, for next Thursday, Kaala Samudram movie",self,self,llm
+tr-mov-book-0465#417,"Caller: Sari, half past 8 in the evening show please
+Agent: Classic, prime or recliner seats?
+Caller: Ji, prime seats, three",self,self,self
+tr-res-book-0414#1040,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, table reservation please - at the Hitech City branch, for October 17, 7 o'clock please na",self,self,self
+tr-mov-red_flag-0170#2371,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: The popcorn counter staff were very rude to me yesterday, I want to complain.",staff,staff,staff
+tr-bus-rule_no_pax-0608#2373,"Caller: I need a bus ticket - Okay, Chennai, for the 21st ji
+Agent: What departure time would you prefer?
+Caller: Ji, 7 AM please.",self,self,self
+tr-res-book-0503#516,"Caller: Hmm, the 22nd
+Agent: What time would you like the table?
+Caller: Haan, 21:30 please",self,self,self
+tr-bus-modify-0452#783,"Caller: Hi, I want to change my bus ticket.
+Agent: Sure. May I have the booking reference?
+Caller: it's BSSQBF6",self,llm,self
+tr-res-cancel-0185#851,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, please cancel my booking.",self,llm,self
+tr-res-book-0417#1973,"Caller: Ji, 12 PM, 3 people, and nut allergy please
+Agent: Under which name should I book?
+Caller: it's Swathi Reddy please",self,self,self
+tr-res-book-0501#276,"Caller: Okay, at Banjara Hills ji
+Agent: For which day?
+Caller: See, on November 1 please",self,self,self
+tr-mov-dates-0171#2525,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, tickets please - Hmm, for coming Sunday, I want to watch Rocket Raja please.",self,self,llm
+tr-mov-book-0601#2378,"Caller: Okay, November 4 na
+Agent: Which cinema - Galaxy, Starlight, Regal or Moonbeam?
+Caller: Sari, Moonbeam Secunderabad please please.",self,self,self
+tr-res-rule_deposit-0620#324,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at Tandoor Tales Jubilee Hills. Table for 9 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-bus-usual-0066#296,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, Sai here. Same bus as last time - Ji, 22nd October",self,llm,llm
+tr-mov-change_mind-0030#2266,"Caller: Rahul Khan
+Agent: Just to confirm: 4 prime tickets for Chennai Nights at Moonbeam Cinemas Secunderabad, Friday, 23 October at 10 AM, total ₹1040, under Rahul Khan, phone ending 1704. Shall I book it?
+Caller: Actually, make it the 8:30 PM one instead.",llm,self,llm
+tr-bus-returning_cancel-0313#1108,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, this is Gayatri. Please cancel my bus ticket for October 22.",self,llm,self
+tr-mov-usual-0471#1951,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, it's Jyothi again. Book my usual seats - Ji, Chennai Nights, on 23rd October na",self,llm,llm
+tr-bus-change_mind-0517#439,"Caller: Okay, name is Aishwarya Sharma ji
+Agent: Just to confirm: 1 seat on the non-AC sleeper bus from Hyderabad to Bengaluru, Thursday, 29 October, departing 10:30 PM, for Aishwarya Sharma (54), total ₹1090, phone ending 4507. Shall I book it?
+Caller: No wait, make it the 9 PM one instead.",llm,self,llm
+tr-bus-rule_group-0431#1808,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 8 seats on one bus for a family function.",self,self,staff
+tr-mov-rule_group-0016#1929,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 20 tickets in one booking.",self,llm,staff
+tr-mov-usual-0513#1120,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, it's Sneha again. Book my usual seats - Yes, Shadow Protocol, for Sunday the 25th please.",self,llm,llm
+tr-mov-rule_group-0018#529,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 15 tickets in one booking.",self,llm,staff
+tr-bus-red_flag-0507#1888,"Caller: Listen, there is an issue.
+Agent: Sure, please tell me the problem.
+Caller: Can you book me a cab to the cinema?",staff,self,staff
+tr-res-red_flag-0176#2017,"Caller: Hi, I need help with something.
+Agent: Sure, please tell me the problem.
+Caller: I left my spectacles in the hall yesterday.",staff,staff,staff
+tr-mov-dates-0142#1187,"Caller: Yes, we are two people
+Agent: Under which name should I book?
+Caller: Hmm, book it under Neha Agarwal please.",self,self,self
+tr-bus-change_mind-0517#443,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need a bus ticket - Yes, Bengaluru na",self,self,self
+tr-mov-change_mind-0505#1322,"Caller: See, it's Amit Joshi na
+Agent: Just to confirm: 2 recliner tickets for Shadow Protocol at Moonbeam Cinemas Secunderabad, Friday, 23 October at 10 AM, total ₹1000, under Amit Joshi, phone ending 0042. Shall I book it?
+Caller: Actually, make it three tickets.",llm,self,llm
+tr-bus-sold_out-0178#1967,"Caller: Hi, I need 2 non-AC sleeper seats to Vijayawada on 19th October, the 11:30 PM bus.
+Agent: May I have the name, age and gender of every passenger?
+Caller: Ravi Kaur, 23, male. Amit Kaur, 30, male ji",self,self,self
+tr-bus-rule_no_pax-0283#409,"Caller: Hello, bus booking please - from Vijayawada to Hyd, the 26th, 6 AM AC seater one ji
+Agent: Please tell me each passenger's name, age and gender.
+Caller: Just put my name, I'll sort out the rest with the conductor.",self,llm,llm
+tr-mov-book-0514#1740,"Caller: Haan, classic, we are 5 people please.
+Agent: May I have the name for the booking?
+Caller: Hmm, book it under Ishita Patel please",self,self,self
+tr-mov-change_mind-0350#1147,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book movie tickets - Sari, Chennai Nights please, the 31st please",self,self,self
+tr-bus-dates-0206#2176,"Caller: from Vijayawada to Hyderabad
+Agent: What departure time would you prefer?
+Caller: Okay, 11:30 PM na",self,self,self
+tr-res-rule_deposit-0082#723,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at the Jubilee Hills branch. Table for 9 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-res-rule_group-0027#2078,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Table for 14 at Hitech City please.",self,self,staff
+tr-bus-red_flag-0638#1340,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: The popcorn counter staff were very rude to me yesterday, I want to complain.",staff,staff,staff
+tr-mov-book-0531#2051,"Caller: Yes, the 28th
+Agent: At which cinema?
+Caller: Haan, Moonbeam Cinemas Secunderabad is fine na",self,self,self
+tr-mov-dates-0062#911,"Caller: the 5 PM show na
+Agent: Which seats would you like - classic, prime or recliner?
+Caller: classic seats ji",self,self,self
+tr-res-book-0265#1938,"Caller: I want to book a table - Okay, at Tandoor Tales Hitech City, for 19th October, at 2 PM please
+Agent: Table for how many?
+Caller: Ji, table for five",self,self,self
+tr-res-change_mind-0491#2277,"Caller: Ji, book it under Rakesh Mukherjee ji
+Agent: Just to confirm: a table for 2 at Tandoor Tales Jubilee Hills, Monday, 2 November at 2 PM, under Rakesh Mukherjee, phone ending 3600. Shall I book it?
+Caller: Sorry, one change - make it 4 people, more are coming.",llm,self,llm
+tr-res-book-0033#946,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book a table - Yes, Jubilee Hills, on 21st October",self,self,self
+tr-bus-book-0210#2406,"Caller: I need a bus ticket - Yes, Chennai to Hyderabad please.
+Agent: For which day?
+Caller: Yes, 29th October",self,self,self
+tr-bus-change_mind-0219#1094,"Caller: name is Ramesh Pillai
+Agent: Just to confirm: 2 seats on the AC sleeper bus from Hyderabad to Bengaluru, Monday, 26 October, departing 9 PM, for Ramesh Pillai (44), Uday Pillai (39), total ₹2900, phone ending 5803. Shall I book it?
+Caller: Actually, make it the 10:30 PM one instead.",llm,self,llm
+tr-bus-change_mind-0578#1023,"Caller: See, Tarun Agarwal ji
+Agent: Just to confirm: 1 seat on the AC seater bus from Hyderabad to Vijayawada, Saturday, 31 October, departing 6 AM, for Tarun Agarwal (48), total ₹750, phone ending 8087. Shall I book it?
+Caller: Sorry, one change - make it the 10 PM one instead.",llm,self,llm
+tr-res-change_mind-0173#1998,"Caller: Hmm, at 9 o'clock please
+Agent: Table for how many?
+Caller: Ji, seven people please",self,self,self
+tr-mov-dates-0478#2003,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I'd like to watch a movie - Okay, for next Thursday, Kaala Samudram movie",self,self,llm
+tr-bus-change_mind-0217#2428,"Caller: Haan, Naveen Jacob
+Agent: Just to confirm: 3 seats on the AC seater bus from Bengaluru to Hyderabad, Monday, 2 November, departing 8 AM, for Naveen Jacob (44), Ravi Jacob (18), Rohit Jacob (31), total ₹3300, phone ending 5649. Shall I book it?
+Caller: Actually, make it the 9 PM one instead.",llm,self,llm
+tr-res-change_mind-0643#1414,"Caller: See, name is Sindhu Mishra
+Agent: Just to confirm: a table for 6 at Tandoor Tales Banjara Hills, Friday, 23 October at 1 PM, under Sindhu Mishra, phone ending 6424. Shall I book it?
+Caller: No wait, make it eight people, more are coming.",llm,self,llm
+tr-bus-change_mind-0266#605,"Caller: Ji, name is Sandeep Sharma
+Agent: Just to confirm: 1 seat on the non-AC sleeper bus from Bengaluru to Hyderabad, Saturday, 31 October, departing 10:30 PM, for Sandeep Sharma (36), total ₹1090, phone ending 0108. Shall I book it?
+Caller: Actually, make it the 10 o'clock one instead.",llm,self,llm
+tr-mov-red_flag-0318#713,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: My money got deducted twice for my ticket, I need it back.",staff,staff,staff
+tr-res-book-0090#1355,"Caller: on the 22nd, 2 PM please
+Agent: How many guests?
+Caller: we are 3",self,self,self
+tr-bus-rule_no_pax-0396#2307,"Caller: Sari, on 24th October, 7 AM one please.
+Agent: Please tell me each passenger's name, age and gender.
+Caller: Just put my name, I'll sort out the rest with the conductor.",self,llm,llm
+tr-mov-modify-0460#1908,"Caller: Hello, I need to make a change to my movie booking.
+Agent: Could you give me the booking reference number?
+Caller: booking number MV JWD6W",self,llm,self
+tr-res-red_flag-0216#2196,"Caller: Hello, I have a problem.
+Agent: I'm sorry to hear that. Could you tell me what happened?
+Caller: The popcorn counter staff were very rude to me yesterday, I want to complain.",staff,staff,staff
+tr-bus-dates-0660#1975,"Caller: Hmm, to Chennai please
+Agent: Which bus timing would you like?
+Caller: See, 7:30 PM AC sleeper, passengers are Sravani Bhat, 25, F please.",self,self,self
+tr-bus-modify-0494#1144,"Caller: reference is BSWSCUJ
+Agent: Which date would you like to change it to?
+Caller: the 31st, same timing",self,llm,self
+tr-bus-book-0238#2346,"Caller: See, on 17th October
+Agent: Which bus timing would you like?
+Caller: See, half past 7 in the evening AC sleeper one",self,self,self
+tr-bus-rule_no_pax-0408#1884,"Caller: Hmm, for 19th October, 10 o'clock AC sleeper
+Agent: Please tell me each passenger's name, age and gender.
+Caller: Just put my name, I'll sort out the rest with the conductor.",self,llm,llm
+tr-res-cancel-0422#1356,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, please cancel my booking.",self,llm,self
+tr-res-change_mind-0167#595,"Caller: it's Amit Chowdary
+Agent: Just to confirm: a table for 7 at Tandoor Tales Hitech City, Wednesday, 4 November at 9:30 PM, under Amit Chowdary, phone ending 3038. A deposit of ₹1750 is needed to hold the table; we will SMS a payment link. Shall I book it?
+Caller: Actually, make it 8 people, more are coming.",llm,self,llm
+tr-bus-sold_out-0411#1276,"Caller: Sari, my name is Aishwarya Shetty please.
+Agent: Sorry, that one is full. I can offer: Hyderabad to Chennai, 16 Oct at 9:45 PM; Hyderabad to Chennai, 16 Oct at 7:30 PM; Hyderabad to Chennai, 17 Oct at 9 PM. Which would you like?
+Caller: Fine, give me 9:45 PM.",self,self,self
+tr-res-usual-0343#573,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Vikram here, my usual table - the 25th",self,llm,llm
+tr-bus-rule_no_pax-0131#2055,"Caller: on 28 Oct, the 6 AM bus
+Agent: May I have the name, age and gender of every passenger?
+Caller: Just put my name, I'll sort out the rest with the conductor.",self,llm,llm
+tr-bus-change_mind-0380#865,"Caller: Hello, bus booking please - See, from Hyderabad to Bangalore, 4th November please, the 9 PM bus ji
+Agent: Please tell me each passenger's name, age and gender.
+Caller: See, passengers are Sanjay D'Souza, 30, M. Ganesh D'Souza, 8, male. Yash D'Souza, 41, M please",self,self,self
+tr-res-usual-0628#1244,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Jyothi here, my usual table - Sari, on October 24",self,llm,llm
+tr-mov-change_mind-0141#1349,"Caller: Okay, we are 2 people ji
+Agent: Under which name should I book?
+Caller: Ji, Karthik Nair na",self,self,self
+tr-res-usual-0008#692,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Vishal here, my usual table - Yes, for 26 Oct",self,llm,llm
+tr-res-policy-0094#2377,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Which breads don't have egg?",self,llm,self
+tr-res-red_flag-0002#864,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: The bus conductor misbehaved with my mother, this is unacceptable.",staff,staff,staff
+tr-mov-red_flag-0191#2342,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: My refund for last week's cancellation still hasn't come.",staff,llm,staff
+tr-bus-change_mind-0181#1109,"Caller: 10 o'clock one, Venkatesh Agarwal, 38, male, that's all ji
+Agent: Your name for the booking, please?
+Caller: my name is Venkatesh Agarwal ji",self,self,self
+tr-mov-book-0127#807,"Caller: See, on 27th October ji
+Agent: Which cinema would you prefer? We have Galaxy Kukatpally, Starlight Gachibowli, Regal Ameerpet and Moonbeam Secunderabad.
+Caller: Haan, at Starlight, the half past 8 in the evening show",self,self,self
+tr-bus-book-0250#1453,"Caller: Hello, bus booking please - Okay, Hyd to Chennai, on the 28th
+Agent: What departure time would you prefer?
+Caller: Haan, the 9:45 PM bus please.",self,self,self
+tr-res-red_flag-0613#1028,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: The food we got last night was stale, I want to complain.",staff,staff,staff
+tr-mov-returning_cancel-0649#585,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, this is Rakesh. Please cancel my movie tickets for 30th October.",self,llm,self
+tr-mov-book-0520#2357,"Caller: See, Galaxy please, 10 AM ji
+Agent: Which seats would you like - classic, prime or recliner?
+Caller: Sari, prime please",self,self,self
+tr-bus-change_mind-0585#464,"Caller: Hello, bus booking please - Yes, from Bezawada to Hyderabad, for 27 Oct please.
+Agent: Which bus timing would you like?
+Caller: Hmm, 2 PM one",self,self,self
+tr-bus-book-0139#1296,"Caller: for 19 Oct ji
+Agent: What departure time would you prefer?
+Caller: Yes, the 10 o'clock AC sleeper bus ji",self,self,self
+tr-bus-change_mind-0325#948,"Caller: See, my name is Keerthi Naidu
+Agent: Just to confirm: 1 seat on the non-AC seater bus from Vijayawada to Hyderabad, Wednesday, 4 November, departing 2 PM, for Keerthi Naidu (34), total ₹450, phone ending 4394. Shall I book it?
+Caller: Sorry, one change - make it the 11:30 PM one instead.",llm,self,llm
+tr-bus-book-0238#1139,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need a bus ticket.",self,self,self
+tr-mov-dates-0486#180,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, tickets please - Haan, next Saturday please, Chennai Nights na",self,self,llm
+tr-res-book-0351#1588,"Caller: See, at Tandoor Tales Jubilee Hills ji
+Agent: On which date?
+Caller: Ji, the 22nd please",self,self,self
+tr-bus-book-0477#689,"Caller: Yes, the 26th please, 7 o'clock in the morning one ji
+Agent: Please tell me each passenger's name, age and gender.
+Caller: passengers are Naveen Shah, 45, M; Nandini Shah, 61, female; Shalini Shah, 44, female please.",self,self,self
+tr-res-change_mind-0491#1814,"Caller: Ji, book it under Rakesh Mukherjee ji
+Agent: Just to confirm: a table for 2 at Tandoor Tales Jubilee Hills, Monday, 2 November at 2 PM, under Rakesh Mukherjee, phone ending 3600. Shall I book it?
+Caller: Sorry, one change - make it 4 people, more are coming.",llm,self,llm
+tr-res-change_mind-0253#1489,"Caller: Sari, it's Imran Bhat
+Agent: Just to confirm: a table for 3 at Tandoor Tales Jubilee Hills, Friday, 30 October at 8:30 PM, under Imran Bhat, phone ending 7341, note: one guest is vegetarian. Shall I book it?
+Caller: Actually, make it 4 people, more are coming.",llm,self,llm
+tr-mov-book-0086#1491,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book movie tickets - Haan, Rocket Raja please",self,self,self
+tr-mov-red_flag-0428#546,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I left my spectacles in the hall yesterday.",staff,staff,staff
+tr-bus-red_flag-0369#2404,"Caller: Hi, I need help with something.
+Agent: Sure, please tell me the problem.
+Caller: My refund for last week's cancellation still hasn't come.",staff,llm,staff
+tr-mov-rule_group-0239#1459,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 12 tickets in one booking.",self,llm,staff
+tr-mov-change_mind-0350#1818,"Caller: Akash D'Souza na
+Agent: Just to confirm: 5 classic tickets for Chennai Nights at Regal Talkies Ameerpet, Saturday, 31 October at 10 AM, total ₹950, under Akash D'Souza, phone ending 3342. Shall I book it?
+Caller: Actually, make it the 5 PM one instead.",llm,self,llm
+tr-res-book-0203#1161,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, table reservation please - Ji, the Jubilee Hills branch, on 16 Oct please.",self,self,self
+tr-res-policy-0200#1006,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Is there outdoor seating at Jubilee Hills?",self,llm,self
+tr-res-rule_group-0582#1104,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Table for 18 at Hitech City please.",self,self,staff
+tr-res-change_mind-0362#621,"Caller: See, name is Santosh Rao na
+Agent: Just to confirm: a table for 6 at Tandoor Tales Hitech City, Friday, 30 October at 7 PM, under Santosh Rao, phone ending 1161. A deposit of ₹1500 is needed to hold the table; we will SMS a payment link. Shall I book it?
+Caller: No wait, make it 8 people, more are coming.",llm,self,llm
+tr-mov-book-0659#2005,"Caller: Hi, I'd like to watch a movie.
+Agent: Which film are you looking for?
+Caller: Sari, Kaala Samudram na",self,self,self
+tr-res-book-0110#2028,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, table reservation please - Yes, Banjara Hills, 21 Oct, 9:30 PM please please.",self,self,self
+tr-res-cancel-0285#114,"Caller: Hello, I need to cancel a booking.
+Agent: Sure. May I have the booking reference?
+Caller: booking number RT BG3LZ",self,llm,self
+tr-mov-book-0487#2049,"Caller: Hello, tickets please - Yes, Rocket Raja please
+Agent: For which day?
+Caller: See, for October 21",self,self,self
+tr-mov-cancel-0077#30,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, I need to cancel a booking.",self,llm,self
+tr-mov-dates-0352#408,"Caller: Okay, Regal in Ameerpet please
+Agent: Which show time would you like?
+Caller: 5 PM show please please",self,self,self
+tr-mov-book-0280#1794,"Caller: Regal is fine, the half past 1 show ji
+Agent: Classic, prime or recliner seats?
+Caller: classic seats, 2 tickets please ji",self,self,self
+tr-mov-dates-0171#273,"Caller: Yes, three
+Agent: Your name for the booking, please?
+Caller: Sari, my name is Bhaskar Singh na",self,self,self
+tr-res-dates-0044#2268,"Caller: Hello, I'd like to reserve a table - on day after tomorrow na
+Agent: Which branch - Jubilee Hills, Banjara Hills or Hitech City?
+Caller: at Tandoor Tales Hitech City ji",self,self,self
+tr-res-change_mind-0629#1513,"Caller: Ji, name is Rekha Hussain ji
+Agent: Just to confirm: a table for 6 at Tandoor Tales Jubilee Hills, Tuesday, 3 November at 2:30 PM, under Rekha Hussain, phone ending 0122. Shall I book it?
+Caller: No wait, make it 8 people, more are coming.",llm,self,llm
+tr-bus-usual-0652#1805,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, Ramya here. Same bus as last time - for the 17th please",self,llm,llm
+tr-bus-rule_no_pax-0131#2269,"Caller: on 28 Oct, the 6 AM bus
+Agent: May I have the name, age and gender of every passenger?
+Caller: Just put my name, I'll sort out the rest with the conductor.",self,llm,llm
+tr-bus-change_mind-0585#1562,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, bus booking please - Yes, from Bezawada to Hyderabad, for 27 Oct please.",self,self,self
+tr-bus-dates-0116#929,"Caller: See, 8 o'clock in the morning, Manoj Menon, 27, male and Nandini Menon, 50, female and Vinod Menon, 26, male na
+Agent: May I have the name for the booking?
+Caller: See, name is Manoj Menon",self,self,self
+tr-bus-rule_no_pax-0608#1087,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need a bus ticket - Okay, Chennai, for the 21st ji",self,self,self
+tr-res-red_flag-0002#1167,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: The bus conductor misbehaved with my mother, this is unacceptable.",staff,staff,staff
+tr-bus-book-0054#1821,"Caller: passengers are Syed Verma, 55, male and Venkatesh Verma, 43, male
+Agent: May I have the name for the booking?
+Caller: Yes, my name is Syed Verma",self,self,self
+tr-mov-change_mind-0157#2480,"Caller: Yes, it's Ishita Chatterjee
+Agent: Just to confirm: 4 classic tickets for Rocket Raja at Regal Talkies Ameerpet, Tuesday, 20 October at 10 AM, total ₹760, under Ishita Chatterjee, phone ending 2131. Shall I book it?
+Caller: Sorry, one change - make it 5 tickets.",llm,self,llm
+tr-res-dates-0009#491,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, table reservation please - Ji, next Saturday, Tandoor Tales Hitech City",self,self,llm
+tr-res-dates-0240#242,"Caller: Okay, the Hitech City branch
+Agent: What time would you like the table?
+Caller: Sari, 1:30 PM please",self,self,self
+tr-bus-usual-0215#2286,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, Gopal here. Same bus as last time - on 24th October",self,llm,llm
+tr-bus-rule_no_pax-0608#1267,"Caller: Ji, 7 AM please.
+Agent: Please tell me each passenger's name, age and gender.
+Caller: Why do you need all that? Just book it in my name.",self,llm,llm
+tr-res-dates-0573#1752,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book a table - Bhai Dooj please",self,self,llm
+tr-mov-rule_group-0239#1365,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 12 tickets in one booking.",self,llm,staff
+tr-bus-sold_out-0300#635,"Caller: name is Suresh Hussain
+Agent: Sorry, that one is full. I can offer: Hyderabad to Chennai, 7 Nov at 7:30 PM; Hyderabad to Chennai, 5 Nov at 7:30 PM; Hyderabad to Chennai, 7 Nov at 9 PM. Which would you like?
+Caller: Okay, the half past 7 in the evening one is fine.",self,self,self
+tr-res-book-0145#1979,"Caller: Hi, table reservation please.
+Agent: Which Tandoor Tales branch would you like?
+Caller: at Tandoor Tales Jubilee please",self,self,self
+tr-res-book-0501#2416,"Caller: See, on November 1 please
+Agent: For what time?
+Caller: half past 12",self,self,self
+tr-mov-book-0004#2445,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book movie tickets - Kaala Samudram",self,self,self
+tr-bus-usual-0284#1835,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, Tejaswini here. Same bus as last time - Hmm, the 23rd",self,llm,llm
+tr-mov-book-0252#1241,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I'd like to watch a movie - Rocket Raja movie, for 4th November, Regal Ameerpet",self,self,self
+tr-res-book-0479#625,"Caller: 1 PM please, two people please
+Agent: May I have the name for the booking?
+Caller: Haan, book it under Mahesh Kapoor",self,self,self
+tr-res-rule_deposit-0082#2235,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at the Jubilee Hills branch. Table for 9 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-bus-change_mind-0181#2319,"Caller: my name is Venkatesh Agarwal ji
+Agent: Just to confirm: 1 seat on the AC sleeper bus from Hyderabad to Bengaluru, Sunday, 25 October, departing 10 PM, for Venkatesh Agarwal (38), total ₹1550, phone ending 7994. Shall I book it?
+Caller: Sorry, one change - make it the 8 o'clock in the morning one instead.",llm,self,llm
+tr-res-rule_deposit-0346#2109,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at Banjara Hills. Table for 10 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-mov-red_flag-0432#1886,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: My money got deducted twice for my ticket, I need it back.",staff,staff,staff
+tr-res-book-0451#162,"Caller: two people
+Agent: Under which name should I book?
+Caller: See, Keerthi Iyengar please.",self,self,self
+tr-mov-dates-0587#1103,"Caller: recliner please
+Agent: How many tickets?
+Caller: See, 5 please.",self,self,self
+tr-res-change_mind-0038#1461,"Caller: Hello, I'd like to reserve a table - Okay, at Tandoor Tales Banjara, for Tuesday the 3rd please
+Agent: What time would you like the table?
+Caller: Sari, at 12 PM ji",self,self,self
+tr-mov-change_mind-0010#10,"Caller: Hmm, 4 tickets please
+Agent: Under which name should I book?
+Caller: Haan, name is Shruti Joshi",self,self,self
+tr-res-rule_deposit-0618#1911,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at Banjara Hills. Table for 9 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-mov-dates-0108#44,"Caller: 10 AM show please please.
+Agent: Classic, prime or recliner seats?
+Caller: Yes, classic seats",self,self,self
+tr-mov-rule_group-0018#2091,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 15 tickets in one booking.",self,llm,staff
+tr-res-book-0519#1696,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book a table - at Tandoor Tales Jubilee, 24 Oct please, half past 1 ji",self,self,self
+tr-mov-book-0183#1465,"Caller: Okay, classic na
+Agent: How many tickets?
+Caller: 4",self,self,self
+tr-mov-book-0412#1277,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book movie tickets - See, I want to watch Chennai Nights",self,self,self
+tr-bus-red_flag-0429#2068,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Can you arrange catering for 50 people at my house?",staff,llm,staff
+tr-bus-book-0559#1307,"Caller: Haan, the 26th please, the 8 AM bus
+Agent: May I have the name, age and gender of every passenger?
+Caller: Sari, Sanjay Das, 48, male; Padma Das, 39, female, that's all",self,self,self
+tr-mov-book-0069#295,"Caller: I want to book movie tickets.
+Agent: Which film would you like to watch?
+Caller: Chennai Nights please please",self,self,self
+tr-mov-book-0569#1128,"Caller: half past 8 in the evening, classic
+Agent: How many tickets do you need?
+Caller: Hmm, 4 tickets",self,self,self
+tr-res-dates-0290#2024,"Caller: Hi, table reservation please - See, next Monday please, the Hitech City branch na
+Agent: What time would you like the table?
+Caller: 13:00, two people",self,self,self
+tr-bus-book-0307#834,"Caller: Yes, passengers are Vishal Joshi, 27, male
+Agent: Your name for the booking, please?
+Caller: Haan, Vishal Joshi",self,self,self
+tr-res-book-0312#1729,"Caller: Monday the 19th
+Agent: For what time?
+Caller: Okay, 12 PM please, table for 8",self,self,self
+tr-bus-change_mind-0228#2322,"Caller: Prakash Mukherjee na
+Agent: Just to confirm: 1 seat on the non-AC sleeper bus from Hyderabad to Bengaluru, Friday, 23 October, departing 10:30 PM, for Prakash Mukherjee (38), total ₹1090, phone ending 3997. Shall I book it?
+Caller: Sorry, one change - make it the 8 o'clock in the morning one instead.",llm,self,llm
+tr-res-change_mind-0096#1457,"Caller: Sari, name is Shalini Jacob please.
+Agent: Just to confirm: a table for 7 at Tandoor Tales Hitech City, Thursday, 22 October at 12 PM, under Shalini Jacob, phone ending 8710. A deposit of ₹1750 is needed to hold the table; we will SMS a payment link. Shall I book it?
+Caller: No wait, make it 8 people, more are coming.",llm,self,llm
+tr-bus-book-0645#1001,"Caller: See, Ravi Pandey, 40, male. Tarun Pandey, 42, male ji
+Agent: Your name for the booking, please?
+Caller: book it under Ravi Pandey",self,self,self
+tr-mov-change_mind-0030#721,"Caller: Hi, I'd like to watch a movie - Ji, Chennai Nights movie, for Friday the 23rd please.
+Agent: Which cinema would you prefer? We have Galaxy Kukatpally, Starlight Gachibowli, Regal Ameerpet and Moonbeam Secunderabad.
+Caller: Moonbeam Secunderabad is fine",self,self,self
+tr-bus-sold_out-0218#99,"Caller: passengers are Bhavana Banerjee, 22, female please.
+Agent: May I have the name for the booking?
+Caller: Bhavana Banerjee please",self,self,self
+tr-res-usual-0008#2335,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Vishal here, my usual table - Yes, for 26 Oct",self,llm,llm
+tr-res-sold_out-0493#647,"Caller: Hi, table for 4 at Hitech City on 22nd October at 8 PM please.
+Agent: May I have the name for the booking?
+Caller: Yes, it's Vijay Kulkarni ji",self,self,self
+tr-mov-book-0220#1556,"Caller: Hello, tickets please - Yes, Rocket Raja please, on October 24, at Moonbeam Secunderabad
+Agent: What time would suit you?
+Caller: 10:00 show please please",self,self,self
+tr-bus-policy-0276#107,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, Is food served on the bus?",self,llm,self
+tr-mov-change_mind-0350#2234,"Caller: classic seats na
+Agent: How many tickets do you need?
+Caller: Yes, 5 tickets na",self,self,self
+tr-mov-red_flag-0316#1070,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: The food we got last night was stale, I want to complain.",staff,staff,staff
+tr-bus-dates-0371#1190,"Caller: Yes, Pooja Kaur, 22, F. Anusha Kaur, 68, female. Meena Kaur, 63, female ji
+Agent: Under which name should I book?
+Caller: Haan, name is Pooja Kaur",self,self,self
+tr-mov-book-0183#1614,"Caller: Sari, Regal Ameerpet please na
+Agent: Which show - morning, afternoon or evening?
+Caller: Haan, 8:30 PM show please ji",self,self,self
+tr-bus-red_flag-0348#2155,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Can you arrange catering for 50 people at my house?",staff,llm,staff
+tr-res-book-0392#2369,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, table reservation please - Okay, Tandoor Tales Banjara Hills, Tuesday the 3rd",self,self,self
+tr-bus-rule_no_pax-0131#2251,"Caller: Just put my name, I'll sort out the rest with the conductor.
+Agent: I'm sorry, every passenger's name, age and gender is needed to issue the tickets. Could you share them?
+Caller: Haan, passengers are Ananya Agarwal, 27, female and Anand Agarwal, 44, male and Bhaskar Agarwal, 70, male please",self,self,self
+tr-bus-change_mind-0654#2032,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, bus booking please.",self,self,self
+tr-res-book-0340#2323,"Caller: Hmm, 5 people
+Agent: Under which name should I book?
+Caller: Haan, my name is Sahithi Tiwari",self,self,self
+tr-mov-red_flag-0580#198,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I left my spectacles in the hall yesterday.",staff,staff,staff
+tr-res-book-0118#310,"Caller: I want to book a table - the Hitech City branch please
+Agent: For which day?
+Caller: Yes, 23 Oct",self,self,self
+tr-bus-change_mind-0386#2238,"Caller: book it under Amit Krishnan please
+Agent: Just to confirm: 1 seat on the AC seater bus from Hyderabad to Chennai, Monday, 19 October, departing 7 AM, for Amit Krishnan (49), total ₹1200, phone ending 5078. Shall I book it?
+Caller: Sorry, one change - make it the 9 PM one instead.",llm,self,llm
+tr-bus-change_mind-0585#2387,"Caller: See, name is Priya Rao
+Agent: Just to confirm: 2 seats on the non-AC seater bus from Vijayawada to Hyderabad, Tuesday, 27 October, departing 2 PM, for Priya Rao (34), Vijay Rao (33), total ₹900, phone ending 7029. Shall I book it?
+Caller: Actually, make it the 11:30 PM one instead.",llm,self,llm
+tr-mov-rule_group-0160#2441,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 12 tickets in one booking.",self,llm,staff
+tr-bus-modify-0166#1248,"Caller: Hello, I need to make a change to my bus ticket.
+Agent: Sure. May I have the booking reference?
+Caller: booking number BS DAN6E",self,llm,self
+tr-mov-book-0359#1278,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I'd like to watch a movie - Hmm, the movie is Dil Ki Dastak please.",self,self,self
+tr-mov-dates-0062#1901,"Caller: classic seats ji
+Agent: How many tickets do you need?
+Caller: See, 4 tickets",self,self,self
+tr-res-rule_deposit-0071#1609,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at Tandoor Tales Banjara Hills. Table for 9 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-res-book-0515#787,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, table reservation please.",self,self,self
+tr-mov-change_mind-0596#1658,"Caller: book it under Vidya Iyer
+Agent: Just to confirm: 4 classic tickets for Chennai Nights at Galaxy Cinemas Kukatpally, Friday, 23 October at 1:30 PM, total ₹880, under Vidya Iyer, phone ending 5689. Shall I book it?
+Caller: Actually, make it the half past 8 in the evening one instead.",llm,self,llm
+tr-mov-rule_group-0018#2177,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 15 tickets in one booking.",self,llm,staff
+tr-bus-rule_no_pax-0594#2159,"Caller: Hmm, 08:00 na
+Agent: Please tell me each passenger's name, age and gender.
+Caller: Just put my name, I'll sort out the rest with the conductor.",self,llm,llm
+tr-mov-dates-0204#1014,"Caller: I want to book movie tickets - next Saturday, Godavari Express please
+Agent: Which cinema would you prefer? We have Galaxy Kukatpally, Starlight Gachibowli, Regal Ameerpet and Moonbeam Secunderabad.
+Caller: Yes, Regal please.",self,self,self
+tr-mov-book-0389#1446,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book movie tickets - Ji, Shadow Protocol movie please",self,self,self
+tr-mov-red_flag-0428#1942,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I left my spectacles in the hall yesterday.",staff,staff,staff
+tr-res-dates-0290#1618,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, table reservation please - See, next Monday please, the Hitech City branch na",self,self,self
+tr-mov-change_mind-0416#438,"Caller: on October 30
+Agent: At which cinema?
+Caller: Sari, Starlight Gachibowli please",self,self,self
+tr-mov-modify-0522#186,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, I need to make a change to my movie booking.",self,self,self
+tr-bus-book-0574#827,"Caller: Hmm, passengers are Neha Jacob, 30, F and Aishwarya Jacob, 26, female please.
+Agent: Under which name should I book?
+Caller: Yes, my name is Neha Jacob ji",self,self,self
+tr-mov-change_mind-0485#1289,"Caller: on the 22nd
+Agent: At which cinema?
+Caller: Regal in Ameerpet is fine ji",self,self,self
+tr-mov-book-0059#1431,"Caller: Hmm, four tickets
+Agent: Under which name should I book?
+Caller: Sari, book it under Ananya Menon please.",self,self,self
+tr-res-change_mind-0221#2100,"Caller: name is Jyothi Mehta
+Agent: Just to confirm: a table for 4 at Tandoor Tales Banjara Hills, Saturday, 24 October at 7 PM, under Jyothi Mehta, phone ending 4399. Shall I book it?
+Caller: Sorry, one change - make it 5 people, more are coming.",llm,self,llm
+tr-mov-book-0443#154,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book movie tickets - Little Champs in Space, Friday the 30th please, Moonbeam Cinemas Secunderabad please na",self,self,self
+tr-bus-policy-0174#73,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: If I cancel a day and a half before, how much do I get back?",self,llm,self
+tr-mov-red_flag-0318#2290,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: My money got deducted twice for my ticket, I need it back.",staff,staff,staff
+tr-bus-usual-0376#1734,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, Harini here. Same bus as last time - Hmm, October 24 please ji",self,llm,llm
+tr-mov-change_mind-0130#1210,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I'd like to watch a movie - Yes, Rocket Raja, 19 Oct please, Galaxy Cinemas Kukatpally is fine na",self,self,self
+tr-bus-book-0333#2124,"Caller: Okay, passengers are Kiran Reddy, 23, male; Ishita Reddy, 24, F; Amit Reddy, 8, male
+Agent: May I have the name for the booking?
+Caller: book it under Kiran Reddy",self,self,self
+tr-mov-sold_out-0331#2444,"Caller: Ji, name is Keerthi Hegde
+Agent: Sorry, that one is full. I can offer: Starlight Multiplex Gachibowli, 25 Oct at 8:30 PM (classic); Starlight Multiplex Gachibowli, 25 Oct at 5 PM (recliner). Which would you like?
+Caller: Okay, 8:30 PM then.",self,self,self
+tr-bus-dates-0633#2439,"Caller: Yes, the 9:45 PM non-AC sleeper bus, passengers are Manoj Fernandes, 34, M and Naveen Fernandes, 34, male
+Agent: Under which name should I book?
+Caller: name is Manoj Fernandes please",self,self,self
+tr-mov-book-0669#2418,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I'd like to watch a movie - Haan, Rocket Raja movie ji",self,self,self
+tr-res-rule_deposit-0529#425,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at the Banjara Hills branch. Table for 10 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-mov-book-0151#2094,"Caller: 5
+Agent: Your name for the booking, please?
+Caller: See, it's Rohit Mehta",self,self,self
+tr-mov-change_mind-0157#1010,"Caller: Haan, classic please, 4 tickets
+Agent: May I have the name for the booking?
+Caller: Yes, it's Ishita Chatterjee",self,self,self
+tr-res-red_flag-0150#2128,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Can I talk to a real person please?",staff,staff,staff
+tr-res-usual-0628#1424,"Caller: Hi, Jyothi here, my usual table - Sari, on October 24
+Agent: Welcome back! Your usual is a table for 2 at Tandoor Tales Banjara Hills. Which time would you like?
+Caller: Hmm, 8 o'clock please ji",self,self,self
+tr-bus-change_mind-0023#462,"Caller: I need a bus ticket.
+Agent: Where would you like to travel to?
+Caller: Yes, I'm going to Chennai",self,self,self
+tr-res-book-0265#358,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book a table - Okay, at Tandoor Tales Hitech City, for 19th October, at 2 PM please",self,self,self
+tr-bus-rule_no_pax-0283#411,"Caller: Just put my name, I'll sort out the rest with the conductor.
+Agent: I'm sorry, every passenger's name, age and gender is needed to issue the tickets. Could you share them?
+Caller: Hmm, passengers are Krishna Raju, 32, male; Ramesh Raju, 59, M; Vidya Raju, 33, F",self,self,self
+tr-mov-change_mind-0505#373,"Caller: I want to book movie tickets - Sari, Shadow Protocol
+Agent: For which day?
+Caller: on the 23rd",self,self,self
+tr-bus-book-0222#2195,"Caller: See, Aditya Raju, 38, male please
+Agent: Your name for the booking, please?
+Caller: Yes, Aditya Raju please.",self,self,self
+tr-res-change_mind-0194#2511,"Caller: Usha Das
+Agent: Just to confirm: a table for 3 at Tandoor Tales Banjara Hills, Tuesday, 3 November at 1:30 PM, under Usha Das, phone ending 7936. Shall I book it?
+Caller: No wait, make it four people, more are coming.",llm,self,llm
+tr-bus-red_flag-0425#1709,"Caller: Listen, there is an issue.
+Agent: Sure, please tell me the problem.
+Caller: Can I talk to a real person please?",staff,staff,staff
+tr-res-change_mind-0365#1000,"Caller: Yes, name is Murali Raju na
+Agent: Just to confirm: a table for 1 at Tandoor Tales Jubilee Hills, Monday, 19 October at 1 PM, under Murali Raju, phone ending 2067. Shall I book it?
+Caller: No wait, make it 2 people, more are coming.",llm,self,llm
+tr-res-usual-0317#2148,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Amit here, my usual table - Yes, for 26th October please.",self,llm,llm
+tr-res-usual-0626#1336,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Gopal here, my usual table - the 19th please.",self,llm,llm
+tr-bus-usual-0215#1778,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, Gopal here. Same bus as last time - on 24th October",self,llm,llm
+tr-res-usual-0666#2134,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Dinesh here, my usual table - See, on Monday the 26th",self,llm,llm
+tr-mov-dates-0630#2108,"Caller: at the Ameerpet one please.
+Agent: What time would suit you?
+Caller: the 1:30 PM show",self,self,self
+tr-res-rule_group-0387#2113,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Table for 14 at Hitech City please.",self,self,staff
+tr-bus-book-0210#315,"Caller: Yes, 29th October
+Agent: What departure time would you prefer?
+Caller: the 7 o'clock in the morning bus",self,self,self
+tr-res-book-0246#1712,"Caller: Sari, at Tandoor Tales Banjara Hills
+Agent: For which day?
+Caller: Hmm, 16th October, 14:30 please",self,self,self
+tr-bus-change_mind-0372#2447,"Caller: Hmm, book it under Kiran Siddiqui na
+Agent: Just to confirm: 2 seats on the AC sleeper bus from Bengaluru to Hyderabad, Saturday, 31 October, departing 10 PM, for Kiran Siddiqui (41), Tejaswini Siddiqui (9), total ₹3100, phone ending 2846. Shall I book it?
+Caller: Sorry, one change - make it the 8 AM one instead.",llm,self,llm
+tr-mov-sold_out-0329#1271,"Caller: Sari, name is Sindhu Mukherjee please.
+Agent: Sorry, that one is full. I can offer: Starlight Multiplex Gachibowli, 18 Oct at 8:30 PM (classic); Galaxy Cinemas Kukatpally, 18 Oct at 8:30 PM (classic). Which would you like?
+Caller: Okay, the half past 8 in the evening one is fine.",self,self,self
+tr-mov-book-0269#2102,"Caller: Ji, the 10 AM show
+Agent: Classic, prime or recliner seats?
+Caller: See, classic, 5 please",self,self,self
+tr-res-book-0515#1522,"Caller: See, for the 21st please
+Agent: For what time?
+Caller: Ji, 10 PM",self,self,self
+tr-mov-rule_group-0016#1379,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 20 tickets in one booking.",self,llm,staff
+tr-bus-book-0461#309,"Caller: Ji, passengers are Jagadeesh Patel, 52, M
+Agent: Under which name should I book?
+Caller: Yes, Jagadeesh Patel",self,self,self
+tr-res-book-0374#743,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, I'd like to reserve a table.",self,self,self
+tr-res-usual-0211#398,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, Vaishnavi here, my usual table - Sari, 25 Oct please na",self,llm,llm
+tr-bus-book-0245#2437,"Caller: I need a bus ticket - Hmm, from Chennai to Hyd
+Agent: Which date would you like?
+Caller: for the 31st please.",self,self,self
+tr-res-book-0061#2385,"Caller: See, 1 o'clock please
+Agent: For how many people?
+Caller: we are four",self,self,self
+tr-res-dates-0039#1612,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, table reservation please - Sari, next Saturday please, Tandoor Tales Hitech na",self,self,self
+tr-bus-policy-0169#947,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Is there a toilet on the bus?",self,llm,self
+tr-bus-rule_group-0355#2029,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 10 seats on one bus for a family function.",self,self,staff
+tr-res-dates-0309#727,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to book a table - Sari, on next Thursday",self,self,self
+tr-mov-dates-0171#1532,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, tickets please - Hmm, for coming Sunday, I want to watch Rocket Raja please.",self,self,llm
+tr-bus-usual-0548#1746,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, Kavya here. Same bus as last time - See, for Saturday the 24th please",self,llm,llm
+tr-mov-rule_group-0160#2283,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I need 12 tickets in one booking.",self,llm,staff
+tr-bus-book-0139#357,"Caller: Haan, passengers are Vijay Chatterjee, 31, male please.
+Agent: Under which name should I book?
+Caller: name is Vijay Chatterjee na",self,self,self
+tr-bus-rule_no_pax-0408#1656,"Caller: Hmm, for 19th October, 10 o'clock AC sleeper
+Agent: Please tell me each passenger's name, age and gender.
+Caller: Just put my name, I'll sort out the rest with the conductor.",self,llm,llm
+tr-res-dates-0575#472,"Caller: Hmm, 8:30 PM please.
+Agent: Table for how many?
+Caller: Sari, we are two na",self,self,self
+tr-mov-usual-0513#2257,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, it's Sneha again. Book my usual seats - Yes, Shadow Protocol, for Sunday the 25th please.",self,llm,llm
+tr-bus-change_mind-0585#1957,"Caller: See, name is Priya Rao
+Agent: Just to confirm: 2 seats on the non-AC seater bus from Vijayawada to Hyderabad, Tuesday, 27 October, departing 2 PM, for Priya Rao (34), Vijay Rao (33), total ₹900, phone ending 7029. Shall I book it?
+Caller: Actually, make it the 11:30 PM one instead.",llm,self,llm
+tr-bus-dates-0633#275,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hello, bus booking please - this Saturday please, Chennai to Hyd",self,self,self
+tr-bus-change_mind-0398#1664,"Caller: 10 PM AC sleeper one please.
+Agent: May I have the name, age and gender of every passenger?
+Caller: See, passengers are Varun Venkataraman, 28, male please.",self,self,self
+tr-mov-cancel-0401#649,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: I want to cancel my reservation.",self,llm,self
+tr-res-dates-0324#1674,"Caller: I want to book a table - Ji, on Diwali, the Hitech City branch
+Agent: What time would you like the table?
+Caller: Okay, at 1:30 PM",self,self,self
+tr-bus-change_mind-0266#2161,"Caller: Ji, name is Sandeep Sharma
+Agent: Just to confirm: 1 seat on the non-AC sleeper bus from Bengaluru to Hyderabad, Saturday, 31 October, departing 10:30 PM, for Sandeep Sharma (36), total ₹1090, phone ending 0108. Shall I book it?
+Caller: Actually, make it the 10 o'clock one instead.",llm,self,llm
+tr-mov-red_flag-0530#1786,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: The bus conductor misbehaved with my mother, this is unacceptable.",staff,staff,staff
+tr-bus-dates-0041#1315,"Caller: See, Divya Varma, 52, female. Sowmya Varma, 18, female. Meena Varma, 27, female, that's all please.
+Agent: May I have the name for the booking?
+Caller: Okay, Divya Varma",self,self,self
+tr-mov-book-0025#682,"Caller: I want to book movie tickets - Yes, Rocket Raja movie please
+Agent: On which date?
+Caller: October 22 please",self,self,self
+tr-res-rule_deposit-0152#1809,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at Tandoor Tales Jubilee. Table for 9 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-mov-modify-0524#2327,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want to change my movie booking.",self,llm,self
+tr-mov-usual-0197#2339,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, it's Sravani again. Book my usual seats - Okay, Little Champs in Space please, for October 21",self,llm,llm
+tr-res-red_flag-0356#1317,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: My money got deducted twice for my ticket, I need it back.",staff,staff,staff
+tr-mov-change_mind-0141#725,"Caller: Hello, tickets please - Haan, Chennai Nights please, on October 28 ji
+Agent: Which cinema - Galaxy, Starlight, Regal or Moonbeam?
+Caller: Sari, Galaxy is fine please",self,self,self
+tr-bus-dates-0206#1170,"Caller: Okay, 11:30 PM na
+Agent: Please tell me each passenger's name, age and gender.
+Caller: Ramya Pandey, 40, female, that's all",self,self,self
+tr-mov-change_mind-0310#2219,"Caller: Haan, recliner please
+Agent: How many tickets do you need?
+Caller: Yes, we are 2 people na",self,self,self
+tr-res-book-0117#552,"Caller: Hi, table reservation please - Yes, Tandoor Tales Banjara please, 16 Oct please
+Agent: For what time?
+Caller: Ji, 14:30 please please.",self,self,self
+tr-mov-change_mind-0310#1742,"Caller: Vidya Patil
+Agent: Just to confirm: 2 recliner tickets for Kaala Samudram at Starlight Multiplex Gachibowli, Wednesday, 28 October at 10 AM, total ₹920, under Vidya Patil, phone ending 1279. Shall I book it?
+Caller: Actually, make it the 5 o'clock one instead.",llm,self,llm
+tr-mov-usual-0197#2073,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, it's Sravani again. Book my usual seats - Okay, Little Champs in Space please, for October 21",self,llm,llm
+tr-res-rule_deposit-0618#1639,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at Banjara Hills. Table for 9 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-res-rule_deposit-0058#1027,"Agent: Namaste, this is FastLane, an automated booking assistant for movies, buses and Tandoor Tales restaurants. How can I help you today?
+Caller: Hi, I want a table at Tandoor Tales Jubilee. Table for 9 but please don't take any deposit, I'm a regular.",staff,llm,staff
+tr-bus-change_mind-0654#441,"Caller: name is Anjali Kavuri please
+Agent: Just to confirm: 3 seats on the AC seater bus from Hyderabad to Bengaluru, Wednesday, 4 November, departing 8 AM, for Anjali Kavuri (41), Fatima Kavuri (41), Kiran Kavuri (70), total ₹3300, phone ending 7971. Shall I book it?
+Caller: Actually, make it the 9 o'clock one instead.",llm,self,llm

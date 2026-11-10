@@ -3,7 +3,7 @@
 # Large model: groq:openai/gpt-oss-120b ONLY (Gemini backup off, so every system sees the same large model).
 # Samples are stratified and nested: --calls 48 is a subset of --calls 120; the 24 development calls are in both.
 # Resumable: rerunning the script skips calls already in data/runs/<run>/<system>.jsonl.
-cd /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT
+cd "$(dirname "$0")/../.."   # repo root
 export FASTLANE_LARGE_BACKUP=none
 FL=.venv/bin/fastlane
 stamp() { date '+%m-%d %H:%M:%S'; }
