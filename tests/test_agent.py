@@ -397,6 +397,60 @@ def test_number_without_policy_word_stays_small(world, index):
     assert agent.traces[-1].handled_by == "small"
 
 
+def test_negative_policy_answer_after_search_goes_to_large(world, index):
+    """Final run (mov-policy-085): the search found "Mall parking (Rs 60 for 4 hours)"; the small model said "No parking"."""
+    small = ScriptedClient([
+        small_json(tool="search_policy", args={"query": "Is there parking at Galaxy Kukatpally?", "domain": "movies"}),
+        small_json(say="No parking facility at Galaxy Cinemas Kukatpally."),
+    ])
+    large = ScriptedClient(["Yes, there is mall parking at Nexa Mall, Rs 60 for 4 hours."], name="large")
+    agent = make(world, index, small=small, large=large)
+    agent.greet()
+    reply = agent.respond("Is there parking at Galaxy Kukatpally?")
+    tr = agent.traces[-1]
+    assert "Rs 60" in reply and tr.handled_by == "large" and tr.escalation_reason == "negative policy answer"
+
+
+def test_negative_reply_without_policy_search_stays_small(world, index):
+    small = ScriptedClient([small_json(say="No problem. Which show time would you like?")])
+    agent = make(world, index, small=small, large=ScriptedClient([], name="large"))
+    agent.greet()
+    agent.respond("I want tickets for Rocket Raja")
+    assert agent.traces[-1].handled_by == "small"
+
+
+def _caller_with_booking(world):
+    return world.one("SELECT id, phone FROM bookings WHERE status='confirmed' AND domain='restaurants' AND res_date >= '2026-10-19' ORDER BY res_date LIMIT 1")
+
+
+def test_completion_claim_without_a_write_goes_to_large_and_is_corrected(world, index):
+    """Final run (res-returning-337): the cancel waited for a clear yes; the small model said "Your booking was cancelled"."""
+    b = _caller_with_booking(world)
+    small = ScriptedClient([
+        small_json(tool="cancel_booking", args={"booking_id": b["id"], "phone": b["phone"]}),
+        small_json(say="Your booking was cancelled. No charge."),
+    ])
+    large = ScriptedClient(["Your booking has been cancelled.",
+                            "I haven't cancelled it yet. Shall I go ahead and cancel it? Please say yes to confirm."], name="large")
+    agent = Agent(world, b["phone"], SYSTEMS["fastlane"], small=small, large=large, policy_index=index, raise_errors=True)
+    agent.greet()
+    assert agent.respond("I want to cancel my table booking.").startswith("Just to confirm")
+    reply = agent.respond("Hmm, wait, which table is this?")
+    tr = agent.traces[-1]
+    assert reply.startswith("I haven't cancelled it yet")
+    assert tr.handled_by == "large" and tr.escalation_reason.startswith("completion claim without a write")
+    assert "completion claim corrected" in tr.escalation_reason and len(large.calls) == 2
+    assert world.one("SELECT status FROM bookings WHERE id=?", (b["id"],))["status"] == "confirmed"
+
+
+def test_status_answer_without_a_change_in_progress_stays_small(world, index):
+    small = ScriptedClient([small_json(say="Your table has been booked for 8 PM on the 22nd.")])
+    agent = make(world, index, small=small, large=ScriptedClient([], name="large"))
+    agent.greet()
+    agent.respond("Is my table for the 22nd booked?")
+    assert agent.traces[-1].handled_by == "small"
+
+
 def test_fallback_client_switches_when_primary_unreachable():
     import httpx2 as httpx  # the HTTP client the openai package uses
     from openai import APIConnectionError

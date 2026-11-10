@@ -1,0 +1,188 @@
+{
+  "model": "mlx:runs/mlx-fastlane-qwen2.5-3b-mb-v5",
+  "prompt": "compact",
+  "examples": 56,
+  "json_ok": 1.0,
+  "route_accuracy": 0.982,
+  "escalation_precision": 1.0,
+  "escalation_recall": 0.889,
+  "tool_choice_accuracy": 0.872,
+  "tool_args_exact": 0.333,
+  "latency_ms_p50": 2583,
+  "latency_ms_p95": 5245,
+  "route_confusion": {
+    "llm->llm": 6,
+    "self->self": 47,
+    "staff->self": 1,
+    "staff->staff": 2
+  },
+  "arg_misses": [
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurants",
+          "date": "2026-10-26",
+          "time": "20:00",
+          "restaurant": "Tandoor Tales Hitech City",
+          "party_size": 5
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "buses",
+          "date": "2026-10-26",
+          "origin": "Bengaluru",
+          "destination": "Hyderabad",
+          "time": "20:00",
+          "quantity": 1
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-hitech@2026-10-26T20:00",
+          "name": "Anusha Yadav",
+          "party_size": 5
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-hitech@2026-10-26T20:00",
+          "name": "Anusha Yadav",
+          "quantity": 5
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-jubilee@2026-10-19T20:30",
+          "name": "Ashok Kulkarni",
+          "party_size": 2
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-jubilee@2026-10-19T20:30",
+          "name": "Ashok Kulkarni",
+          "quantity": 2
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-hitech@2026-10-20T19:00",
+          "name": "Ashok Hussain",
+          "party_size": 5
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-hitech@2026-10-20T19:00",
+          "name": "Ashok Hussain",
+          "quantity": 5
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurants",
+          "date": "2026-10-21",
+          "time": "20:30",
+          "restaurant": "Tandoor Tales Jubilee Hills",
+          "party_size": 3
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurants",
+          "date": "2026-10-21",
+          "restaurant": "Tandoor Tales Jubilee Hills",
+          "time": "20:30",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-jubilee@2026-10-21T20:30",
+          "name": "Imran Chowdary",
+          "party_size": 3
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-jubilee@2026-10-21T20:30",
+          "name": "Imran Chowdary",
+          "quantity": 3
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-banjara@2026-11-10T19:30",
+          "name": "Radhika Mukherjee",
+          "party_size": 4,
+          "special_request": "one guest is vegetarian"
+        }
+      },
+      "got": {
+        "name": "create_booking",
+        "args": {
+          "domain": "restaurants",
+          "option_id": "tandoor-banjara@2026-11-10T19:30",
+          "name": "Radhika Mukherjee",
+          "quantity": 4
+        }
+      }
+    },
+    {
+      "want": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurants",
+          "date": "2026-10-30",
+          "time": "22:00",
+          "restaurant": "Tandoor Tales Jubilee Hills",
+          "party_size": 2
+        }
+      },
+      "got": {
+        "name": "search_inventory",
+        "args": {
+          "domain": "restaurants",
+          "date": "2026-10-30",
+          "restaurant": "Tandoor Tales Jubilee Hills",
+          "quantity": 2
+        }
+      }
+    }
+  ]
+}

@@ -151,6 +151,9 @@ _NO = [
 ]
 
 
+_QUESTION = re.compile(r"\?\s*$|^\s*(?:can|could|would|will|what|which|when|where|why|how|is|are|do|does|did|may|shall|should)\b", re.I)
+
+
 def confirmation(text: str) -> bool | None:
     """True = clear yes, False = no / wants a change, None = unclear (ask again)."""
     t = " " + re.sub(r"[^a-z' ]+", " ", text.lower()) + " "
@@ -160,6 +163,11 @@ def confirmation(text: str) -> bool | None:
     # "no, that's correct" / "no no, go ahead" are rare; any no-word blocks the change (safer).
     if has_no:
         return False
+    # A question is not a yes unless it starts with one ("Yes, can you also send the SMS?"). Final after-fix run
+    # (res-returning-337): "Can you please confirm my name and phone number?" matched "confirm" and the booking
+    # was cancelled without a yes.
+    if has_yes and _QUESTION.search(text) and not any(t.startswith(f" {w} ") for w in _YES):
+        return None
     if has_yes:
         return True
     return None

@@ -117,6 +117,7 @@ class Gateway:
         self.pending: PendingAction | None = None
         self.confirmed_digest: str | None = None
         self.verified: set[str] = set()
+        self.known_origins: set[str] = set()  # bus origins from the caller's own history (for "my usual")
         self.created: set[str] = set()
         self.consecutive_failures = 0
         self.handoff: dict | None = None
@@ -270,11 +271,28 @@ class Gateway:
             self._fill(domain="movies", date=a.date, quantity=a.quantity, **out["resolved"])
         elif a.domain == "buses":
             out = self.inv.search_buses(a.date, a.time, a.quantity, a.origin, a.destination, a.bus_type)
+            self._check_origin_heard(out["resolved"].get("origin"))
             self._fill(domain="buses", date=a.date, quantity=a.quantity, **out["resolved"])
         else:
             out = self.inv.search_tables(a.date, a.time, a.party_size, a.restaurant)
             self._fill(domain="restaurants", date=a.date, party_size=a.party_size, **out["resolved"])
         return out
+
+    def _check_origin_heard(self, origin: str | None) -> None:
+        """A bus search from a city other than Hyderabad (the default) needs the caller to have said that city.
+        Final run (2026-11-10): the caller only said "to Hyderabad"; the small model searched from Bengaluru, found no
+        7:30 PM bus there and the call ended on the wrong bus (bus-simple-122, bus-change_mind-195). Only the caller's
+        words count: an origin the agent itself mentioned after a wrong search must not make it 'heard'. Also allowed:
+        an origin from the caller's own history ("my usual") or from a bus booking verified or made in this call (a
+        change keeps its route). Checked before `_fill`, so the guessed city never reaches the booking record."""
+        if not origin or origin == CITY or origin in self.known_origins:
+            return
+        mine = (self.w.describe_booking(b) for b in self.verified | self.created)
+        if any(v and v.get("domain") == "buses" and v.get("origin") == origin for v in mine):
+            return  # the booking being changed, or one the caller identified, is from there
+        if rules.check_grounded(" ".join(self.heard), "", origin, CITY_ALIASES.get(origin, []), None, "origin"):
+            self._precheck([rules.Violation("origin_unheard", f"The caller has not said they are travelling from {origin}; "
+                                                              f"ask where they are travelling from, do not guess.")])
 
     def _fill(self, **fields) -> None:
         """Searches fill empty record fields but never overwrite (exploring is not changing)."""
@@ -288,6 +306,12 @@ class Gateway:
 
     def _alternatives(self, a) -> dict:
         self._iso_date(a)
+        if a.domain == "buses" and getattr(a, "origin", None):
+            try:
+                origin = _resolve("city", a.origin, self.inv.cat.city).id
+            except InventoryError:
+                origin = None  # unknown city: let the inventory report it
+            self._check_origin_heard(origin)
         return self.inv.alternatives(a)
 
     def _policy(self, a) -> dict:
@@ -344,6 +368,11 @@ class Gateway:
             usual["passengers"] = json.loads(usual["passengers"])
         self.record.set(track=False, caller_name=cust["name"])
         self.known_people = [p for p in usual.get("passengers", []) if isinstance(p, dict)]
+        for d in (d for dom, d in details if dom == "buses" and d.get("route_id")):
+            route = self.w.one("SELECT origin FROM bus_routes WHERE id=?", (d["route_id"],))
+            if route:
+                self.known_origins.add(route["origin"])
+        self.known_origins |= {v["origin"] for v in upcoming if v.get("domain") == "buses" and v.get("origin")}
         self.offered.append(json.dumps({"usual": usual, "upcoming": upcoming}, ensure_ascii=False))
         return {
             "returning_caller": bool(past or upcoming),

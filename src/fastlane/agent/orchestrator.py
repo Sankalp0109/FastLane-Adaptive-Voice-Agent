@@ -51,6 +51,17 @@ STAFF_REASONS = {
 POLICY_CONFIDENCE_MIN = 0.35
 # Words that make a number in a small-model reply a policy figure (refund share, fee, deposit, charge).
 _POLICY_FIGURE = re.compile(r"%|\bpercent|\brefund|\bfees?\b|\bdeposit|\bcharges?\b|\bpenalt", re.I)
+# A reply saying a booking change has happened ("was cancelled", "has been booked", "I've changed it").
+_COMPLETION_CLAIM = re.compile(
+    r"\b(?:has|have|was|were|is now|are now|got)\s+(?:been\s+|now\s+|successfully\s+)*"
+    r"(?:cancell?ed|booked|reserved|changed|modified|updated|rescheduled|moved)\b"
+    r"|\bI(?:'ve| have)\s+(?:now\s+|successfully\s+)?(?:cancell?ed|booked|reserved|changed|modified|updated|rescheduled|moved)\b"
+    r"|\bsuccessfully\s+(?:cancell?ed|booked|reserved|changed|modified|updated|rescheduled)\b", re.I)
+# A negative policy answer ("No parking facility", "pets are not allowed").
+_NEGATIVE = re.compile(r"\b(?:no|not|never|none|cannot|can't|don't|doesn't|isn't|aren't|won't|unavailable)\b|n't\b", re.I)
+_CLAIM_CORRECTION = ("(System) No booking change has been made in this turn: the change is still waiting for the caller's "
+                     "clear yes to the read-back, or it was refused. Do not say it is done. Read the details back or ask "
+                     "the caller to confirm, then call the tool again.")
 
 
 class Agent:
@@ -231,6 +242,10 @@ class Agent:
             if p.say:
                 if large_ok and use_model_route and self._numeric_policy_answer(p.say, steps):
                     return self._large(tr, "policy answer with numbers", steps)
+                if large_ok and use_model_route and self._negative_policy_answer(p.say, steps):
+                    return self._large(tr, "negative policy answer", steps)
+                if large_ok and self._unbacked_completion_claim(p.say, tr):
+                    return self._large(tr, "completion claim without a write", steps)
                 return p.say
             if large_ok and use_model_route:
                 return self._large(tr, "small model gave no reply", steps)
@@ -272,6 +287,28 @@ class Agent:
         if any(name == "search_policy" for _, name, _ in steps):
             return has_number
         return has_number and bool(_POLICY_FIGURE.search(say))
+
+    @staticmethod
+    def _negative_policy_answer(say: str, steps: list[tuple[str, str, dict]]) -> bool:
+        """A "no" answer to a policy question is checked by the large model against the same search result.
+        Final run (2026-11-10, mov-policy-085): search_policy returned "Mall parking (Rs 60 for 4 hours)" and the
+        small model answered "No parking facility". Claims that something does not exist or is not allowed are the
+        ones a caller acts on without asking again."""
+        return any(name == "search_policy" for _, name, _ in steps) and bool(_NEGATIVE.search(say))
+
+    def _unbacked_completion_claim(self, say: str, tr: TurnTrace) -> bool:
+        """The reply says a booking change is done, but no write succeeded this turn and the last change tried in this
+        call did not go through (waiting for a read-back, refused, or the read-back was answered with anything but a
+        clear yes). Final run (2026-11-10, res-returning-337): "That's correct, but I don't remember the reference"
+        does not count as a yes, the cancellation was not made, and the small model said "Your booking was cancelled".
+        A status answer with no failed change ("your table has been booked for 8 PM") and restating a change that did
+        succeed are not flagged."""
+        if not _COMPLETION_CLAIM.search(say or ""):
+            return False
+        if any(t.ok and t.tool in WRITE_TOOLS for t in tr.tools):
+            return False
+        tried = [e for e in self.gw.events if e.tool in WRITE_TOOLS]
+        return self.gw.pending is not None or self.pending_call is not None or bool(tried and not tried[-1].ok)
 
     @staticmethod
     def _tool_trigger(name: str, res: dict) -> str | None:
@@ -389,6 +426,7 @@ class Agent:
         tr.escalation_reason = reason
         msgs = self._large_messages(steps)
         effort = "medium" if self.cfg.large_reasoning else "low"
+        corrected = False
         for _ in range(self.max_large_steps):
             try:
                 r = self.large.chat(msgs, tools=self._large_tools, max_tokens=1200, reasoning=effort)
@@ -400,7 +438,13 @@ class Agent:
                 continue
             tr.model_calls.append(ModelCall.of("large", "reply", r))
             if not r.tool_calls:
-                return (r.text or "").strip() or templates.FALLBACK
+                text = (r.text or "").strip()
+                if text and not corrected and self._unbacked_completion_claim(text, tr):
+                    corrected = True  # one retry; the claim check covers the large model too
+                    tr.escalation_reason = f"{tr.escalation_reason or ''}; completion claim corrected".lstrip("; ")
+                    msgs += [{"role": "assistant", "content": text}, {"role": "user", "content": _CLAIM_CORRECTION}]
+                    continue
+                return text or templates.FALLBACK
             msgs.append({"role": "assistant", "content": r.text or "", "tool_calls": [tc.as_message_part() for tc in r.tool_calls]})
             outcome = None
             for tc in r.tool_calls:

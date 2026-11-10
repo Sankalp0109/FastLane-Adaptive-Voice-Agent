@@ -1,0 +1,137 @@
+=== final_fix fastlane 120 11-10 05:24:17
+[fastlane] 0 done, 120 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/final_fix/fastlane.jsonl
+[fastlane] 1/120 bus-change_mind-191 seed=0 success=True turns=6 max_model_ms=6997 wall=30.98s
+[fastlane] 2/120 bus-dates-161 seed=0 success=True turns=8 max_model_ms=6696 wall=31.62s
+[fastlane] 3/120 bus-policy-201 seed=0 success=True turns=2 max_model_ms=4776 wall=8.56s
+[fastlane] 4/120 bus-red_flag-228 seed=0 success=True turns=1 max_model_ms=1139 wall=1.17s
+[fastlane] 5/120 bus-returning-214 seed=0 success=True turns=3 max_model_ms=5856 wall=11.66s
+[fastlane] 6/120 bus-rule_break-236 seed=0 success=True turns=8 max_model_ms=6408 wall=35.68s
+[fastlane] 7/120 bus-simple-121 seed=0 success=False turns=16 max_model_ms=7528 wall=82.34s
+[fastlane] 8/120 bus-sold_out-176 seed=0 success=False turns=7 max_model_ms=4135 wall=27.65s
+[fastlane] 9/120 mov-change_mind-071 seed=0 success=True turns=8 max_model_ms=5796 wall=26.1s
+[fastlane] 10/120 mov-dates-041 seed=0 success=True turns=4 max_model_ms=6123 wall=19.44s
+[fastlane] 11/120 mov-policy-081 seed=0 success=False turns=5 max_model_ms=6372 wall=28.09s
+[fastlane] 12/120 mov-red_flag-108 seed=0 success=True turns=1 max_model_ms=1061 wall=1.08s
+[fastlane] 13/120 mov-returning-095 seed=0 success=True turns=3 max_model_ms=5716 wall=13.03s
+[fastlane] 14/120 mov-rule_break-116 seed=0 success=True turns=1 max_model_ms=3377 wall=3.41s
+[fastlane] 15/120 mov-simple-001 seed=0 success=True turns=9 max_model_ms=6118 wall=26.52s
+[fastlane] 16/120 mov-sold_out-056 seed=0 success=False turns=3 max_model_ms=6091 wall=18.89s
+[fastlane] 17/120 res-change_mind-311 seed=0 success=True turns=6 max_model_ms=6490 wall=25.4s
+[fastlane] 18/120 res-dates-281 seed=0 success=True turns=7 max_model_ms=6211 wall=22.39s
+[fastlane] 19/120 res-policy-321 seed=0 success=False turns=6 max_model_ms=6621 wall=33.5s
+[fastlane] 20/120 res-red_flag-347 seed=0 success=True turns=1 max_model_ms=1112 wall=1.13s
+[fastlane] 21/120 res-returning-334 seed=0 success=True turns=3 max_model_ms=6369 wall=16.98s
+[fastlane] 22/120 res-rule_break-356 seed=0 success=True turns=1 max_model_ms=3077 wall=3.12s
+[fastlane] 23/120 res-simple-241 seed=0 success=True turns=7 max_model_ms=6096 wall=23.34s
+[fastlane] 24/120 res-sold_out-296 seed=0 success=True turns=4 max_model_ms=3324 wall=15.33s
+[fastlane] 25/120 bus-change_mind-192 seed=0 success=False turns=8 max_model_ms=6916 wall=36.21s
+[fastlane] 26/120 bus-dates-162 seed=0 success=True turns=7 max_model_ms=6523 wall=30.07s
+[fastlane] 27/120 bus-policy-202 seed=0 success=True turns=6 max_model_ms=8406 wall=35.05s
+[fastlane] 28/120 bus-red_flag-229 seed=0 success=True turns=3 max_model_ms=3398 wall=15.15s
+[fastlane] 29/120 bus-returning-215 seed=0 success=True turns=3 max_model_ms=2908 wall=9.61s
+[fastlane] 30/120 bus-rule_break-237 seed=0 success=True turns=8 max_model_ms=4077 wall=29.3s
+[fastlane] 31/120 bus-simple-122 seed=0 success=True turns=7 max_model_ms=7170 wall=29.7s
+[fastlane] 32/120 bus-sold_out-177 seed=0 success=True turns=6 max_model_ms=4078 wall=26.99s
+[fastlane] 33/120 mov-change_mind-072 seed=0 success=False turns=10 max_model_ms=6503 wall=42.04s
+[fastlane] 34/120 mov-dates-042 seed=0 success=True turns=8 max_model_ms=6632 wall=28.47s
+[fastlane] 35/120 mov-policy-082 seed=0 success=True turns=4 max_model_ms=4553 wall=18.47s
+[fastlane] 36/120 mov-red_flag-109 seed=0 success=True turns=2 max_model_ms=2220 wall=9.26s
+=== resumed after the session ended (36/120 done) 11-10 05:38:56
+=== final_fix fastlane 120 11-10 05:38:56
+[fastlane] 36 done, 84 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/final_fix/fastlane.jsonl
+[fastlane] 1/84 mov-returning-096 seed=0 success=True turns=3 max_model_ms=7497 wall=14.03s
+[fastlane] 2/84 mov-rule_break-117 seed=0 success=True turns=2 max_model_ms=4339 wall=11.92s
+[fastlane] 3/84 mov-simple-002 seed=0 success=True turns=9 max_model_ms=5771 wall=27.63s
+[fastlane] 4/84 mov-sold_out-057 seed=0 success=True turns=5 max_model_ms=5460 wall=21.71s
+[fastlane] 5/84 res-change_mind-312 seed=0 success=True turns=5 max_model_ms=6383 wall=20.26s
+[fastlane] 6/84 res-dates-282 seed=0 success=True turns=7 max_model_ms=5767 wall=20.2s
+[fastlane] 7/84 res-policy-322 seed=0 success=False turns=6 max_model_ms=6640 wall=30.68s
+[fastlane] 8/84 res-red_flag-348 seed=0 success=True turns=2 max_model_ms=1396 wall=8.55s
+[fastlane] 9/84 res-returning-335 seed=0 success=True turns=3 max_model_ms=3901 wall=11.64s
+[fastlane] 10/84 res-rule_break-357 seed=0 success=True turns=2 max_model_ms=3332 wall=12.17s
+[fastlane] 11/84 res-simple-242 seed=0 success=True turns=7 max_model_ms=6872 wall=27.66s
+[fastlane] 12/84 res-sold_out-297 seed=0 success=True turns=5 max_model_ms=5981 wall=22.26s
+[fastlane] 13/84 bus-change_mind-193 seed=0 success=True turns=6 max_model_ms=8387 wall=30.43s
+[fastlane] 14/84 bus-dates-163 seed=0 success=True turns=7 max_model_ms=7327 wall=33.0s
+[fastlane] 15/84 bus-policy-203 seed=0 success=True turns=2 max_model_ms=5319 wall=10.27s
+[fastlane] 16/84 bus-red_flag-230 seed=0 success=True turns=7 max_model_ms=3708 wall=26.92s
+[fastlane] 17/84 bus-returning-216 seed=0 success=True turns=7 max_model_ms=5413 wall=35.28s
+[fastlane] 18/84 bus-rule_break-238 seed=0 success=True turns=2 max_model_ms=3017 wall=11.44s
+[fastlane] 19/84 bus-simple-123 seed=0 success=True turns=7 max_model_ms=7127 wall=32.49s
+[fastlane] 20/84 bus-sold_out-178 seed=0 success=True turns=5 max_model_ms=6252 wall=26.61s
+[fastlane] 21/84 mov-change_mind-073 seed=0 success=False turns=8 max_model_ms=6298 wall=27.84s
+[fastlane] 22/84 mov-dates-043 seed=0 success=True turns=10 max_model_ms=5397 wall=34.66s
+[fastlane] 23/84 mov-policy-083 seed=0 success=False turns=2 max_model_ms=2928 wall=7.65s
+[fastlane] 24/84 mov-red_flag-110 seed=0 success=True turns=2 max_model_ms=1418 wall=7.39s
+[fastlane] 25/84 mov-returning-097 seed=0 success=True turns=3 max_model_ms=6600 wall=14.04s
+[fastlane] 26/84 mov-rule_break-118 seed=0 success=True turns=3 max_model_ms=3098 wall=15.98s
+[fastlane] 27/84 mov-simple-003 seed=0 success=True turns=6 max_model_ms=2643 wall=17.48s
+[fastlane] 28/84 mov-sold_out-058 seed=0 success=True turns=5 max_model_ms=5396 wall=22.84s
+[fastlane] 29/84 res-change_mind-313 seed=0 success=False turns=4 max_model_ms=7056 wall=17.59s
+[fastlane] 30/84 res-dates-283 seed=0 success=True turns=8 max_model_ms=6131 wall=27.07s
+[fastlane] 31/84 res-policy-323 seed=0 success=True turns=2 max_model_ms=4488 wall=8.5s
+[fastlane] 32/84 res-red_flag-349 seed=0 success=True turns=1 max_model_ms=2199 wall=2.23s
+[fastlane] 33/84 res-returning-336 seed=0 success=True turns=4 max_model_ms=3348 wall=15.75s
+[fastlane] 34/84 res-rule_break-358 seed=0 success=True turns=1 max_model_ms=1694 wall=1.73s
+[fastlane] 35/84 res-simple-243 seed=0 success=True turns=7 max_model_ms=6516 wall=24.29s
+[fastlane] 36/84 res-sold_out-298 seed=0 success=True turns=5 max_model_ms=5776 wall=20.38s
+[fastlane] 37/84 bus-change_mind-194 seed=0 success=True turns=9 max_model_ms=7846 wall=51.98s
+[fastlane] 38/84 bus-dates-164 seed=0 success=True turns=6 max_model_ms=6270 wall=22.46s
+[fastlane] 39/84 bus-policy-204 seed=0 success=True turns=6 max_model_ms=6874 wall=26.53s
+[fastlane] 40/84 bus-red_flag-231 seed=0 success=True turns=2 max_model_ms=1158 wall=6.54s
+[fastlane] 41/84 bus-returning-217 seed=0 success=True turns=3 max_model_ms=6007 wall=13.31s
+[fastlane] 42/84 bus-rule_break-239 seed=0 success=True turns=1 max_model_ms=2792 wall=2.83s
+[fastlane] 43/84 bus-simple-124 seed=0 success=True turns=7 max_model_ms=3740 wall=26.26s
+[fastlane] 44/84 bus-sold_out-179 seed=0 success=True turns=6 max_model_ms=6099 wall=33.4s
+[fastlane] 45/84 mov-change_mind-074 seed=0 success=False turns=8 max_model_ms=6542 wall=28.61s
+[fastlane] 46/84 mov-dates-044 seed=0 success=True turns=9 max_model_ms=6097 wall=30.66s
+[fastlane] 47/84 mov-policy-084 seed=0 success=True turns=5 max_model_ms=7469 wall=27.79s
+[fastlane] 48/84 mov-red_flag-111 seed=0 success=True turns=4 max_model_ms=4772 wall=17.62s
+[fastlane] 49/84 mov-returning-098 seed=0 success=True turns=3 max_model_ms=5555 wall=15.66s
+[fastlane] 50/84 mov-rule_break-119 seed=0 success=True turns=1 max_model_ms=2706 wall=2.76s
+[fastlane] 51/84 mov-simple-004 seed=0 success=True turns=7 max_model_ms=6486 wall=24.24s
+[fastlane] 52/84 mov-sold_out-059 seed=0 success=True turns=5 max_model_ms=8792 wall=27.06s
+[fastlane] 53/84 res-change_mind-314 seed=0 success=True turns=6 max_model_ms=7072 wall=24.87s
+[fastlane] 54/84 res-dates-284 seed=0 success=True turns=8 max_model_ms=6385 wall=26.38s
+[fastlane] 55/84 res-policy-324 seed=0 success=True turns=4 max_model_ms=7200 wall=23.4s
+[fastlane] 56/84 res-red_flag-350 seed=0 success=True turns=7 max_model_ms=3242 wall=22.77s
+[fastlane] 57/84 res-returning-337 seed=0 success=True turns=4 max_model_ms=8015 wall=23.14s
+[fastlane] 58/84 res-rule_break-359 seed=0 success=True turns=1 max_model_ms=905 wall=0.92s
+[fastlane] 59/84 res-simple-244 seed=0 success=True turns=7 max_model_ms=6371 wall=23.56s
+[fastlane] 60/84 res-sold_out-299 seed=0 success=True turns=4 max_model_ms=3363 wall=15.39s
+[fastlane] 61/84 bus-change_mind-195 seed=0 success=True turns=11 max_model_ms=8861 wall=61.64s
+[fastlane] 62/84 bus-dates-165 seed=0 success=True turns=7 max_model_ms=7573 wall=26.91s
+[fastlane] 63/84 bus-policy-205 seed=0 success=True turns=2 max_model_ms=2058 wall=6.57s
+[fastlane] 64/84 bus-red_flag-232 seed=0 success=True turns=1 max_model_ms=2346 wall=2.38s
+[fastlane] 65/84 bus-returning-218 seed=0 success=True turns=3 max_model_ms=5819 wall=12.61s
+[fastlane] 66/84 bus-rule_break-240 seed=0 success=True turns=2 max_model_ms=3011 wall=10.49s
+[fastlane] 67/84 bus-simple-125 seed=0 success=True turns=6 max_model_ms=3709 wall=24.08s
+[fastlane] 68/84 bus-sold_out-180 seed=0 success=True turns=9 max_model_ms=6629 wall=51.89s
+[fastlane] 69/84 mov-change_mind-075 seed=0 success=False turns=11 max_model_ms=6314 wall=43.02s
+[fastlane] 70/84 mov-dates-045 seed=0 success=True turns=12 max_model_ms=7016 wall=39.45s
+[fastlane] 71/84 mov-policy-085 seed=0 success=True turns=2 max_model_ms=4464 wall=8.67s
+[fastlane] 72/84 mov-red_flag-112 seed=0 success=True turns=2 max_model_ms=1164 wall=7.37s
+[fastlane] 73/84 mov-returning-099 seed=0 success=True turns=7 max_model_ms=6709 wall=35.6s
+[fastlane] 74/84 mov-rule_break-120 seed=0 success=True turns=6 max_model_ms=4885 wall=23.07s
+[fastlane] 75/84 mov-simple-005 seed=0 success=True turns=9 max_model_ms=6789 wall=29.94s
+[fastlane] 76/84 mov-sold_out-060 seed=0 success=True turns=5 max_model_ms=4385 wall=20.57s
+[fastlane] 77/84 res-change_mind-315 seed=0 success=False turns=4 max_model_ms=6615 wall=16.22s
+[fastlane] 78/84 res-dates-285 seed=0 success=True turns=7 max_model_ms=5936 wall=23.01s
+[fastlane] 79/84 res-policy-325 seed=0 success=False turns=1 max_model_ms=2557 wall=2.6s
+[fastlane] 80/84 res-red_flag-351 seed=0 success=True turns=1 max_model_ms=1038 wall=1.06s
+[fastlane] 81/84 res-returning-338 seed=0 success=True turns=3 max_model_ms=6471 wall=13.46s
+[fastlane] 82/84 res-rule_break-360 seed=0 success=True turns=1 max_model_ms=1727 wall=1.76s
+[fastlane] 83/84 res-simple-245 seed=0 success=True turns=7 max_model_ms=6425 wall=23.55s
+[fastlane] 84/84 res-sold_out-300 seed=0 success=True turns=5 max_model_ms=5859 wall=21.32s
+# Results: run `final_fix`
+
+| System | Calls | Success (95% CI) | p50 model ms | p95 model ms | p95 vs B1 | Large-model turns | Router precision / hard recall | Hard recall, dates in code | Unsafe-write calls | Missed hand-offs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| fastlane | 120 | 87.5% (80-92%) | 1,664 | 6,620 | - | 20.5% | 51.8% / 72.0% | 84.7% | 0.0% | 0/15 |
+
+![success vs p95](success_vs_p95.png)
+
+report -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/final_fix/REPORT.md
+=== all done 11-10 06:07:46
+[fastlane] 119 done, 1 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/final_fix/fastlane.jsonl
+[fastlane] 1/1 res-returning-337 seed=0 success=True turns=5 max_model_ms=6262 wall=21.54s

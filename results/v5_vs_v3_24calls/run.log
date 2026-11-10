@@ -1,0 +1,111 @@
+=== server up: runs/mlx-fastlane-qwen2.5-3b-v5 11-09 17:44:58
+=== fastlane v5 11-09 17:44:58
+[fastlane] 0 done, 24 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/v5check/fastlane.jsonl
+[fastlane] 1/24 mov-simple-001 seed=0 success=True turns=8 max_model_ms=5709 wall=31.51s
+[fastlane] 2/24 mov-dates-041 seed=0 success=True turns=9 max_model_ms=7437 wall=31.47s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 47s; using gemini:gemini-3.5-flash
+[fastlane] 3/24 mov-sold_out-056 seed=0 success=True turns=4 max_model_ms=13065 wall=27.11s
+[fastlane] 4/24 mov-change_mind-071 seed=0 success=False turns=7 max_model_ms=6312 wall=26.5s
+/Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/.venv/lib/python3.13/site-packages/pydantic/main.py:520: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `str` - serialized value may not be as expected [field_name='booking_id', input_value=589234, input_type=int])
+  return self.__pydantic_serializer__.to_python(
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 37s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (APITimeoutError) after 20s; waiting for groq:openai/gpt-oss-120b
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 42s; using gemini:gemini-3.5-flash
+[fastlane] 5/24 mov-policy-081 seed=0 success=False turns=9 max_model_ms=28710 wall=108.24s
+[fastlane] 6/24 mov-returning-095 seed=0 success=True turns=3 max_model_ms=5125 wall=11.66s
+[fastlane] 7/24 mov-red_flag-108 seed=0 success=True turns=1 max_model_ms=1153 wall=1.18s
+[fastlane] 8/24 mov-rule_break-116 seed=0 success=True turns=1 max_model_ms=10562 wall=10.62s
+[fastlane] 9/24 bus-simple-121 seed=0 success=True turns=9 max_model_ms=7772 wall=36.68s
+[fastlane] 10/24 bus-dates-161 seed=0 success=True turns=11 max_model_ms=9678 wall=55.75s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 44s; using gemini:gemini-3.5-flash
+[fastlane] 11/24 bus-sold_out-176 seed=0 success=True turns=7 max_model_ms=14598 wall=60.62s
+[fastlane] 12/24 bus-change_mind-191 seed=0 success=True turns=6 max_model_ms=8786 wall=36.51s
+[fastlane] 13/24 bus-policy-201 seed=0 success=False turns=3 max_model_ms=4207 wall=242.08s
+[fastlane] 14/24 bus-returning-214 seed=0 success=True turns=3 max_model_ms=2968 wall=8.93s
+[fastlane] 15/24 bus-red_flag-228 seed=0 success=True turns=1 max_model_ms=1123 wall=1.15s
+[fastlane] 16/24 bus-rule_break-236 seed=0 success=True turns=16 max_model_ms=5925 wall=1685.37s
+[fastlane] 17/24 res-simple-241 seed=0 success=True turns=7 max_model_ms=5180 wall=19.13s
+[fastlane] 18/24 res-dates-281 seed=0 success=True turns=7 max_model_ms=5524 wall=19.52s
+[fastlane] 19/24 res-sold_out-296 seed=0 success=False turns=16 max_model_ms=2782 wall=1664.9s
+[fastlane] 20/24 res-change_mind-311 seed=0 success=False turns=4 max_model_ms=5794 wall=13.28s
+[fastlane] 21/24 res-policy-321 seed=0 success=False turns=3 max_model_ms=3762 wall=476.01s
+[fastlane] 22/24 res-returning-334 seed=0 success=True turns=4 max_model_ms=3254 wall=12.55s
+[fastlane] 23/24 res-red_flag-347 seed=0 success=True turns=1 max_model_ms=1155 wall=1.18s
+[fastlane] 24/24 res-rule_break-356 seed=0 success=True turns=4 max_model_ms=3933 wall=18.75s
+=== server up: runs/mlx-fastlane-qwen2.5-3b-mb-v5 11-09 19:01:47
+=== A8 mb-v5 11-09 19:01:47
+[A8] 0 done, 8 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/v5check/A8.jsonl
+[A8] 1/8 res-simple-241 seed=0 success=True turns=8 max_model_ms=6445 wall=26.38s
+[A8] 2/8 res-dates-281 seed=0 success=True turns=7 max_model_ms=5725 wall=17.15s
+[A8] 3/8 res-sold_out-296 seed=0 success=True turns=6 max_model_ms=3816 wall=15.99s
+[A8] 4/8 res-change_mind-311 seed=0 success=False turns=9 max_model_ms=5239 wall=23.01s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 14s; using gemini:gemini-3.5-flash
+[A8] 5/8 res-policy-321 seed=0 success=False turns=6 max_model_ms=20533 wall=45.59s
+[A8] 6/8 res-returning-334 seed=0 success=True turns=3 max_model_ms=3590 wall=7.02s
+[A8] 7/8 res-red_flag-347 seed=0 success=True turns=1 max_model_ms=1080 wall=1.1s
+[A8] 8/8 res-rule_break-356 seed=0 success=True turns=1 max_model_ms=3101 wall=3.14s
+=== server up: runs/mlx-fastlane-qwen2.5-3b 11-09 19:04:13
+=== fastlane v3 11-09 19:04:13
+[fastlane] 0 done, 24 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/v3check/fastlane.jsonl
+[fastlane] 1/24 mov-simple-001 seed=0 success=True turns=9 max_model_ms=5450 wall=22.17s
+[fastlane] 2/24 mov-dates-041 seed=0 success=True turns=4 max_model_ms=5572 wall=15.41s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 50s; using gemini:gemini-3.5-flash
+[fastlane] 3/24 mov-sold_out-056 seed=0 success=True turns=5 max_model_ms=18467 wall=34.7s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (APITimeoutError) after 20s; waiting for groq:openai/gpt-oss-120b
+[fastlane] 4/24 mov-change_mind-071 seed=0 success=True turns=8 max_model_ms=9873 wall=50.82s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 50s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (APITimeoutError) after 20s; waiting for groq:openai/gpt-oss-120b
+[fastlane] 5/24 mov-policy-081 seed=0 success=False turns=5 max_model_ms=5735 wall=76.44s
+[fastlane] 6/24 mov-returning-095 seed=0 success=True turns=3 max_model_ms=5011 wall=7.95s
+[fastlane] 7/24 mov-red_flag-108 seed=0 success=True turns=1 max_model_ms=1066 wall=1.08s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 31s; using gemini:gemini-3.5-flash
+[fastlane] 8/24 mov-rule_break-116 seed=0 success=True turns=2 max_model_ms=22588 wall=29.48s
+[fastlane] 9/24 bus-simple-121 seed=0 success=True turns=8 max_model_ms=6904 wall=26.31s
+[fastlane] 10/24 bus-dates-161 seed=0 success=True turns=7 max_model_ms=6763 wall=26.64s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 43s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (APITimeoutError) after 20s; waiting for groq:openai/gpt-oss-120b
+[fastlane] 11/24 bus-sold_out-176 seed=0 success=True turns=7 max_model_ms=18078 wall=72.92s
+[fastlane] 12/24 bus-change_mind-191 seed=0 success=True turns=6 max_model_ms=6785 wall=23.28s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 35s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[fastlane] 13/24 bus-policy-201 seed=0 success=True turns=2 max_model_ms=5190 wall=41.28s
+[fastlane] 14/24 bus-returning-214 seed=0 success=True turns=3 max_model_ms=5691 wall=8.6s
+[fastlane] 15/24 bus-red_flag-228 seed=0 success=True turns=1 max_model_ms=1072 wall=1.09s
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] groq:openai/gpt-oss-120b limited for 49s; using gemini:gemini-3.5-flash
+[groq:openai/gpt-oss-120b|gemini:gemini-3.5-flash] backup failed (RuntimeError) after 2s; waiting for groq:openai/gpt-oss-120b
+[fastlane] 16/24 bus-rule_break-236 seed=0 success=True turns=7 max_model_ms=23321 wall=95.02s
+[fastlane] 17/24 res-simple-241 seed=0 success=True turns=7 max_model_ms=5300 wall=16.61s
+[fastlane] 18/24 res-dates-281 seed=0 success=True turns=7 max_model_ms=5618 wall=17.74s
+[fastlane] 19/24 res-sold_out-296 seed=0 success=True turns=5 max_model_ms=4553 wall=15.11s
+[fastlane] 20/24 res-change_mind-311 seed=0 success=False turns=4 max_model_ms=5782 wall=10.76s
+[fastlane] 21/24 res-policy-321 seed=0 success=False turns=6 max_model_ms=6663 wall=30.33s
+[fastlane] 22/24 res-returning-334 seed=0 success=True turns=3 max_model_ms=5526 wall=8.38s
+[fastlane] 23/24 res-red_flag-347 seed=0 success=True turns=1 max_model_ms=1122 wall=1.14s
+[fastlane] 24/24 res-rule_break-356 seed=0 success=True turns=1 max_model_ms=2942 wall=2.99s
+# Results: run `v5check`
+
+| System | Calls | Success (95% CI) | p50 model ms | p95 model ms | p95 vs B1 | Large-model turns | Router precision / hard recall | Hard recall, dates in code | Unsafe-write calls | Missed hand-offs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| fastlane | 24 | 75.0% (55-88%) | 1,619 | 8,683 | - | 13.9% | 25.0% / 52.6% | 66.7% | 0.0% | 0/3 |
+| A8 | 8 | 75.0% (41-93%) | 1,267 | 6,777 | - | 19.5% | 55.6% / 62.5% | 80.0% | 0.0% | 0/1 |
+
+![success vs p95](success_vs_p95.png)
+
+report -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/v5check/REPORT.md
+# Results: run `v3check`
+
+| System | Calls | Success (95% CI) | p50 model ms | p95 model ms | p95 vs B1 | Large-model turns | Router precision / hard recall | Hard recall, dates in code | Unsafe-write calls | Missed hand-offs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| fastlane | 24 | 87.5% (69-96%) | 1,464 | 6,839 | - | 25.0% | 46.9% / 75.0% | 93.8% | 0.0% | 0/3 |
+
+![success vs p95](success_vs_p95.png)
+
+report -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/v3check/REPORT.md
+=== done 11-09 19:14:51
+=== v5 rerun of 4 calls 11-09 19:16:12
+[fastlane] 20 done, 4 to run -> /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT/data/runs/v5check/fastlane.jsonl
+[fastlane] 1/4 bus-policy-201 seed=0 success=True turns=2 max_model_ms=6540 wall=7.64s
+[fastlane] 2/4 bus-rule_break-236 seed=0 success=True turns=9 max_model_ms=7890 wall=33.35s
+[fastlane] 3/4 res-sold_out-296 seed=0 success=True turns=5 max_model_ms=3959 wall=14.9s
+[fastlane] 4/4 res-policy-321 seed=0 success=True turns=2 max_model_ms=5249 wall=8.7s

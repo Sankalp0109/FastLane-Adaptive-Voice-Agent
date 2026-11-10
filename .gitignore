@@ -13,8 +13,6 @@ runs/
 report/
 kaggle_output/
 docs
-kaggle_output_3/
-kaggle_output_4/
-kaggle_output_5/
+kaggle_output_*/
 data/speech/
 PLAN.md

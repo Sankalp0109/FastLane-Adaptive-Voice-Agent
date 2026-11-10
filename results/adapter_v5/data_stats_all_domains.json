@@ -1,0 +1,43 @@
+{
+  "calls_kept": 645,
+  "val_calls": 64,
+  "train_examples": 3153,
+  "val_examples": 245,
+  "noisy_copies": 514,
+  "routes_train": {
+    "self": 2496,
+    "llm": 471,
+    "staff": 186
+  },
+  "kinds_train": {
+    "rule_no_pax": 88,
+    "book": 1167,
+    "red_flag": 125,
+    "change_mind": 568,
+    "sold_out": 206,
+    "modify": 169,
+    "returning_cancel": 28,
+    "usual": 182,
+    "dates": 496,
+    "cancel": 70,
+    "policy": 121,
+    "rule_deposit": 45,
+    "rule_colleague": 24,
+    "rule_group": 48
+  },
+  "configs_train": {
+    "A4": 405,
+    "A2": 497,
+    "fastlane": 2050,
+    "A6": 143,
+    "A7": 242
+  },
+  "domains_train": {
+    "buses": 1219,
+    "movies": 1115,
+    "restaurants": 1003
+  },
+  "approx_tokens_per_example": 920,
+  "noise": "roundtrip",
+  "val_roundtrip_changed": 192
+}

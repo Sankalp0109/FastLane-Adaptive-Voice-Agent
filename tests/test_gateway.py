@@ -421,3 +421,53 @@ def test_offered_alternative_counts_but_a_rejected_readback_does_not(world):
     g.begin_turn("No, that's wrong.")
     r = g.call("create_booking", {"domain": "restaurants", "option_id": bad, "name": "Asha", "party_size": 4})
     assert r["error"] == "rule_violation" and r["violations"][0]["code"] == "not_requested"
+
+
+# ------------------------------------------------------------------ origin must be heard (final run fix)
+
+BUS_TO_HYD = {"domain": "buses", "date": "2026-10-22", "origin": "Bengaluru", "destination": "Hyderabad", "quantity": 1}
+
+
+def test_bus_search_from_a_city_the_caller_never_said_is_refused(gw):
+    """Final run (bus-simple-122): caller said only "to Hyderabad"; the small model searched from Bengaluru."""
+    gw.begin_turn("Hello, is there a bus to Hyderabad on 22nd October?")
+    r = gw.call("search_inventory", BUS_TO_HYD)
+    assert r["error"] == "rule_violation" and "Bengaluru" in json.dumps(r)
+    assert not gw.record.origin  # the guessed city never reaches the record
+    r = gw.call("find_alternatives", {**BUS_TO_HYD, "time": "19:30"})
+    assert r["error"] == "rule_violation"
+    gw.begin_turn("From Bangalore.")  # an alias counts
+    r = gw.call("search_inventory", BUS_TO_HYD)
+    assert r["ok"] and gw.record.origin == "Bengaluru"
+
+
+def test_bus_origin_said_only_by_the_agent_does_not_count(gw):
+    gw.begin_turn("A bus to Hyderabad on the 22nd please.")
+    gw.end_turn("We have buses from Bengaluru to Hyderabad.")
+    gw.begin_turn("ok")
+    assert gw.call("search_inventory", BUS_TO_HYD)["error"] == "rule_violation"
+
+
+def test_hyderabad_is_the_default_origin(gw):
+    gw.begin_turn("Two seats to Chennai on the 22nd.")
+    r = gw.call("search_inventory", {"domain": "buses", "date": "2026-10-22", "origin": "Hyderabad", "destination": "Chennai", "quantity": 2})
+    assert r["ok"]
+
+
+def test_origin_check_is_off_without_rule_enforcement(world):
+    g = Gateway(world, CALLER, config=SYSTEMS["A3"])
+    g.begin_turn("Is there a bus to Hyderabad on the 22nd?")
+    assert g.call("search_inventory", BUS_TO_HYD)["ok"]
+
+
+@pytest.mark.parametrize("text,expected", [
+    ("Can you please confirm my name and phone number used for the booking?", None),  # after-fix run, res-returning-337
+    ("Can you confirm the booking first?", None),
+    ("Could you confirm the time?", None),
+    ("Yes, can you also send the SMS?", True),
+    ("Please confirm", True),
+    ("haan, theek hai", True),
+    ("No, I want the 2 PM bus instead.", False),
+])
+def test_a_question_is_not_a_yes_to_a_readback(text, expected):
+    assert confirmation(text) is expected
