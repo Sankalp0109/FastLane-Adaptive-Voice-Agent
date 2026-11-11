@@ -26,7 +26,7 @@ agent's error.
 
 **Fix candidates (after all final runs, not mid-run):**
 1. Bus search needs a caller-stated origin: the gateway rejects `origin` not heard in the transcript (like the
-   heard-number check of section 21) → the agent asks "Where are you travelling from?".
+   heard-number check) → the agent asks "Where are you travelling from?".
 2. Completion claims ("cancelled", "confirmed", "booked") only from templates after a successful write; a small-model
    reply claiming completion with no successful write this turn goes to the large model.
 3. Policy answers that contradict the retrieved passage: route small-model policy answers to the large model unless the
@@ -89,7 +89,7 @@ slightly higher invalid-argument rate; the earlier 6/8 vs 7/8 gap (mid run, mb-v
 
 # After the fixes: run `final_fix` (FastLane v3, same 120 calls, 2026-11-10)
 
-Fixes (experiment log section 27): origin heard at search time; completion claim without a write; negative policy
+Fixes: origin heard at search time; completion claim without a write; negative policy
 answer → large model; plus, found during this run, a question is not a yes to a read-back. The run was interrupted at
 call 36 (the session ended and stopped the MLX server) and resumed; res-returning-337 was rerun alone after the
 read-back fix (old row: `final_fix_superseded_res-returning-337.jsonl`; the read-back fix changes no other read-back
@@ -118,7 +118,7 @@ model said the booking was "already" at the newly asked time — the record hold
 is made); res-policy-321 (the large model started a booking after a deposit question). None of the three fixed error
 types occurs. Agent's own errors: 5 → 6 calls, different kinds.
 
-**Found while checking the fixes against the training data (experiment log section 27):** the practice-call
+**Found while checking the fixes against the training data:** the practice-call
 generator's sold-out bus plans to Hyderabad search from the trip's origin although the caller only says "to
 Hyderabad": 6 of 225 bus-search training steps in data v3 (4 practice calls), the likely source of the model's
 guessed origin. The new gateway check rejects exactly these 4 calls when the data is regenerated (641 of 650 kept vs

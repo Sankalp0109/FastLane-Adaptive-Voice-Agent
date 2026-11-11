@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Offline checks of the v5 adapters: one MLX server per model on :8080, then `fastlane train check`.
-cd /Users/sankakpchaturvedi/IIITH/assignments/LMA/LMA_GROUP_PROJECT
+cd "$(dirname "$0")/../.."   # repo root
 R=results/adapter_v5; F=.venv/bin/fastlane
 serve() {
   pkill -f "mlx_lm server" ; sleep 2
